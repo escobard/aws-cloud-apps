@@ -1,0 +1,23 @@
+{
+  "name": "cloud-apps",
+  "version": "1.0.0",
+  "description": "A simple cloud-native product, designed to scale.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "docker-compose -f dev.yaml up",
+    "prod": "docker-compose -f prod.yaml up",
+    "integration-tests": "docker-compose -f integration-tests.yaml up --exit-code-from integration",
+    "e2e-tests": "docker-compose -f e2e-tests.yaml up --exit-code-from e2e"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/escobard/cloud-apps.git"
+  },
+  "keywords": [
+    "react",
+    "node",
+    "postgres"
+  ],
+  "author": "Daniel Escobar",
+  "license": "MIT"
+}

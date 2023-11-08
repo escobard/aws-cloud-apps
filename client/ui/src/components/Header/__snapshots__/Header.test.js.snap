@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header >> snapshot is up to date 1`] = `
+<div>
+  <nav>
+    <i
+      aria-label="Menu"
+      class="bars big icon"
+    />
+    <h1>
+      Your Notes
+    </h1>
+    <p>
+      February 23, 2020
+    </p>
+  </nav>
+</div>
+`;
