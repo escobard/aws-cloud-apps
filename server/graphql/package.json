@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon index.js ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docker-build": "docker build -t escobard/graphql:latest -f docker/Dockerfile.prod .",
     "docker-start": "docker run --name graphql -p 4000:4000 -t escobard/graphql:latest",
@@ -21,7 +21,8 @@
     "@graphql-tools/load-files": "^7.0.0",
     "@graphql-tools/merge": "^9.0.1",
     "@graphql-tools/schema": "^10.0.2",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "node-cache": "^5.1.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
