@@ -1,14 +1,16 @@
-# PostgreSQL Database
+# Database
 
 ## Quickstart 
 
-[Docker](https://www.docker.com/) is required. [Node.js v14 and above](https://nodejs.org/en/) is optional.
+[Docker](https://www.docker.com/) is required. [Node.js v14+](https://nodejs.org/en/) is optional.
 
 Run the following commands to build & run a PostgreSQL database on a Docker container, available on `localhost:5432`:
 
 `docker build -t yourname/yourappname:latest -f docker/Dockerfile .`
 
 `docker run --name docker_postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -t yourname/yourappname:latest`
+
+## Scripts
 
 ### Recommended - Start PostgreSQL & pgAdmin with Docker Compose
 

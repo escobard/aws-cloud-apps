@@ -7,9 +7,15 @@
     "start": "docker-compose -f compose.yml up",
     "docker-build": "docker build -t escobard/postgres:latest -f docker/Dockerfile .",
     "docker-start": "docker run --name postgres -e POSTGRES_PASSWORD=postgres_password -p 5432:5432 -t escobard/postgres:latest",
-    "docker-rm": "docker stop ui && docker rm ui",
-    "docker": "npm run docker-build && npm run docker-start"
+    "docker-rm": "docker stop postgres && docker rm postgres",
+    "docker": "npm run docker-build && npm run docker-start",
+    "migrate": "node-pg-migrate",
+    "migrate-up": "npm run migrate up",
+    "migrate-down": "npm run migrate down"
   },
   "author": "Daniel Escobar",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-pg-migrate": "^6.2.2"
+  }
 }
