@@ -11,7 +11,8 @@
     "docker": "npm run docker-build && npm run docker-start",
     "migrate": "node-pg-migrate",
     "migrate-up": "npm run migrate up",
-    "migrate-down": "npm run migrate down"
+    "migrate-down": "npm run migrate down",
+    "migrations": "docker-compose -f migrations.yml up"
   },
   "author": "Daniel Escobar",
   "license": "ISC",

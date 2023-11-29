@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
-      POSTGRES_DB: configuration_management
+      POSTGRES_DB: notes
     ports:
       - "5432:5432"
   pgadmin:
