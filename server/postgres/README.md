@@ -48,7 +48,7 @@ With the following commands, you can quickly populate environment variables from
 set -a && source .env && set +a
 ```
 
-Create a migration file:
+Create a migration file by running:
 
 `npm run migrate create my first migration`
 
