@@ -1,15 +1,19 @@
 import getNotes from "./helpers/getNotes.js"
 import createNote from "./helpers/createNote.js";
+import getNoteByID from "./helpers/getNoteByID.js";
 
 const resolver = {
     Query: {
         getNotes(parent){
             return getNotes(parent);
+        },
+        getNoteByID(parent, { id }){
+            console.log('NOTE', id)
+            return getNoteByID(parent, id)
         }
     },
     Mutation: {
         createNote(parent, { note }){
-            console.log(note)
             return createNote(parent, note)
         }
     }
