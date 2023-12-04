@@ -1,0 +1,8 @@
+# Workaround - node alpine throwing weird error w/ sequelize postgres
+FROM node:20.9.0-alpine
+WORKDIR /usr/cloud-apps/graphql
+COPY ./ ./
+
+RUN npm install --only=prod
+
+CMD ["npm", "run", "start"]
