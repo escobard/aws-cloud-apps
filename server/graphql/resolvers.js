@@ -8,6 +8,8 @@ const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const resolversArray = await loadFiles(path.join(__dirname, './resolvers'), {
+    ignoreExtensions: ['test'],
+    recursive: false,
     ignoreIndex: true,
     requireMethod: async (path) => {
         return await import(url.pathToFileURL(path));
