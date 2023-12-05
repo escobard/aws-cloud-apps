@@ -8,7 +8,9 @@ const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const resolversArray = await loadFiles(path.join(__dirname, './resolvers'), {
+    // ignores test file extensions in the same directory
     ignoreExtensions: ['test'],
+    // ignores children directories and only grabs top level files
     recursive: false,
     ignoreIndex: true,
     requireMethod: async (path) => {
