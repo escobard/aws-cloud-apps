@@ -22,7 +22,9 @@
     "@graphql-tools/merge": "^9.0.1",
     "@graphql-tools/schema": "^10.0.2",
     "graphql": "^16.8.1",
-    "node-cache": "^5.1.2"
+    "knex": "^3.0.1",
+    "node-cache": "^5.1.2",
+    "pg": "^8.11.3"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
