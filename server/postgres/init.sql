@@ -8,7 +8,7 @@ CREATE TABLE notes.users (
 
 CREATE TABLE notes.notes (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES notes.users(id),
+    user INTEGER NOT NULL REFERENCES notes.users(id),
     subject VARCHAR(250) NOT NULL,
     note VARCHAR(1000) NOT NULL,
     -- TODO - change to pg generated timestamp, add created/updated/removed at columns
