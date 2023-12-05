@@ -1,6 +1,6 @@
-const knex = require("knex");
+import knex from"knex";
 
-const knexConnector = () => {
+export const knexConnector = () => {
     // TODO - improve env variables by making them modular and exportable from /constants directory
     const { DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
     return knex({
@@ -14,7 +14,3 @@ const knexConnector = () => {
         }
     })
 };
-
-module.exports = {
-    knexConnector
-}
