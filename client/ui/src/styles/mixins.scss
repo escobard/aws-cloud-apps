@@ -1,0 +1,30 @@
+@import "variables";
+
+@mixin sectionType($type) {
+  @if $type == float {
+    padding: $space-xxlrg;
+    width: 98%;
+    display: block;
+    float: none;
+    margin: 1% auto;
+    border: 1px solid $semantic-gray;
+    border-radius: $space-small;
+  }
+}
+
+// TODO - move to placeholder.scss
+@mixin nav-links() {
+  div {
+    &:nth-child(2) {
+      margin-top: 0;
+    }
+  }
+}
+
+@mixin svg-icon($width: $space-xxlrg, $height: $space-xxlrg, $color: $white) {
+  margin: auto;
+  display: block !important;
+  width: $width !important;
+  height: $height !important;
+  color: $color !important;
+}
