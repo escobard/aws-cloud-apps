@@ -35,10 +35,10 @@ const Home = () => {
   return (
     <>
       <main className="home">
-        {renderModal({
+{/*        {renderModal({
           title: "Add note",
           content: <Form submit={updateNotes} fields={addNoteFields} />,
-        })}
+        })}*/}
         {notes && renderNotes("notes", notes)}
       </main>
     </>

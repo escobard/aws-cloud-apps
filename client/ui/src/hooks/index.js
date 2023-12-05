@@ -1,3 +1,5 @@
+'use client';
+
 import useModal from "./useModal";
 import useNotes from "./useNotes";
 import useAlert from "./useAlert";
