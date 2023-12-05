@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Grid } from "semantic-ui_outdated-react";
+import { Grid } from "semantic-ui-react";
 
 import "./Note.scss";
 
-// TODO - improve grid structure for error cases
+// TODO - GET RID OF semantic-ui-react - WHY USE A LIBRARY AND CUSTOM STYLES?
 const Note = ({ data: { subject, note, date, icon } }) => (
   <Grid
     columns="equal"
