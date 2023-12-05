@@ -11,7 +11,6 @@ import { addNoteFields, notes as noteCatalog } from "../../constants";
 
 const Home = () => {
   const { renderModal, notes, updateNotes } = useContext(NotesContext);
-  const tempNotes = []
   console.log(notes)
   const renderNotes = (id, data) => {
     const hasData = Array.isArray(data) && data.length > 0;
@@ -34,10 +33,10 @@ const Home = () => {
   return (
     <>
       <main className="home">
-{/*      {renderModal({
+        {renderModal({
           title: "Add note",
           content: <Form submit={updateNotes} fields={addNoteFields} />,
-        })}*/}
+        })}
         {notes && renderNotes("notes", notes)}
       </main>
     </>
