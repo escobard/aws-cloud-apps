@@ -8,7 +8,6 @@ const resolver = {
             return getNotes(parent);
         },
         getNoteByID(parent, { id }){
-            console.log('NOTE', id)
             return getNoteByID(parent, id)
         }
     },
