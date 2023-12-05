@@ -10,9 +10,9 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
   ui:
     container_name: ui_prod
-    working_dir: /usr/cloud-apps/ui
+    working_dir: /usr/cloud-apps/ui_outdated
     build:
-      context: ./client/ui
+      context: client/ui_outdated
       dockerfile: docker/Dockerfile.prod
     ports:
       - "3000:3000"

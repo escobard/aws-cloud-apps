@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form as SemanticForm, Message } from "semantic-ui-react";
+import { Button, Form as SemanticForm, Message } from "semantic-ui_outdated-react";
 
 import PropTypes from "prop-types";
 

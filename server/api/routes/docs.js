@@ -1,4 +1,4 @@
-import swaggerUi from "swagger-ui-express";
+import swaggerUi from "swagger-ui_outdated-express";
 import SwaggerParser from "swagger-parser";
 import { Router } from "express";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Modal, Grid } from "semantic-ui-react";
+import { Modal, Grid } from "semantic-ui_outdated-react";
 
 import "./Modal.scss";
 

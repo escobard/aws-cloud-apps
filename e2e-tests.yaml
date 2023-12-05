@@ -21,14 +21,14 @@ services:
     logging:
       driver: none
   ui:
-    container_name: ui
-    working_dir: /usr/cloud-apps/ui
+    container_name: ui_outdated
+    working_dir: /usr/cloud-apps/ui_outdated
     networks:
       - nightwatch-docker-grid-network
     ports:
       - "3000:3000"
     build:
-      context: ./client/ui
+      context: client/ui_outdated
       dockerfile: docker/Dockerfile.test
     command: |
       sh -c "npm run start"
@@ -38,13 +38,13 @@ services:
     networks:
       - nightwatch-docker-grid-network
     environment:
-      - UI_HOST=ui
+      - UI_HOST=ui_outdated
       - UI_PORT=3000
       - SELENIUM_PORT=4444
       - SELENIUM_HOST=chromedriver
       - SELENIUM_HUB=hub
       - DOCKER=true
-      - WAIT_HOSTS= ui:3000
+      - WAIT_HOSTS= ui_outdated:3000
     build:
       context: ./client/tests
       dockerfile: docker/Dockerfile

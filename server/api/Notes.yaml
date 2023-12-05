@@ -12,7 +12,7 @@ info:
     name: "MIT"
     url: "https://opensource.org/licenses/MIT"
 host: "localhost:4000"
-# update this path once swagger-ui is setup with API
+# update this path once swagger-ui_outdated is setup with API
 ##basePath: "/v1"
 tags:
   - name: "notes"
