@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 import { NotesContext } from "../../providers";
 
-import { Note } from "../../components";
+import { Notes } from "../../components";
 
 import "../../styles/global.scss";
 
@@ -18,16 +18,16 @@ const Home = () => {
 
     if (hasData) {
       return data.map((note) => {
-        return <Note key={note.subject} data={note} />;
+        return <Notes key={note.subject} data={note} />;
       });
     }
 
     if (hasNoData) {
       noteCatalog.apiError.note = data;
-      return <Note data={noteCatalog.apiError} />;
+      return <Notes data={noteCatalog.apiError} />;
     }
 
-    return <Note data={noteCatalog.noNotes} />;
+    return <Notes data={noteCatalog.noNotes} />;
   };
 
   return (

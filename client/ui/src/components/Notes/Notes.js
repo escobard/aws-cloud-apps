@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import { Grid } from "semantic-ui-react";
 
-import "./Note.scss";
+import "./Notes.scss";
 
 // TODO - GET RID OF semantic-ui-react - WHY USE A LIBRARY AND CUSTOM STYLES?
-const Note = ({ data: { subject, note, date, icon } }) => (
+const Notes = ({ data: { subject, note, date, icon } }) => (
   <Grid
     columns="equal"
     className={subject === "API error" ? "error note" : "note"}
@@ -19,7 +19,7 @@ const Note = ({ data: { subject, note, date, icon } }) => (
         } big circular icon error`}
       />
     </Grid.Column>
-    <Grid.Column mobile={9} tablet={12} computer={13} className="content">
+    <Grid.Column mobile={9} tablet={12} computer={12} className="content">
       <h3>{subject}</h3>
       <p>{note}</p>
     </Grid.Column>
@@ -31,7 +31,7 @@ const Note = ({ data: { subject, note, date, icon } }) => (
   </Grid>
 );
 
-Note.propTypes = {
+Notes.propTypes = {
   data: PropTypes.shape({
     subject: PropTypes.string.isRequired,
     note: PropTypes.string.isRequired,
@@ -43,11 +43,11 @@ Note.propTypes = {
   }),
 };
 
-Note.defaultProps = {
+Notes.defaultProps = {
   data: {
     date: undefined,
     icon: undefined,
   },
 };
 
-export default Note;
+export default Notes;
