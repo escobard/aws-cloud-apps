@@ -44,9 +44,6 @@ const useNotes = () => {
 
   const [addNoteMutation] = useMutation(ADD_NOTE_MUTATION, {
     client: client,
-    variables: {
-      note: note,
-    },
     onCompleted: newData => {
       setNote(newData.addNote);
     }

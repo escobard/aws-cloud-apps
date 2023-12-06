@@ -1,6 +1,6 @@
 'use client';
 
-import Landing from "../pages/Home";
+import Landing from "../layouts/Home";
 
 import { Header, Footer } from "../components";
 
