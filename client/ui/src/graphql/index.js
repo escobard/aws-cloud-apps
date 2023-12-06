@@ -1,26 +1,10 @@
 import { onError } from '@apollo/client/link/error';
 import { ApolloClient, InMemoryCache, HttpLink, from, ApolloLink } from '@apollo/client';
 
-
-const authMiddleware = new ApolloLink((operation, forward) => {
-  // add the authorization to the headers
-  operation.setContext(({ headers = {} }) => ({
-    headers: {
-      ...headers,
-      'apollo-require-preflight': true
-    }
-  }));
-
-  return forward(operation);
-})
-
-console.log(process.env.NEXT_PUBLIC_GRAPHQL_API)
-
 export const client = new ApolloClient({
   // https://www.apollographql.com/docs/react/api/link/apollo-link-error/#gatsby-focus-wrapper
   /// separates graphql errors from network errors and creates readable error messages
   link: from([
-    authMiddleware,
     onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors)
         graphQLErrors.forEach(({ message, locations, path }) =>
@@ -29,7 +13,10 @@ export const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: process.env.NEXT_PUBLIC_GRAPHQL_API
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_API,
+      headers: {
+        'apollo-require-preflight': true
+      }
     })
   ]),
   // https://www.apollographql.com/docs/react/caching
