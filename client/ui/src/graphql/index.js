@@ -14,6 +14,7 @@ export const client = new ApolloClient({
     }),
     new HttpLink({
       uri: process.env.NEXT_PUBLIC_GRAPHQL_API,
+      // required to prevent coors from throwing errors between ui / api requests
       headers: {
         'apollo-require-preflight': true
       }

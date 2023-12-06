@@ -15,17 +15,6 @@ const useNotes = () => {
   const [notes, setNotes] = useState(undefined);
   const isMounted = useRef(null);
 
-  const getNotes = async () => {
-    isMounted.current && setLoading(true);
-    const results = await api("get", apiRoutes.getNotes, { headers });
-    if (isMounted.current && results) {
-      setNotes(results);
-      setLoading(false);
-      return results;
-    }
-    return results;
-  };
-
   const [getNotesQuery, { loading: notesLoading }] = useLazyQuery(GET_NOTES_QUERY, {
     client: client,
     notifyOnNetworkStatusChange: true,
@@ -34,14 +23,13 @@ const useNotes = () => {
     nextFetchPolicy: 'cache-first',
     onCompleted: newData => {
       const receivedData = newData.getNotes
-      console.log(receivedData)
+      setNotes(receivedData);
     },
   });
 
   useEffect(() => {
     isMounted.current = true;
     if (isMounted.current) {
-      getNotes();
       getNotesQuery()
     }
     return () => {
@@ -50,7 +38,7 @@ const useNotes = () => {
   }, [isMounted]);
 
   useEffect(() => {
-    note && getNotes();
+    note && getNotesQuery
   }, [note]);
 
   const addNote = async (newNote) => {
@@ -68,7 +56,7 @@ const useNotes = () => {
     loading,
     notes,
     note,
-    getNotes,
+    getNotesQuery,
     addNote,
   };
 };
