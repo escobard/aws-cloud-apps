@@ -20,8 +20,6 @@ mutation CreateNote($note: NoteInput) {
 ```
 {
   "note": {
-    "date": "test",
-    "id": "1",
     "note": "this is a test note",
     "subject": "test"
   }
