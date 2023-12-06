@@ -10,8 +10,6 @@ const NotesProvider = ({ children }) => {
 
   const updateNotes = async (subject, newNote) => {
     const request = {
-      // TODO - this should come from authentication
-      user_id: 1,
       subject,
       note: newNote,
     };

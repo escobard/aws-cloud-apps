@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 
 import { client } from "@/graphql";
 import { GET_NOTES_QUERY } from "@/graphql/fragments/getNotes";
+import { ADD_NOTE_MUTATION } from "@/graphql/fragments/addNote";
 
 import { api } from "@/utils";
 
@@ -15,6 +16,7 @@ const useNotes = () => {
   const isMounted = useRef(null);
 
   const [getNotesQuery, { loading: notesLoading }] = useLazyQuery(GET_NOTES_QUERY, {
+    // client must be defined in the query since no top level apollo client is available
     client: client,
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'network-only',
@@ -40,9 +42,26 @@ const useNotes = () => {
     note && getNotesQuery
   }, [note]);
 
+  const [addNoteMutation] = useMutation(ADD_NOTE_MUTATION, {
+    client: client,
+    variables: {
+      note: note,
+    },
+    onCompleted: newData => {
+      setNote(newData.addNote);
+    }
+  });
+
   const addNote = async (newNote) => {
     isMounted.current && setLoading(true);
-    const results = await api("post", apiRoutes.addNote, { headers }, newNote);
+    const results = addNoteMutation({
+      variables: {
+        note: {
+          note: newNote.note,
+          subject: newNote.subject,
+        },
+      },
+    })
     if (isMounted.current && results) {
       setNote(results);
       setLoading(false);
