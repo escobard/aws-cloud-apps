@@ -2,6 +2,8 @@
 
 Use this query to retrieve all available notes from the database / embedded API cache:
 
+## Query
+
 ```
 query GetNotes {
   getNotes {
