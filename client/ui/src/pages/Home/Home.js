@@ -17,8 +17,8 @@ const Home = () => {
     const hasNoData = !Array.isArray(data) && data.length > 0;
 
     if (hasData) {
-      return data.map((note) => {
-        return <Notes key={note.subject} data={note} />;
+      return data.map((note, i) => {
+        return <Notes key={note.subject + i} data={note} />;
       });
     }
 

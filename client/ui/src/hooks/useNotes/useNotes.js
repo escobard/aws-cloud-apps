@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import gql from 'graphql-tag';
 import { useLazyQuery } from '@apollo/react-hooks';
 
 import { client } from "@/graphql";
