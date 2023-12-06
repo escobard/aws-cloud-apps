@@ -11,14 +11,13 @@ import { addNoteFields, notes as noteCatalog } from "../../constants";
 
 const Home = () => {
   const { renderModal, notes, updateNotes } = useContext(NotesContext);
-  console.log(notes)
   const renderNotes = (id, data) => {
     const hasData = Array.isArray(data) && data.length > 0;
     const hasNoData = !Array.isArray(data) && data.length > 0;
 
     if (hasData) {
-      return data.map((note) => {
-        return <Notes key={note.subject} data={note} />;
+      return data.map((note, i) => {
+        return <Notes key={note.subject + i} data={note} />;
       });
     }
 

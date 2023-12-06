@@ -23,7 +23,7 @@ const getNotes = async () => {
                 notes.push(note)
             });
         }
-        return notes;
+        return notes.reverse();
     }
     catch(err){
         return err;

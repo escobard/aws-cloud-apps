@@ -1,8 +1,13 @@
 import { useState, useEffect, useRef } from "react";
+import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 
-import { api } from "../../utils";
+import { client } from "@/graphql";
+import { GET_NOTES_QUERY } from "@/graphql/fragments/getNotes";
+import { ADD_NOTE_MUTATION } from "@/graphql/fragments/addNote";
 
-import { apiRoutes, headers } from "../../constants";
+import { api } from "@/utils";
+
+import { apiRoutes, headers } from "@/constants";
 
 const useNotes = () => {
   const [loading, setLoading] = useState(false);
@@ -10,21 +15,23 @@ const useNotes = () => {
   const [notes, setNotes] = useState(undefined);
   const isMounted = useRef(null);
 
-  const getNotes = async () => {
-    isMounted.current && setLoading(true);
-    const results = await api("get", apiRoutes.getNotes, { headers });
-    if (isMounted.current && results) {
-      setNotes(results);
-      setLoading(false);
-      return results;
-    }
-    return results;
-  };
+  const [getNotesQuery, { loading: notesLoading }] = useLazyQuery(GET_NOTES_QUERY, {
+    // client must be defined in the query since no top level apollo client is available
+    client: client,
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'network-only',
+    // leverages cache on second request for the same data, avoids unnecessary network requests
+    nextFetchPolicy: 'cache-first',
+    onCompleted: newData => {
+      const receivedData = newData.getNotes
+      setNotes(receivedData);
+    },
+  });
 
   useEffect(() => {
     isMounted.current = true;
     if (isMounted.current) {
-      getNotes();
+      getNotesQuery()
     }
     return () => {
       isMounted.current = false;
@@ -32,12 +39,29 @@ const useNotes = () => {
   }, [isMounted]);
 
   useEffect(() => {
-    note && getNotes();
+    note && getNotesQuery
   }, [note]);
+
+  const [addNoteMutation] = useMutation(ADD_NOTE_MUTATION, {
+    client: client,
+    variables: {
+      note: note,
+    },
+    onCompleted: newData => {
+      setNote(newData.addNote);
+    }
+  });
 
   const addNote = async (newNote) => {
     isMounted.current && setLoading(true);
-    const results = await api("post", apiRoutes.addNote, { headers }, newNote);
+    const results = addNoteMutation({
+      variables: {
+        note: {
+          note: newNote.note,
+          subject: newNote.subject,
+        },
+      },
+    })
     if (isMounted.current && results) {
       setNote(results);
       setLoading(false);
@@ -50,7 +74,7 @@ const useNotes = () => {
     loading,
     notes,
     note,
-    getNotes,
+    getNotesQuery,
     addNote,
   };
 };
