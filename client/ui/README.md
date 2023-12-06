@@ -1,49 +1,24 @@
 # UI
 
+A simple React User Interface(UI) to interact with Notes CRUD operations.
+
+## Requirements
+
+[Node.js v20+](https://nodejs.org/en/) is required.
+
+A valid `.env` is required. Refer to `.env.example` for the environment variables that the application expects.
+
 ## Quickstart
 
-Starts the application on `http://localhost:3000`.
+With the following commands, you can quickly populate environment variables from `.env` within a bash terminal:
 
-1. `npm install`
-2. `npm start`
-
-## Usage
-
-### Development
+```
+set -a && source .env && set +a
+```
 
 `npm start`
 
-### Develop unit tests
+### Scripts
+To run the API with hot reload and real-time compilation on code updates, start the API by running:
 
-`npm run test-watch`
-
-### Unit tests
-
-`npm test`
-
-### Lint
-
-`npm run lint`
-
-#### Lint fix
-
-`npm run lint-fix`
-
-### Production
-
-`npm run build`
-
-### With Docker
-`npm run docker`
-
-## Libraries, Frameworks & Tools
-
-[React](https://reactjs.org/)
-
-[Create React App](https://create-react-app.dev/docs/getting-started/)
-
-[Jest](https://mochajs.org/)
-
-[Docker](https://www.docker.com/)
-
-[Docker Compose](https://docs.docker.com/compose/)
+`npm run dev`

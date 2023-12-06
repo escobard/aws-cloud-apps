@@ -7,10 +7,8 @@ const typeDefs = `
   }
   
   input NoteInput {
-    id: ID!
     subject: String!
     note: String!
-    date: String!
   }
   
   type Query {

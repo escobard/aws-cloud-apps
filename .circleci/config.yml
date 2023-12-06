@@ -2,10 +2,10 @@ workflows:
   version: 2
   automated-tests:
     jobs:
-      - ui-unit-tests
+      - ui_outdated-unit-tests
       - ui-e2e-tests:
           requires:
-            - ui-unit-tests
+            - ui_outdated-unit-tests
       - api-unit-tests
       - api-integration-tests:
           requires:
@@ -13,26 +13,26 @@ workflows:
 version: 2
 jobs:
   ui-unit-tests:
-    working_directory: ~/client/ui
+    working_directory: ~/client/ui_outdated
     docker:
       - image: circleci/node:14.18.0 # lock in version of node to prevent dependency issues
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "client/ui/package.json" }}
+          key: dependency-cache-{{ checksum "client/ui_outdated/package.json" }}
       - run:
-          name: install-ui
-          command: "cd client/ui && npm install"
+          name: install-ui_outdated
+          command: "cd client/ui_outdated && npm install"
       - save_cache:
-          key: dependency-cache-{{ checksum "client/ui/package.json" }}
+          key: dependency-cache-{{ checksum "client/ui_outdated/package.json" }}
           paths:
             - ./node_modules
       - run:
           name: lint
-          command: "cd client/ui && npm run lint"
+          command: "cd client/ui_outdated && npm run lint"
       - run:
           name: unit-tests
-          command: "cd client/ui && npm test"
+          command: "cd client/ui_outdated && npm test"
   api-unit-tests:
     working_directory: ~/server/api
     docker:
@@ -87,6 +87,6 @@ jobs:
             pip install \
               docker-compose==1.12.0 \
       - run:
-          name: ui-e2e-tests
+          name: ui_outdated-e2e-tests
           command: |
             docker-compose -f e2e-tests.yaml up --exit-code-from e2e
