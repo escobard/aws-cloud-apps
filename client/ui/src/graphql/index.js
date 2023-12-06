@@ -14,8 +14,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   return forward(operation);
 })
 
-const url = process.env.GRAPHQL_API
-console.log(url)
+console.log(process.env.NEXT_PUBLIC_GRAPHQL_API)
 
 export const client = new ApolloClient({
   // https://www.apollographql.com/docs/react/api/link/apollo-link-error/#gatsby-focus-wrapper
@@ -30,7 +29,7 @@ export const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: url
+      uri: process.env.NEXT_PUBLIC_GRAPHQL_API
     })
   ]),
   // https://www.apollographql.com/docs/react/caching
