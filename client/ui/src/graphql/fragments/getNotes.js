@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const getNotes = gql`
+export const GET_NOTES_QUERY = gql`
   query GetNotes {
     getNotes {
     id

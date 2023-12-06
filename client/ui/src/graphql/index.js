@@ -1,7 +1,7 @@
 import { onError } from '@apollo/client/link/error';
 import { ApolloClient, InMemoryCache, HttpLink, ApolloLink } from '@apollo/client';
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   // https://www.apollographql.com/docs/react/api/link/apollo-link-error/#gatsby-focus-wrapper
   /// separates graphql errors from network errors and creates readable error messages
   link: ApolloLink.from([
@@ -13,7 +13,7 @@ const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: process.env.REACT_APP_API
+      uri: 'process.env.GRAPHQL_API'
     }),
   ]),
   // https://www.apollographql.com/docs/react/caching
@@ -25,5 +25,3 @@ const client = new ApolloClient({
   /// renders cached data right away, then re-renders with full data when the query completes
   returnPartialData: true,
 });
-
-export default client;

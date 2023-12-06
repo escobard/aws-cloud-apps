@@ -1,8 +1,13 @@
 import { useState, useEffect, useRef } from "react";
+import gql from 'graphql-tag';
+import { useLazyQuery } from '@apollo/react-hooks';
 
-import { api } from "../../utils";
+import { client } from "@/graphql";
+import { GET_NOTES_QUERY } from "@/graphql/fragments/getNotes";
 
-import { apiRoutes, headers } from "../../constants";
+import { api } from "@/utils";
+
+import { apiRoutes, headers } from "@/constants";
 
 const useNotes = () => {
   const [loading, setLoading] = useState(false);
@@ -21,10 +26,23 @@ const useNotes = () => {
     return results;
   };
 
+  const [getNotesQuery, { loading: notesLoading }] = useLazyQuery(GET_NOTES_QUERY, {
+    client: client,
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'network-only',
+    // leverages cache on second request for the same data, avoids unnecessary network requests
+    nextFetchPolicy: 'cache-first',
+    onCompleted: newData => {
+      const receivedData = newData.getNotes
+      console.log(receivedData)
+    },
+  });
+
   useEffect(() => {
     isMounted.current = true;
     if (isMounted.current) {
       getNotes();
+      getNotesQuery()
     }
     return () => {
       isMounted.current = false;
