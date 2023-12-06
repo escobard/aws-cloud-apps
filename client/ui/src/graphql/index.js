@@ -13,7 +13,7 @@ export const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     new HttpLink({
-      uri: 'process.env.GRAPHQL_API'
+      uri: process.env.GRAPHQL_API
     }),
   ]),
   // https://www.apollographql.com/docs/react/caching
