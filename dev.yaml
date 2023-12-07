@@ -7,7 +7,7 @@ services:
       dockerfile: docker/Dockerfile
     ports:
       - "5432:5432"
-    # TODO - replace this by creating a default superadmin with SQL for phase 4
+    # TODO - replace this by creating a default superadmin with SQL
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
   api:
@@ -34,6 +34,8 @@ services:
     container_name: ui_dev
     working_dir: /usr/cloud-apps/ui
     environment:
+      # TODO - using localhost instead of api as a host name because of a bug in docker-compose
+      - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
       - WAIT_HOSTS=api:4000
     ports:
       - "3000:3000"
