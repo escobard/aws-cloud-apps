@@ -21,9 +21,19 @@ With the environment variables present in your terminal, start the API by runnin
 
 ## Scripts
 
+### Development mode
+
 To run the API with hot reload and real-time compilation on code updates, start the API by running:
 
 `npm run dev`
+
+### Docker
+
+To run the API with docker, you can build and run the API by running:
+
+`docker build --build-arg DB_HOST --build-arg DB_PORT --build-arg DB_NAME --build-arg DB_USER --build-arg DB_PASSWORD -t escobard/graphql:latest -f docker/Dockerfile .`
+
+`docker run --name graphql -p 4000:4000 -t escobard/graphql:latest`
 
 ## Libraries Frameworks 
 

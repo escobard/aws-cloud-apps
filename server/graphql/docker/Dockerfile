@@ -13,12 +13,8 @@ ENV DB_NAME=${DB_NAME}
 ENV DB_USER=${DB_USER}
 ENV DB_PASSWORD=${DB_PASSWORD}
 
-COPY ./package.json ./
-
-RUN npm install
-
 COPY ./ ./
 
-## WAIT mod
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-RUN chmod +x /wait
+RUN npm install --only=prod
+
+CMD ["npm", "run", "start"]
