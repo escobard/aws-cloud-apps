@@ -1,4 +1,4 @@
-# cloud-apps &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![CircleCI Status](https://circleci.com/gh/escobard/cloud-apps-2019.svg?style=shield&circle-token=9a2ace13d3d938798ecb8f2efc56176ea7ede1ca)](https://app.circleci.com/pipelines/github/escobard/cloud-apps-2019) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps#pull-requests) 
+# cloud-apps-2023 &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![CircleCI Status](https://circleci.com/gh/escobard/cloud-apps-2023.svg?style=shield&circle-token=44b8bfb398b6a0882a7ba006c3643dc12c38e81d)](https://app.circleci.com/pipelines/github/escobard/cloud-apps-2023) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps-2023#pull-requests) 
 
 
 A simple cloud-native product, designed to scale.
@@ -35,15 +35,15 @@ Each pull request must pass a review from another contributor and all automated 
 
 ## Useful links
 
-[UI](https://github.com/escobard/cloud-apps/blob/master/client/ui)
+[UI](https://github.com/escobard/cloud-apps-2023/blob/main/client/ui)
 
-[API](https://github.com/escobard/cloud-apps/blob/master/server/api)
+[API](https://github.com/escobard/cloud-apps-2023/blob/main/server/graphql)
 
-[Database](https://github.com/escobard/cloud-apps/tree/master/server/postgres)
+[Database](https://github.com/escobard/cloud-apps-2023/tree/main/server/postgres)
 
-[Integration tests](https://github.com/escobard/cloud-apps/tree/master/server/tests)
+[Integration tests](https://github.com/escobard/cloud-apps-2023/tree/main/server/tests)
 
-[End to end tests](https://github.com/escobard/cloud-apps/tree/master/client/tests)
+[End to end tests](https://github.com/escobard/cloud-apps-2023/tree/main/client/tests)
 
 ## License
 
