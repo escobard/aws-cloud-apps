@@ -4,29 +4,35 @@ services:
     container_name: postgres_prod
     build:
       context: ./server/postgres
+      dockerfile: docker/Dockerfile
     ports:
       - "5432:5432"
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
-  ui:
-    container_name: ui_prod
-    working_dir: /usr/cloud-apps/ui_outdated
-    build:
-      context: client/ui_outdated
-      dockerfile: docker/Dockerfile.prod
-    ports:
-      - "3000:3000"
   api:
     container_name: api_prod
-    working_dir: /usr/cloud-apps/api
+    working_dir: /usr/cloud-apps/graphql
     environment:
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
     ports:
     - "4000:4000"
     build:
-      context: ./server/api
-      dockerfile: docker/Dockerfile.prod
+      context: ./server/graphql
+      dockerfile: docker/Dockerfile
+  ## there seems to be a bug with next.js and docker-compose here npm build & npm start is not defining environment variables
+  ui:
+    container_name: ui_prod
+    working_dir: /usr/cloud-apps/ui
+    env_file:
+      - client/ui/.env
+    environment:
+      - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
+    build:
+      context: client/ui
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
