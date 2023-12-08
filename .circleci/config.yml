@@ -19,6 +19,7 @@ workflows:
   build-and-deploy-cloud-apps:
     when:
       or:
+        - equal: [ circleci-build-and-push-docker-images, << pipeline.git.branch >> ]
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
       - build-and-push-ui-image:
