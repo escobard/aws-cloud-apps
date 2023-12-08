@@ -27,7 +27,7 @@ workflows:
           name: 'build-and-push-ui-image'
       - build-and-push-api-image:
           context: cloud-apps-2023
-          name: 'build-and-push-ui-image'
+          name: 'build-and-push-api-image'
 jobs:
   build-and-push-ui-image:
     <<: *docker_cimg
