@@ -29,35 +29,31 @@ workflows:
           context: cloud-apps-2023
           name: 'build-and-push-ui-image'
 jobs:
-    build-and-push-ui-image:
-        <<: *docker_cimg
-        resource_class: small
-        steps:
-        - checkout
-        - aws-ecr/build-and-push-image:
-            account-url: '$AWS_ECR_ACCOUNT_URL'
-            aws-access-key-id: '$AWS_ACCESS_KEY_ID'
-            aws-secret-access-key: '$AWS_SECRET_ACCESS_KEY'
-            aws-region: '$AWS_REGION'
-            path: './client/ui'
-            dockerfile: 'docker/Dockerfile'
-            image-name: '$AWS_ECR_IMAGE_NAME'
-            tag: 'v<< pipeline.git.tag >>'
-            tag-latest: true
-            extra-build-args: '--build-arg NEXT_PUBLIC_GRAPHQL_API=NEXT_PUBLIC_GRAPHQL_API'
-    build-and-push-api-image:
-        <<: *docker_cimg
-        resource_class: small
-        steps:
-        - checkout
-        - aws-ecr/build-and-push-image:
-            account-url: '$AWS_ECR_ACCOUNT_URL'
-            aws-access-key-id: '$AWS_ACCESS_KEY_ID'
-            aws-secret-access-key: '$AWS_SECRET_ACCESS_KEY'
-            aws-region: '$AWS_REGION'
-            path: './server/graphql'
-            dockerfile: 'docker/Dockerfile'
-            image-name: '$AWS_ECR_IMAGE_NAME'
-            tag: 'v<< pipeline.git.tag >>'
-            tag-latest: true
-            extra-build-args: '--build-arg DB_HOST=DB_HOST --build-arg DB_PORT=DB_PORT --build-arg DB_NAME=DB_NAME --build-arg DB_USER=DB_USER --build-arg DB_PASSWORD=DB_PASSWORD'
+  build-and-push-ui-image:
+    <<: *docker_cimg
+    resource_class: small
+    steps:
+      - checkout
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          repo: 'cloud-apps-ui'
+          path: './client/ui'
+          dockerfile: 'docker/Dockerfile'
+          tag: 'latest,v<< pipeline.git.tag >>'
+          extra-build-args: '--build-arg NEXT_PUBLIC_GRAPHQL_API=NEXT_PUBLIC_GRAPHQL_API'
+  build-and-push-api-image:
+    <<: *docker_cimg
+    resource_class: small
+    steps:
+      - checkout
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          repo: 'cloud-apps-api'
+          path: './server/graphql'
+          dockerfile: 'docker/Dockerfile'
+          tag: 'latest,v<< pipeline.git.tag >>'
+          extra-build-args: '--build-arg DB_HOST=DB_HOST --build-arg DB_PORT=DB_PORT --build-arg DB_NAME=DB_NAME --build-arg DB_USER=DB_USER --build-arg DB_PASSWORD=DB_PASSWORD'
