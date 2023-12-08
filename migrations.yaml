@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  pg_container_migrations:
+    container_name: pg_container_migrations
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: notes
+    ports:
+      - "5432:5432"
+  pgadmin:
+    container_name: pgadmin4_container
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "8080:80"
+  migrations:
+    container_name: migrations
+    build:
+      context: ./server/postgres
+      dockerfile: docker/Dockerfile.migrations
+    environment:
+      # could abreviate with env variables
+      DATABASE_URL: postgres://root:root@pg_container_migrations:5432/notes
+      WAIT_HOSTS: pg_container_migrations:5432
+    command: |
+      sh -c "/wait && npm run migrate up"
