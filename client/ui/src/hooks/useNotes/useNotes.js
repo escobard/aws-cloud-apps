@@ -15,19 +15,6 @@ const useNotes = () => {
   const [notes, setNotes] = useState(undefined);
   const isMounted = useRef(null);
 
-  const [getNotesQuery, { loading: notesLoading }] = useLazyQuery(GET_NOTES_QUERY, {
-    // client must be defined in the query since no top level apollo client is available
-    client: client,
-    notifyOnNetworkStatusChange: true,
-    fetchPolicy: 'network-only',
-    // leverages cache on second request for the same data, avoids unnecessary network requests
-    nextFetchPolicy: 'cache-first',
-    onCompleted: newData => {
-      const receivedData = newData.getNotes
-      setNotes(receivedData);
-    },
-  });
-
   useEffect(() => {
     isMounted.current = true;
     if (isMounted.current) {
@@ -39,19 +26,33 @@ const useNotes = () => {
   }, [isMounted]);
 
   useEffect(() => {
-    note && getNotesQuery
+    note && getNotesQuery();
   }, [note]);
+
+  const [getNotesQuery, { loading: notesLoading }] = useLazyQuery(GET_NOTES_QUERY, {
+    // client must be defined in the query since no top level apollo client is available
+    client: client,
+    notifyOnNetworkStatusChange: true,
+    fetchPolicy: 'network-only',
+    // causes really weird state issues to use cache first!! huge gotcha
+    // nextFetchPolicy: 'cache-first',
+    onCompleted: newData => {
+      const receivedData = newData.getNotes
+      setNotes(receivedData);
+      return receivedData
+    },
+  });
 
   const [addNoteMutation] = useMutation(ADD_NOTE_MUTATION, {
     client: client,
     onCompleted: newData => {
-      setNote(newData.addNote);
+      setNote(newData.createNote);
+      return newData.createNote;
     }
   });
 
   const addNote = async (newNote) => {
-    isMounted.current && setLoading(true);
-    const results = addNoteMutation({
+    await addNoteMutation({
       variables: {
         note: {
           note: newNote.note,
@@ -59,12 +60,6 @@ const useNotes = () => {
         },
       },
     })
-    if (isMounted.current && results) {
-      setNote(results);
-      setLoading(false);
-      return results;
-    }
-    return results;
   };
 
   return {

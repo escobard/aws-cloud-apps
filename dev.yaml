@@ -4,43 +4,46 @@ services:
     container_name: postgres_dev
     build:
       context: ./server/postgres
+      dockerfile: docker/Dockerfile
     ports:
       - "5432:5432"
-    # TODO - replace this by creating a default superadmin with SQL for phase 4
+    # TODO - replace this by creating a default superadmin with SQL
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
   api:
     container_name: api_dev
-    working_dir: /usr/cloud-apps/api
+    working_dir: /usr/cloud-apps/graphql
     environment:
-      - PGUSER=postgres
-      - PGHOST=postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
-      - PGPORT=5432
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
       - WAIT_HOSTS=postgres:5432
     ports:
       - "4000:4000"
     build:
-      context: ./server/api
+      context: ./server/graphql
       dockerfile: docker/Dockerfile.dev
     volumes:
-      - ./server/api:/usr/cloud-apps/api
-      - /usr/cloud-apps/api/node_modules
+      - ./server/graphql:/usr/cloud-apps/graphql
+      - /usr/cloud-apps/graphql/node_modules
     command: |
       sh -c "/wait && npm run dev"
   ui:
     container_name: ui_dev
-    working_dir: /usr/cloud-apps/ui_outdated
+    working_dir: /usr/cloud-apps/ui
     environment:
+      # TODO - using localhost instead of api as a host name because of a bug in docker-compose
+      - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
       - WAIT_HOSTS=api:4000
     ports:
       - "3000:3000"
     build:
-      context: client/ui_outdated
+      context: client/ui
       dockerfile: docker/Dockerfile.dev
     volumes:
-      - ./client/ui_outdated:/usr/cloud-apps/ui_outdated
-      - /usr/cloud-apps/ui_outdated/node_modules
+      - ./client/ui:/usr/cloud-apps/ui
+      - /usr/cloud-apps/ui/node_modules
     command: |
       sh -c "/wait && npm run dev"

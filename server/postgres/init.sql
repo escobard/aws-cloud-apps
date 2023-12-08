@@ -17,4 +17,8 @@ CREATE TABLE notes.notes (
     date VARCHAR(25) NOT NULL
 );
 
--- TODO insert a sample note for demo purposes
+INSERT INTO notes.users(email)
+VALUES('escobard90@gmail.com');
+
+INSERT INTO notes.notes("user", subject, note, date)
+VALUES(1, 'test subject', 'test note', '12/05/2023');
