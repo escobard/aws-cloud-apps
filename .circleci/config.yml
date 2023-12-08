@@ -46,7 +46,7 @@ jobs:
           extra-build-args: '--build-arg NEXT_PUBLIC_GRAPHQL_API'
       - aws-ecs/update-service:
           cluster-name: 'cloud-apps-2023'
-          container-image-name-updates: 'container=cloud-apps-ui,tag=latest'
+          container-image-name-updates: 'container=latest,tag=latest'
           family: 'cloud-apps-ui'
           service-name: 'cloud-apps-ui'
   build-and-push-api-image:
@@ -66,6 +66,6 @@ jobs:
           extra-build-args: '--build-arg DB_HOST --build-arg DB_PORT --build-arg DB_NAME --build-arg DB_USER --build-arg DB_PASSWORD'
       - aws-ecs/update-service:
           cluster-name: 'cloud-apps-2023'
-          container-image-name-updates: 'container=cloud-apps-api,tag=latest'
+          container-image-name-updates: 'container=latest,tag=latest'
           family: 'cloud-apps-api'
           service-name: 'cloud-apps-api'
