@@ -29,7 +29,7 @@ exports.up = pgm => {
         VALUES('escobard90@gmail.com');
         
         INSERT INTO notes.notes("user", subject, note, date)
-        VALUES(1, 'test subject', 'test note', '12/05/2023');
+        VALUES(1, 'test subject', 'test note', '12/08/23, 6:57 AM');
         `
     )
 };
