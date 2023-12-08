@@ -42,7 +42,7 @@ jobs:
           repo: 'cloud-apps-ui'
           path: './client/ui'
           dockerfile: 'docker/Dockerfile'
-          tag: 'latest, v<< pipeline.number >>'
+          tag: 'latest,v<< pipeline.number >>'
           extra-build-args: '--build-arg NEXT_PUBLIC_GRAPHQL_API'
   build-and-push-api-image:
     <<: *docker_cimg
@@ -57,5 +57,5 @@ jobs:
           repo: 'cloud-apps-api'
           path: './server/graphql'
           dockerfile: 'docker/Dockerfile'
-          tag: 'latest, v<< pipeline.number >>'
+          tag: 'latest,v<< pipeline.number >>'
           extra-build-args: '--build-arg DB_HOST --build-arg DB_PORT --build-arg DB_NAME --build-arg DB_USER --build-arg DB_PASSWORD'
