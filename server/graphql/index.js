@@ -1,9 +1,15 @@
+import express from 'express';
+import cors from 'cors'
+
 import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
 import { makeExecutableSchema } from "@graphql-tools/schema";
+import {expressMiddleware} from "@apollo/server/express4";
 
 import typeDefs from "./typeDefs.js";
 import resolvers from "./resolvers.js";
+
+
+const app = express();
 
 const schema = makeExecutableSchema({
     typeDefs,
@@ -16,12 +22,16 @@ const server = new ApolloServer({
     schema
 });
 
-// Passing an ApolloServer instance to the `startStandaloneServer` function:
-//  1. creates an Express app
-//  2. installs your ApolloServer instance as middleware
-//  3. prepares your app to handle incoming requests
-const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
-});
+await server.start();
+app.use('/graphql', cors(), express.json(), expressMiddleware(server));
 
-console.log(`🚀  Server ready at: ${url}`);
+await new Promise((resolve) => app.listen({ port: 4000 }, resolve));
+
+// Our GraphQL server is listening for GraphQL operations
+// on `http://localhost:4000/graphql`
+console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+
+// Requests to `http://localhost:4000/health` now return "Okay!"
+app.get('/', (req, res) => {
+    res.status(200).send('Healthy!');
+});
