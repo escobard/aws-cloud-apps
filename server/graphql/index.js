@@ -1,10 +1,13 @@
-import { ApolloServer } from '@apollo/server';
-import { startStandaloneServer } from '@apollo/server/standalone';
-import { makeExecutableSchema } from "@graphql-tools/schema";
 import express from 'express';
+import cors from 'cors'
+
+import { ApolloServer } from '@apollo/server';
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import {expressMiddleware} from "@apollo/server/express4";
 
 import typeDefs from "./typeDefs.js";
 import resolvers from "./resolvers.js";
+
 
 const app = express();
 
@@ -20,6 +23,7 @@ const server = new ApolloServer({
 });
 
 await server.start();
+app.use('/graphql', cors(), express.json(), expressMiddleware(server));
 
 await new Promise((resolve) => app.listen({ port: 4000 }, resolve));
 
