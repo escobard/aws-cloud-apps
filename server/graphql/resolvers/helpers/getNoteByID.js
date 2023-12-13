@@ -39,7 +39,7 @@ const getNoteByID = async (parent, noteId) => {
                 })
                 cache.set(databaseNote[0].id, databaseNote[0])
             }
-            /// if cache has keys, assume cache is already up to date and only add new note to cache
+            /// if cache has keys, assume cache is already usp to date and only add new note to cache
             else {
                 cache.set(databaseNote[0].id, databaseNote[0])
             }

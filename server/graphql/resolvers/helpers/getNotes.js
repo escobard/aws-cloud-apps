@@ -22,7 +22,7 @@ const getNotes = async () => {
                 // commenting out until there is logic to remove notes
                 // noteToCamelcase.removedAt = new Date(noteToCamelcase.removedAt).toLocaleString("en-US")
                 notes.push(noteToCamelcase)
-                cache.set(note.id, note)
+                cache.set(note.id, noteToCamelcase)
             })
         }
         /// if cache has data, fetch data from cache instead of db
@@ -30,10 +30,12 @@ const getNotes = async () => {
             notes = []
             cache.keys().map(id => {
                 let note = cache.get(id)
+                console.log('NOTE', note)
                 notes.push(note)
             });
         }
         // reverse order to return latest notes first
+
         return notes.reverse();
     }
     catch(err){
