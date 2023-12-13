@@ -12,6 +12,7 @@ const getNoteByID = async (parent, noteId) => {
             let knex = knexConnector();
             let databaseNote = await knex('notes.notes').where({id: noteId})
 
+            // TODO - move camelCase & unix date stamp conversion to utility - code has to be repeated in multiple places within resolvers
             // changes keys to camelCase for to process as JS
             databaseNote[0] = _.mapKeys(databaseNote[0], (v, k) => _.camelCase(k))
 
