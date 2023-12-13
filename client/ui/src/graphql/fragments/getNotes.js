@@ -7,6 +7,7 @@ export const GET_NOTES_QUERY = gql`
       date
       note
       subject
+      updatedAt
     }
   }
 `

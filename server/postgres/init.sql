@@ -5,8 +5,10 @@ CREATE TABLE notes.notes (
     subject VARCHAR(250) NOT NULL,
     note VARCHAR(1000) NOT NULL,
     -- TODO - change to pg generated timestamp, add created/updated/removed at columns
-    date VARCHAR(25) NOT NULL
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    removed_at TIMESTAMP
 );
 
-INSERT INTO notes.notes(subject, note, date)
-VALUES('test subject', 'test note', '12/08/23, 6:57 AM');
+INSERT INTO notes.notes(subject, note)
+VALUES('test subject', 'test note');

@@ -1,5 +1,6 @@
 import cache from "../../cache.js";
 import { knexConnector } from "../../utils/knexConnector.js";
+import _ from "lodash";
 
 const getNoteByID = async (parent, noteId) => {
     try{
@@ -11,13 +12,30 @@ const getNoteByID = async (parent, noteId) => {
             let knex = knexConnector();
             let databaseNote = await knex('notes.notes').where({id: noteId})
 
+            // changes keys to camelCase for to process as JS
+            databaseNote[0] = _.mapKeys(databaseNote[0], (v, k) => _.camelCase(k))
+
+            // sets unix timestamp dates from postgres to js readable dates
+            databaseNote[0].createdAt = new Date(databaseNote[0].createdAt).toLocaleString("en-US")
+            databaseNote[0].updatedAt = new Date(databaseNote[0].updatedAt).toLocaleString("en-US")
+            // commenting out until there is logic to remove notes
+            // noteToCamelcase.removedAt = new Date(noteToCamelcase.removedAt).toLocaleString("en-US")
+            console.log('DATABASE NOTE', databaseNote[0])
             // populate cache with new note
             /// if cache does not have keys, assume cache is empty and add all existing notes + new notes
             if (cache.keys().length === 0){
-                let notes = await knex('notes.notes').select('*');
+                let response = await knex('notes.notes').select('*');
                 // populate cache with DB data after initial fetch
-                notes.map(note => {
-                    cache.set(note.id, note)
+                response.map(n => {
+                    // changes keys to camelCase for to process as JS
+                    let noteToCamelcase = _.mapKeys(n, (v, k) => _.camelCase(k))
+
+                    // sets unix timestamp dates from postgres to js readable dates
+                    noteToCamelcase.createdAt = new Date(noteToCamelcase.createdAt).toLocaleString("en-US")
+                    noteToCamelcase.updatedAt = new Date(noteToCamelcase.updatedAt).toLocaleString("en-US")
+                    // commenting out until there is logic to remove notes
+                    // noteToCamelcase.removedAt = new Date(noteToCamelcase.removedAt).toLocaleString("en-US")
+                    cache.set(n.id, n)
                 })
                 cache.set(databaseNote[0].id, databaseNote[0])
             }
