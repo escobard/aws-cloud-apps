@@ -1,7 +1,6 @@
 import { knexConnector } from "../../utils/knexConnector.js";
 
 import cache from "../../cache.js"
-
 const createNote = async (parent, newNote) => {
     try{
 
@@ -15,7 +14,7 @@ const createNote = async (parent, newNote) => {
             timeZone: "Canada/Mountain",
         });
 
-        const note = { user: 1, subject: newNote.subject, note: newNote.note, date }
+        const note = { subject: newNote.subject, note: newNote.note, date }
         const knex = knexConnector();
         // ask knex to return all column results from insert, so data can be used to create a note in cache
         const createdNote = await knex('notes.notes').insert(note).returning('*');
