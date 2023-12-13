@@ -6,7 +6,7 @@ import { Grid } from "semantic-ui-react";
 import "./Notes.scss";
 
 // TODO - GET RID OF semantic-ui-react - WHY USE A LIBRARY AND CUSTOM STYLES?
-const Notes = ({ data: { subject, note, date, icon } }) => (
+const Notes = ({ data: { subject, note, updatedAt, icon } }) => (
   <Grid
     columns="equal"
     className={subject === "API error" ? "error note" : "note"}
@@ -23,9 +23,9 @@ const Notes = ({ data: { subject, note, date, icon } }) => (
       <h3>{subject}</h3>
       <p>{note}</p>
     </Grid.Column>
-    {date && (
+    {updatedAt && (
       <Grid.Column mobile={4} tablet={2} computer={2} className="date">
-        <p>{date}</p>
+        <p>{updatedAt}</p>
       </Grid.Column>
     )}
   </Grid>
