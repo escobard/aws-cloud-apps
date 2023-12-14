@@ -1,7 +1,7 @@
 import cache from "../../cache.js";
 import { knexConnector } from "../../utils/knexConnector.js";
-import _ from "lodash";
-import {dataFormatter} from "../../utils/index.js";
+import { cacheHydrate } from "../../utils/cacheHydrate.js";
+import { dataFormatter } from "../../utils/index.js";
 
 const getNoteByID = async (parent, noteId) => {
     try{
@@ -20,15 +20,7 @@ const getNoteByID = async (parent, noteId) => {
             // populate cache with new note
             /// if cache does not have keys, assume cache is empty and add all existing notes + new notes
             if (cache.keys().length === 0){
-                let response = await knex('notes.notes').select('*');
-
-                // populate cache with DB data after initial fetch
-                response.map(note => {
-                    // changes keys to camelCase for to process as JS
-                    let noteToCamelcase = dataFormatter(note)
-
-                    cache.set(noteToCamelcase.id, noteToCamelcase)
-                })
+                await cacheHydrate('notes.notes', '*')
                 cache.set(databaseNote[0].id, databaseNote[0])
             }
             /// if cache has keys, assume cache is already usp to date and only add new note to cache

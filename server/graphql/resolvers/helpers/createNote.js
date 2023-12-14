@@ -1,8 +1,8 @@
-import _ from "lodash";
+import cache from "../../cache.js"
 
 import { knexConnector } from "../../utils/knexConnector.js";
-import cache from "../../cache.js"
-import {dataFormatter} from "../../utils/index.js";
+import { dataFormatter } from "../../utils/index.js";
+import { cacheHydrate } from "../../utils/cacheHydrate.js";
 
 const createNote = async (parent, newNote) => {
     try{
@@ -15,7 +15,9 @@ const createNote = async (parent, newNote) => {
         // TODO - big gotcha - if code preceding transaction to insert fails, a note is created in the database anyway even if server crashes!
         createdNote[0] = dataFormatter(createdNote[0])
 
-        // TODO - if a note is created as the first operation on server start, cache will only contain the most recently created note!
+        if (cache.keys().length === 0){
+            await cacheHydrate('notes.notes', '*')
+        }
         /// fix after creating formatData util
         // creates a note in cache after inserting data to db
         cache.set(createdNote[0].id, createdNote[0]);
