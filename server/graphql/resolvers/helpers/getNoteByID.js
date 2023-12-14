@@ -1,6 +1,7 @@
 import cache from "../../cache.js";
 import { knexConnector } from "../../utils/knexConnector.js";
 import _ from "lodash";
+import {dataFormatter} from "../../utils/index.js";
 
 const getNoteByID = async (parent, noteId) => {
     try{
@@ -14,11 +15,7 @@ const getNoteByID = async (parent, noteId) => {
 
             // TODO - move camelCase & unix date stamp conversion to utility - code has to be repeated in multiple places within resolvers
             // changes keys to camelCase for to process as JS
-            databaseNote[0] = _.mapKeys(databaseNote[0], (v, k) => _.camelCase(k))
-
-            // sets unix timestamp dates from postgres to js readable dates
-            databaseNote[0].createdAt = new Date(databaseNote[0].createdAt).toLocaleString("en-US")
-            databaseNote[0].updatedAt = new Date(databaseNote[0].updatedAt).toLocaleString("en-US")
+            databaseNote[0] = dataFormatter(databaseNote[0]);
 
             // populate cache with new note
             /// if cache does not have keys, assume cache is empty and add all existing notes + new notes
@@ -26,12 +23,9 @@ const getNoteByID = async (parent, noteId) => {
                 let response = await knex('notes.notes').select('*');
 
                 // populate cache with DB data after initial fetch
-                response.map(n => {
+                response.map(note => {
                     // changes keys to camelCase for to process as JS
-                    let noteToCamelcase = _.mapKeys(n, (v, k) => _.camelCase(k))
-
-                    noteToCamelcase.createdAt = new Date(noteToCamelcase.createdAt).toLocaleString("en-US")
-                    noteToCamelcase.updatedAt = new Date(noteToCamelcase.updatedAt).toLocaleString("en-US")
+                    let noteToCamelcase = dataFormatter(note)
 
                     cache.set(noteToCamelcase.id, noteToCamelcase)
                 })
