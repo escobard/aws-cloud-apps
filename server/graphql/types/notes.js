@@ -3,7 +3,9 @@ const typeDefs = `
     id: ID!
     subject: String!
     note: String!
-    date: String!
+    createdAt: String
+    updatedAt: String
+    removedAt: String
   }
   
   input NoteInput {

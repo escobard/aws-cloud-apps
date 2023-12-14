@@ -1,24 +1,24 @@
-import { knexConnector } from "../../utils/knexConnector.js";
-
 import cache from "../../cache.js"
+
+import { knexConnector } from "../../utils/knexConnector.js";
+import { dataFormatter } from "../../utils/index.js";
+import { cacheHydrate } from "../../utils/cacheHydrate.js";
 
 const createNote = async (parent, newNote) => {
     try{
 
-        // TODO - improve modularity by movind this code to a util for generic date creation with the specified format
-        const date = new Date().toLocaleDateString("en-US", {
-            year: "2-digit",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "numeric",
-            minute: "numeric",
-            timeZone: "Canada/Mountain",
-        });
-
-        const note = { user: 1, subject: newNote.subject, note: newNote.note, date }
+        const note = { subject: newNote.subject, note: newNote.note }
         const knex = knexConnector();
         // ask knex to return all column results from insert, so data can be used to create a note in cache
-        const createdNote = await knex('notes.notes').insert(note).returning('*');
+        let createdNote = await knex('notes.notes').insert(note).returning('*');
+
+        // TODO - big gotcha - if code preceding transaction to insert fails, a note is created in the database anyway even if server crashes!
+        createdNote[0] = dataFormatter(createdNote[0])
+
+        if (cache.keys().length === 0){
+            await cacheHydrate('notes.notes', '*')
+        }
+        /// fix after creating formatData util
         // creates a note in cache after inserting data to db
         cache.set(createdNote[0].id, createdNote[0]);
         return createdNote[0];

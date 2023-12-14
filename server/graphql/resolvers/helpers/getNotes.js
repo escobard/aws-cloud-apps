@@ -1,19 +1,14 @@
-import { knexConnector } from "../../utils/knexConnector.js"
-
 import cache from "../../cache.js";
+import { cacheHydrate } from "../../utils/cacheHydrate.js";
 
 const getNotes = async () => {
     try{
-        let knex = knexConnector();
         let notes;
+
         // checks to see if cache has data before calling DB
         /// if cache has no data, fetch data from database
         if (cache.keys().length === 0){
-            notes = await knex('notes.notes').select('*');
-            // populate cache with DB data after initial fetch
-            notes.map(note => {
-                cache.set(note.id, note)
-            })
+            notes = await cacheHydrate('notes.notes', '*')
         }
         /// if cache has data, fetch data from cache instead of db
         else {
@@ -23,6 +18,8 @@ const getNotes = async () => {
                 notes.push(note)
             });
         }
+        // reverse order to return latest notes first
+
         return notes.reverse();
     }
     catch(err){
