@@ -13,7 +13,6 @@ const getNoteByID = async (parent, noteId) => {
             let knex = knexConnector();
             let databaseNote = await knex('notes.notes').where({id: noteId})
 
-            // TODO - move camelCase & unix date stamp conversion to utility - code has to be repeated in multiple places within resolvers
             // changes keys to camelCase for to process as JS
             databaseNote[0] = dataFormatter(databaseNote[0]);
 
@@ -23,7 +22,7 @@ const getNoteByID = async (parent, noteId) => {
                 await cacheHydrate('notes.notes', '*')
                 cache.set(databaseNote[0].id, databaseNote[0])
             }
-            /// if cache has keys, assume cache is already usp to date and only add new note to cache
+            /// if cache has keys, assume cache is already us to date and only add new note to cache
             else {
                 cache.set(databaseNote[0].id, databaseNote[0])
             }
