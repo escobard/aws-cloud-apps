@@ -1,16 +1,15 @@
-
+// TODO - get rid of this file as it is not working as expected with Jest + npm module project
 // necessary to allow testing globally of jest snapshots
-import React from "react";
-import {
+const React = require('react');
+const {
   act,
   render,
   fireEvent,
   cleanup,
-  waitForDomChange,
   waitForElementToBeRemoved
-} from "@testing-library/react";
-import { act as actHook, renderHook } from "@testing-library/react-hooks";
-import axios from "axios";
+} = require("@testing-library/react");
+const  { act: actHook, renderHook } = require("@testing-library/react-hooks");
+const axios = require("axios");
 
 jest.mock("axios");
 
@@ -19,12 +18,10 @@ global.render = render;
 global.fireEvent = fireEvent;
 global.cleanup = cleanup;
 global.renderHook = renderHook;
-global.waitForDomChange = waitForDomChange;
 global.waitForElementToBeRemoved = waitForElementToBeRemoved;
 global.act = act;
 global.actHook = actHook;
 global.mockApi = axios;
-global.MemoryRouter = MemoryRouter;
 
 afterEach(() => {
   jest.clearAllMocks();
