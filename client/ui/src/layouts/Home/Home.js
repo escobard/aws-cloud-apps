@@ -6,9 +6,10 @@ import { Notes } from "../../components";
 
 import "../../styles/global.scss";
 
-import Form from "./Form";
+import Form from "../../components/Form";
 import { addNoteFields, notes as noteCatalog } from "../../constants";
 
+// TODO - move this entire file under app/page
 const Home = () => {
   const { renderModal, notes, updateNotes } = useContext(NotesContext);
 
