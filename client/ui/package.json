@@ -54,6 +54,7 @@
     ],
     "moduleNameMapper": {
       "^.+\\.(css|less|scss)$": "identity-obj-proxy",
+      "^@/providers(.*)$": "<rootDir>/src/providers",
       "^@/constants(.*)$": "<rootDir>/src/constants$1",
       "^@/graphql(.*)$": "<rootDir>/src/graphql$1",
       "^src(.*)$": "<rootDir>/src$1"
@@ -76,7 +77,10 @@
       }
     },
     "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": ["babel-jest", { "presets": ["next/babel"] }]
+      "^.+\\.(js|jsx|ts|tsx)$": [
+        "babel-jest", { "presets": [
+          "next/babel"
+        ] }]
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
