@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { NotesContext } from "../../providers";
 
 // TODO - fix constant absolute import to allow more readable imports
-import { footer } from "../../constants/catalog";
+import { footer } from "@/constants";
 
 import "./Footer.scss";
 
