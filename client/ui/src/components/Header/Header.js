@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { header } from "../../constants/catalog";
+import { header } from "@/constants";
 
 import "./Header.scss";
 
-const Header = ({ date }) => (
+const Header = ({ date= header.todayDate }) => (
   <nav>
     <i aria-label="Menu" className="bars big icon" />
     <h1>{header.title}</h1>
@@ -15,10 +15,6 @@ const Header = ({ date }) => (
 
 Header.propTypes = {
   date: PropTypes.string,
-};
-
-Header.defaultProps = {
-  date: header.todayDate,
 };
 
 export default Header;

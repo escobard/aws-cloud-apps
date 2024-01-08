@@ -43,11 +43,4 @@ Notes.propTypes = {
   }),
 };
 
-Notes.defaultProps = {
-  data: {
-    date: undefined,
-    icon: undefined,
-  },
-};
-
 export default Notes;
