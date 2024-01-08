@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "jest",
+    "test-watch": "jest --watch",
     "docker:build": "docker build --build-arg NEXT_PUBLIC_GRAPHQL_API -t escobard/ui:latest -f docker/Dockerfile .",
     "docker:start": "docker run --name ui -p 3000:3000 -t escobard/ui:latest",
     "docker": "npm run docker:build && npm run docker:start"
@@ -23,8 +25,11 @@
     "semantic-ui-react": "^2.1.4"
   },
   "devDependencies": {
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/react-hooks": "^8.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
+    "jest": "^29.7.0",
     "sass": "^1.69.5"
   },
   "jest": {
@@ -33,9 +38,6 @@
       "!<rootDir>/node_modules/",
       "!<rootDir>/public",
       "!<rootDir>/.next"
-    ],
-    "setupFiles": [
-      "react-app-polyfill/jsdom"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
