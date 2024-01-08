@@ -5,7 +5,7 @@ const props = {
   data: {
     subject: "Test subject",
     note: "Test note",
-    date: "02/23/20, 11:46 PM"
+    updatedAt: "02/23/20, 11:46 PM"
   }
 };
 
@@ -21,17 +21,17 @@ describe("Note", () => {
 
   it(">> should display notes data and circular icon", () => {
     const {
-      data: { subject, note, date }
+      data: { subject, note, updatedAt }
     } = props;
     const { getByText, container } = render(<Note {...props} />);
     expect(getByText(subject));
     expect(getByText(note));
-    expect(getByText(date));
+    expect(getByText(updatedAt));
     expect(container.querySelector(".sticky.note"));
   });
 
   it(">> should hide date when no date is given", () => {
-    props.data.date = undefined;
+    props.data.updatedAt = undefined;
     const { container } = render(<Note {...props} />);
     expect(container.querySelector(".date")).toEqual(null);
   });

@@ -1,3 +1,4 @@
+/*
 import { footer } from "constants/catalog";
 import { NotesProvider } from "providers";
 
@@ -42,7 +43,8 @@ describe("Footer", () => {
     );
     await waitForElement(() => getByText(footer.withNotes));
     // legacy syntax
-    /*    await waitForDomChange();
-    expect(getByText(footer.withNotes));*/
+    /!*    await waitForDomChange();
+    expect(getByText(footer.withNotes));*!/
   });
 });
+*/

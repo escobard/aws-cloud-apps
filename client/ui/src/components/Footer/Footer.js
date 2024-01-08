@@ -7,6 +7,9 @@ import { footer } from "@/constants";
 
 import "./Footer.scss";
 
+
+// TODO - re-work as a pure component and pass in required props instead of calling provider directly
+/// this makes it easier to test and eliminates direct dependency on provider
 const Footer = () => {
   const { openModal, notes } = useContext(NotesContext);
 

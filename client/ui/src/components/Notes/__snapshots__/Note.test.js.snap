@@ -23,6 +23,13 @@ exports[`Note >> snapshot is up to date 1`] = `
         Test note
       </p>
     </div>
+    <div
+      class="two wide computer four wide mobile two wide tablet column date"
+    >
+      <p>
+        02/23/20, 11:46 PM
+      </p>
+    </div>
   </div>
 </div>
 `;
