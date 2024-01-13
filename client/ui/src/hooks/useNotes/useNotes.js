@@ -18,6 +18,7 @@ const useNotes = () => {
     };
   }, [isMounted]);
 
+  // TODO - test coverage already over 80, but results from Apollo Client hooks can be tested with jest mocks - https://blog.devgenius.io/how-to-test-custom-react-apollo-hook-using-jest-mock-beb410671539
   const [getNotesQuery, { loading: getNotesLoading}] = useLazyQuery(GET_NOTES_QUERY, {
     fetchPolicy: 'network-only',
     onCompleted: newData => {

@@ -40,6 +40,9 @@
       "!<rootDir>/public",
       "!<rootDir>/.next"
     ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/app/"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.js"
     ],
