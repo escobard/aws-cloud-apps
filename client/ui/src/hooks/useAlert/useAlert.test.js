@@ -9,10 +9,13 @@ describe("useAlert hook", () => {
     };
     const { result } = renderHook(() => useAlert());
 
-    actHook(() => {
+    act(() => {
       result.current.setAlert(message);
     });
 
-    expect(result.current.alert).toEqual(message);
+    waitFor(() => {
+      expect(result.current.alert).toEqual(message);
+    })
+
   });
 });

@@ -8,9 +8,10 @@ const {
   cleanup,
   waitForElement,
   waitForElementToBeRemoved,
-  screen
+  screen,
+  renderHook,
+  waitFor
 } = require("@testing-library/react");
-const  { act: actHook, renderHook } = require("@testing-library/react-hooks");
 const axios = require("axios");
 
 jest.mock("axios");
@@ -21,6 +22,7 @@ global.render = render;
 global.fireEvent = fireEvent;
 global.cleanup = cleanup;
 global.renderHook = renderHook;
+global.waitFor = waitFor;
 global.waitForElement = waitForElement;
 global.waitForElementToBeRemoved = waitForElementToBeRemoved;
 global.act = act;
