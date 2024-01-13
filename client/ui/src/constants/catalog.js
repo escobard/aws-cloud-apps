@@ -7,6 +7,7 @@ export const footer = {
 
 export const header = {
   title: "Notes",
+  // must suppress hydration update with next.js to avoid errors - https://nextjs.org/docs/messages/react-hydration-error
   todayDate: todayDate(),
 };
 

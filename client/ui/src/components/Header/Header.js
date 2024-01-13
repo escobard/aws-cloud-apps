@@ -9,7 +9,7 @@ const Header = ({ date= header.todayDate }) => (
   <nav>
     <i aria-label="Menu" className="bars big icon" />
     <h1>{header.title}</h1>
-    <p>{date}</p>
+    <p suppressHydrationWarning>{date}</p>
   </nav>
 );
 

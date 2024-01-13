@@ -26,11 +26,11 @@ export default function RootLayout({ children }) {
       <title>Notes</title>
     </head>
       <body className={inter.className}>
-      <ApolloWrapper>
-        <NotesProvider>
-          {children}
-        </NotesProvider>
-      </ApolloWrapper>
+        <ApolloWrapper>
+          <NotesProvider>
+            {children}
+          </NotesProvider>
+        </ApolloWrapper>
       </body>
     </html>
   )

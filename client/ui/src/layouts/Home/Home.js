@@ -9,7 +9,6 @@ import "../../styles/global.scss";
 import Form from "../../components/Form";
 import { addNoteFields, notes as noteCatalog } from "../../constants";
 
-// TODO - move this entire file under app/page
 const Home = () => {
   const { renderModal, notes, updateNotes, loading } = useContext(NotesContext);
 
@@ -17,12 +16,12 @@ const Home = () => {
     if (!data){
       return <Notes data={noteCatalog.loading} />;
     } else{
-      const hasData = Array.isArray(data) && data.length > 0;
+      const hasData = Array.isArray(data) && data.length > 0 && data[0].id;
       const hasApiError = !Array.isArray(data) && data.length > 0;
 
       if (hasData) {
-        return data.map((note, i) => {
-          return <Notes key={note.subject + i} data={note} />;
+        return data.map((note) => {
+          return <Notes key={note.id} data={note} />;
         });
       }
 
