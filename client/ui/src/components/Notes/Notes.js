@@ -34,7 +34,7 @@ const Notes = ({ data: { subject, note, updatedAt, icon } }) => (
 Notes.propTypes = {
   data: PropTypes.shape({
     subject: PropTypes.string.isRequired,
-    note: PropTypes.string.isRequired,
+    note: PropTypes.string,
     date: PropTypes.string,
     icon: PropTypes.shape({
       image: PropTypes.string,

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { NotesContext } from "../../providers";
 
@@ -9,26 +9,30 @@ import "../../styles/global.scss";
 import Form from "../../components/Form";
 import { addNoteFields, notes as noteCatalog } from "../../constants";
 
-// TODO - move this entire file under app/page
 const Home = () => {
-  const { renderModal, notes, updateNotes } = useContext(NotesContext);
+  const { renderModal, notes, updateNotes, loading } = useContext(NotesContext);
 
   const renderNotes = (id, data) => {
-    const hasData = Array.isArray(data) && data.length > 0;
-    const hasNoData = !Array.isArray(data) && data.length > 0;
+    if (!data){
+      return <Notes data={noteCatalog.loading} />;
+    } else{
+      const hasData = Array.isArray(data) && data.length > 0 && data[0].id;
+      const hasApiError = !Array.isArray(data) && data.length > 0;
 
-    if (hasData) {
-      return data.map((note, i) => {
-        return <Notes key={note.subject + i} data={note} />;
-      });
+      if (hasData) {
+        return data.map((note) => {
+          return <Notes key={note.id} data={note} />;
+        });
+      }
+
+      if (hasApiError) {
+        noteCatalog.apiError.note = data;
+        return <Notes data={noteCatalog.apiError} />;
+      }
+
+      return <Notes data={noteCatalog.noNotes} />;
     }
 
-    if (hasNoData) {
-      noteCatalog.apiError.note = data;
-      return <Notes data={noteCatalog.apiError} />;
-    }
-
-    return <Notes data={noteCatalog.noNotes} />;
   };
 
   return (
@@ -38,7 +42,7 @@ const Home = () => {
           title: "Add note",
           content: <Form submit={updateNotes} fields={addNoteFields} />,
         })}
-        {notes && renderNotes("notes", notes)}
+        {renderNotes("notes", notes)}
       </main>
     </>
   );
