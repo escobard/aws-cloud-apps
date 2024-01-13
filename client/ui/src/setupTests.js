@@ -26,7 +26,6 @@ global.waitFor = waitFor;
 global.waitForElement = waitForElement;
 global.waitForElementToBeRemoved = waitForElementToBeRemoved;
 global.act = act;
-global.actHook = actHook;
 global.mockApi = axios;
 
 afterEach(() => {
