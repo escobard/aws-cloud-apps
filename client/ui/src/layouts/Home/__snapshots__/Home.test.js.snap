@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`>> render() >> snapshot with data is up to date 1`] = `
+exports[`>> render() >> generates snapshot 1`] = `
 <div>
   <main
     class="home"
