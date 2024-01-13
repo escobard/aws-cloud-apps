@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form >> snapshot is up to date 1`] = `
+<div>
+  <form
+    class="ui form form"
+  >
+    <div
+      class="field"
+    >
+      <label
+        for="subject"
+      >
+        Subject
+      </label>
+      <input
+        id="subject"
+        name="subject"
+        placeholder="Enter a subject for your note"
+      />
+    </div>
+    <div
+      class="field"
+    >
+      <label
+        for="note"
+      >
+        Note *
+      </label>
+      <textarea
+        id="note"
+        name="note"
+        placeholder="Enter a description for your note (required)"
+      />
+    </div>
+    <div
+      class="field"
+    >
+      <button
+        aria-label="Submit"
+        class="ui button"
+      >
+        Add Note
+      </button>
+    </div>
+  </form>
+</div>
+`;
