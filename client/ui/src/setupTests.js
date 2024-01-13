@@ -8,13 +8,12 @@ const {
   cleanup,
   waitForElement,
   waitForElementToBeRemoved,
+  waitForDomChange,
   screen,
   renderHook,
   waitFor
 } = require("@testing-library/react");
-const axios = require("axios");
-
-jest.mock("axios");
+import { MockedProvider } from "@apollo/client/testing";
 
 global.React = React;
 global.screen = screen;
@@ -24,9 +23,10 @@ global.cleanup = cleanup;
 global.renderHook = renderHook;
 global.waitFor = waitFor;
 global.waitForElement = waitForElement;
+global.waitForDomChange = waitForDomChange;
 global.waitForElementToBeRemoved = waitForElementToBeRemoved;
 global.act = act;
-global.mockApi = axios;
+global.MockedProvider = MockedProvider
 
 afterEach(() => {
   jest.clearAllMocks();

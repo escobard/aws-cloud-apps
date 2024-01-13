@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`>> render() >> snapshot with data is up to date 1`] = `
+<div>
+  <main
+    class="home"
+  >
+    <div
+      class="ui equal width grid note"
+    >
+      <div
+        class="one wide computer three wide mobile two wide tablet column icon"
+      >
+        <i
+          aria-label="note icon"
+          class="sticky note big circular icon error"
+        />
+      </div>
+      <div
+        class="twelve wide computer nine wide mobile twelve wide tablet column content"
+      >
+        <h3>
+          Loading...
+        </h3>
+        <p>
+          Notes are loading...
+        </p>
+      </div>
+    </div>
+  </main>
+</div>
+`;
