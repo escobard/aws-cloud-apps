@@ -1,18 +1,28 @@
-/*
-import { footer } from "constants/catalog";
-import { NotesProvider } from "providers";
+import { footer } from "@/constants";
+import { NotesProvider } from "@/providers";
 
-import Footer from "./index";
+import {GET_NOTES_QUERY} from "@/graphql/fragments/getNotes";
+
+import Footer from "./Footer";
 
 describe("Footer", () => {
-  let props;
 
+  let mocks;
 
-  const note = {
-    title: "Note title",
-    note: "Note description"
-  };
-  const getNotesBody = { data: [note, note, note] };
+  beforeEach(() => {
+    mocks = [
+      {
+        request: {
+          query: GET_NOTES_QUERY
+        },
+        result: {
+          data: {
+            getNotes: []
+          }
+        }
+      }
+    ]
+  })
 
   afterAll(() => {
     cleanup();
@@ -20,7 +30,7 @@ describe("Footer", () => {
 
   it(">> snapshot is up to date", () => {
     const { container } = render(
-        <Footer {...props}/>
+        <Footer />
     );
     expect(container).toMatchSnapshot();
   });
@@ -35,16 +45,23 @@ describe("Footer", () => {
   // TODO - rework test to follow approach outlined - https://react-testing-examples.netlify.app/
   /// component needs some state to work, will not render without state
   it(">> should display completed notes and count if count is not 0", async () => {
-    mockApi.get.mockResolvedValue(getNotesBody);
+    mocks[0].result.data.getNotes.push({
+      "id": "1",
+      "createdAt": "1/13/2024, 1:10:48 AM",
+      "updatedAt": "1/13/2024, 1:10:48 AM",
+      "note": "test note",
+      "subject": "test subject"
+    });
+
     const { getByText } = render(
-      <NotesProvider>
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <NotesProvider>
           <Footer />
-      </NotesProvider>
+        </NotesProvider>
+      </MockedProvider>
     );
-    await waitForElement(() => getByText(footer.withNotes));
-    // legacy syntax
-    /!*    await waitForDomChange();
-    expect(getByText(footer.withNotes));*!/
+    await waitFor(() => expect(getByText(footer.withNotes)))
+
   });
 });
-*/
+

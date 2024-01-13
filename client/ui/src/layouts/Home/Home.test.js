@@ -5,7 +5,6 @@ import { GET_NOTES_QUERY } from "@/graphql/fragments/getNotes";
 import { notes as noteCatalog } from "../../constants";
 
 describe(">> render()", () => {
-
   let mocks;
 
   beforeEach(() => {

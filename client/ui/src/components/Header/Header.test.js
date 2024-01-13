@@ -3,7 +3,7 @@ import Header from "./index";
 
 const props = {
   id: "test",
-  date: "February 23, 2020"
+  date: header.todayDate
 };
 
 const { title, todayDate } = header;
