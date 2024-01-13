@@ -5,7 +5,7 @@ import { GET_NOTES_QUERY } from "@/graphql/fragments/getNotes";
 import { ADD_NOTE_MUTATION } from "@/graphql/fragments/addNote";
 
 const useNotes = () => {
-  const [notes, setNotes] = useState(undefined);
+  const [notes, setNotes] = useState([]);
   const isMounted = useRef(null);
 
   useEffect(() => {
@@ -20,12 +20,8 @@ const useNotes = () => {
 
   const [getNotesQuery, { loading: getNotesLoading}] = useLazyQuery(GET_NOTES_QUERY, {
     fetchPolicy: 'network-only',
-    // causes really weird state issues to use cache first!! huge gotcha
-    // nextFetchPolicy: 'cache-first',
     onCompleted: newData => {
-      const receivedData = newData.getNotes
-      setNotes(receivedData);
-      return receivedData;
+      return setNotes(newData.getNotes);
     },
   });
 
