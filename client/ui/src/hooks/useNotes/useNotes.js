@@ -5,7 +5,7 @@ import { GET_NOTES_QUERY } from "@/graphql/fragments/getNotes";
 import { ADD_NOTE_MUTATION } from "@/graphql/fragments/addNote";
 
 const useNotes = () => {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(undefined);
   const isMounted = useRef(null);
 
   useEffect(() => {

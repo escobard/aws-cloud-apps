@@ -26,4 +26,8 @@ export const notes = {
       label: "API error",
     },
   },
+  loading: {
+    subject: "Loading...",
+    note: 'Notes are loading...'
+  },
 };
