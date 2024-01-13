@@ -40,7 +40,7 @@ const ModalElement = ({ title, content, showModal, closeModal }) => (
 
 ModalElement.propTypes = {
   title: PropTypes.string.isRequired,
-  content: PropTypes.shape({}).isRequired,
+  content: PropTypes.string.isRequired,
   showModal: PropTypes.bool.isRequired,
   closeModal: PropTypes.func.isRequired,
 };

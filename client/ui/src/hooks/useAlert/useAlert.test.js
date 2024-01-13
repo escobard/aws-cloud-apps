@@ -4,7 +4,7 @@ describe("useAlert hook", () => {
   it(">> sets alert", () => {
     const message = {
       title: "Note added!",
-      message: status,
+      message: window.status,
       status: "green"
     };
     const { result } = renderHook(() => useAlert());
