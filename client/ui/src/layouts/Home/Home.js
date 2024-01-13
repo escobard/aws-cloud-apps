@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import { NotesContext } from "../../providers";
 
@@ -11,7 +11,7 @@ import { addNoteFields, notes as noteCatalog } from "../../constants";
 
 // TODO - move this entire file under app/page
 const Home = () => {
-  const { renderModal, notes, updateNotes } = useContext(NotesContext);
+  const { renderModal, notes, updateNotes, loading } = useContext(NotesContext);
 
   const renderNotes = (id, data) => {
     const hasData = Array.isArray(data) && data.length > 0;
