@@ -7,7 +7,7 @@ WORKDIR /usr/cloud-apps/ui
 
 COPY ./package.json ./
 
-RUN npm install
+RUN npm install --omit=dev
 
 COPY . ./
 
