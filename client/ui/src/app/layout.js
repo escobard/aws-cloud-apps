@@ -1,4 +1,5 @@
 import { Inter } from 'next/font/google'
+import { ApolloWrapper } from "./ApolloWrapper";
 import { NotesProvider } from "../providers";
 
 const inter = Inter({ subsets: ['latin'] })
@@ -25,9 +26,11 @@ export default function RootLayout({ children }) {
       <title>Notes</title>
     </head>
       <body className={inter.className}>
+      <ApolloWrapper>
         <NotesProvider>
           {children}
-        </NotesProvider>,
+        </NotesProvider>
+      </ApolloWrapper>
       </body>
     </html>
   )

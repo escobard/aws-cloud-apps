@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 
-import { client } from "@/graphql";
 import { GET_NOTES_QUERY } from "@/graphql/fragments/getNotes";
 import { ADD_NOTE_MUTATION } from "@/graphql/fragments/addNote";
 
@@ -20,8 +19,6 @@ const useNotes = () => {
   }, [isMounted]);
 
   const [getNotesQuery, { loading: getNotesLoading}] = useLazyQuery(GET_NOTES_QUERY, {
-    // client must be defined in the query since no top level apollo client is available
-    client: client,
     fetchPolicy: 'network-only',
     // causes really weird state issues to use cache first!! huge gotcha
     // nextFetchPolicy: 'cache-first',
@@ -32,8 +29,7 @@ const useNotes = () => {
     },
   });
 
-  const [addNoteMutation, {loading: addNotesLoading}] = useMutation(ADD_NOTE_MUTATION, {
-    client: client,
+  const [addNoteMutation, { loading: addNotesLoading}] = useMutation(ADD_NOTE_MUTATION, {
     onCompleted: newData => {
       return getNotesQuery();
     }
