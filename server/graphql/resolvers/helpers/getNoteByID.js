@@ -11,7 +11,9 @@ const getNoteByID = async (parent, noteId, knex) => {
             let databaseNote = await knex('notes.notes').where({id: noteId})
 
             // TODO - write if statement to throw error when note not found in database or cache
-
+            if (!databaseNote[0]){
+                throw new Error('Note not found');
+            }
             // changes keys to camelCase for to process as JS
             databaseNote[0] = dataFormatter(databaseNote[0]);
 
@@ -32,7 +34,7 @@ const getNoteByID = async (parent, noteId, knex) => {
         }
         return note;
     } catch(err){
-        return err;
+        return 'getNoteByID error:' + err;
     }
 };
 
