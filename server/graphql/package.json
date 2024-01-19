@@ -41,7 +41,10 @@
       "!<rootDir>/node_modules/"
     ],
     "coveragePathIgnorePatterns": [
-      "<rootDir>/types/"
+      "<rootDir>/types/",
+      "<rootDir>/typeDefs.js",
+      "<rootDir>/resolvers.js",
+      "<rootDir>/resolvers/notes.js"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.js"
