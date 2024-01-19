@@ -1,22 +1,4 @@
-import mockKnex from 'mock-knex';
 import createNote from './createNote';
-import knex from "knex";
-import cache from "../../cache.js";
-
-const mockConfig = {
-  client: 'pg',
-  connection: {
-    host: 'localhost',
-    port: '5432',
-    user: 'test_user',
-    password: 'test_password',
-    database: 'test_db'
-  }
-};
-
-const knexInstance = knex(mockConfig);
-
-mockKnex.mock(knexInstance);
 
 describe('> createNote', () => {
   it('>> should create a note and return it', async () => {
@@ -46,6 +28,5 @@ describe('> createNote', () => {
     expect(cache.get(mockResponse[0].id)).toEqual(mockResponse[0]);
 
     tracker.uninstall();
-    mockKnex.unmock(knexInstance);
   });
 });

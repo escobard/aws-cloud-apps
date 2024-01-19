@@ -1,6 +1,4 @@
-import knex from 'knex';
 import { knexConnector } from './knexConnector';
-import mockKnex from "mock-knex";
 
 describe('knexConnector', () => {
   it('should create a knex instance with correct configuration', () => {

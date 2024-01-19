@@ -1,4 +1,3 @@
-import cache from "../../cache.js";
 import { cacheHydrate } from "../../utils/cacheHydrate.js";
 
 const getNotes = async (parent, knex) => {

@@ -1,20 +1,4 @@
-import mockKnex from 'mock-knex';
 import getNoteByID from './getNoteByID';
-import knex from "knex";
-import cache from "../../cache.js";
-
-const mockConfig = {
-  client: 'pg',
-  connection: {
-    host: 'localhost',
-    port: '5432',
-    user: 'test_user',
-    password: 'test_password',
-    database: 'test_db'
-  }
-};
-
-const knexInstance = knex(mockConfig);
 
 describe('> getNoteByID', () => {
   it('>> should return the note with the given ID from the cache if it exists', async () => {
@@ -41,10 +25,6 @@ describe('> getNoteByID', () => {
       "subject": "This is a subject"
     };
 
-    cache.del(noteId);
-
-    mockKnex.mock(knexInstance);
-
     const tracker = mockKnex.getTracker();
     tracker.install();
     tracker.on('query', (query) => {
@@ -55,7 +35,6 @@ describe('> getNoteByID', () => {
     expect(result).toEqual(mockResponse);
 
     tracker.uninstall();
-    mockKnex.unmock(knexInstance);
   });
 
   // TODO - write test to hydrate the cache if it is empty

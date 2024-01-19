@@ -1,22 +1,4 @@
-import cache from "../cache.js";
-import knex from 'knex';
-import mockKnex from 'mock-knex';
 import { cacheHydrate } from "./cacheHydrate.js";
-
-const mockConfig = {
-  client: 'pg',
-  connection: {
-    host: 'localhost',
-    port: '5432',
-    user: 'test_user',
-    password: 'test_password',
-    database: 'test_db'
-  }
-};
-
-const knexInstance = knex(mockConfig);
-
-mockKnex.mock(knexInstance);
 
 describe('> cacheHydrate', () => {
   it('>> should hydrate the cache with data from the database', async () => {
@@ -53,6 +35,5 @@ describe('> cacheHydrate', () => {
     expect(cacheResults).toEqual([mockResponse[0].id, mockResponse[1].id]);
 
     tracker.uninstall();
-    mockKnex.unmock(knexInstance);
   });
 });
