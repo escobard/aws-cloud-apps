@@ -18,6 +18,7 @@ const knexInstance = knex(mockConfig);
 
 beforeAll(() => {
   global.mockKnex = mockKnex;
+  global.tracker = mockKnex.getTracker();
   global.knexInstance = knexInstance;
   global.cache = cache;
   global.knex = knex;

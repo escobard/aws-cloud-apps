@@ -22,7 +22,7 @@ const createNote = async (parent, newNote, knex) => {
         return createdNote[0];
     }
     catch(err){
-        return err;
+        return 'createNote error:' + err;
     }
 };
 

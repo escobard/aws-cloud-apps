@@ -17,7 +17,6 @@ const mockResponse = [
 
 describe('> getNotes', () => {
   it('>> should return notes found from the database if no notes are found from the cache', async () => {
-    const tracker = mockKnex.getTracker();
     tracker.install();
     tracker.on('query', (query) => {
       query.response(mockResponse);
@@ -45,7 +44,6 @@ describe('> getNotes', () => {
   });
 
   it('>> should return an error if there are any failures in the try/catch block', async () => {
-    const tracker = mockKnex.getTracker();
     tracker.install();
     tracker.on('query', (query) => {
       query.reject('Database error');

@@ -8,7 +8,6 @@ const getNotes = async (parent, knex) => {
         /// if cache has no data, fetch data from database
         if (cache.keys().length === 0){
             notes = await cacheHydrate('notes.notes', '*', knex)
-            console.log(notes)
         }
         /// if cache has data, fetch data from cache instead of db
         else {
