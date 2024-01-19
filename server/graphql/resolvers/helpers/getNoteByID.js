@@ -1,28 +1,28 @@
 import cache from "../../cache.js";
-import { knexConnector } from "../../utils/knexConnector.js";
 import { cacheHydrate } from "../../utils/cacheHydrate.js";
 import { dataFormatter } from "../../utils/index.js";
 
-const getNoteByID = async (parent, noteId) => {
+const getNoteByID = async (parent, noteId, knex) => {
     try{
         let note;
         let cachedNote = cache.get(noteId);
         // checks if cache has note, if it does not, fetch from db
-        /// if cache has no data, fetch data from database
         if (!cachedNote){
-            let knex = knexConnector();
             let databaseNote = await knex('notes.notes').where({id: noteId})
 
+            // TODO - write if statement to throw error when note not found in database or cache
+            if (!databaseNote[0]){
+                throw new Error('Note not found');
+            }
             // changes keys to camelCase for to process as JS
             databaseNote[0] = dataFormatter(databaseNote[0]);
 
-            // populate cache with new note
-            /// if cache does not have keys, assume cache is empty and add all existing notes + new notes
+            // if cache does not have keys, assume cache is empty and add all existing notes + new notes
             if (cache.keys().length === 0){
-                await cacheHydrate('notes.notes', '*')
+                await cacheHydrate('notes.notes', '*', knex)
                 cache.set(databaseNote[0].id, databaseNote[0])
             }
-            /// if cache has keys, assume cache is already us to date and only add new note to cache
+            /// if cache has keys, assume cache is already us to date and only update cache with new note
             else {
                 cache.set(databaseNote[0].id, databaseNote[0])
             }
@@ -34,7 +34,7 @@ const getNoteByID = async (parent, noteId) => {
         }
         return note;
     } catch(err){
-        return err;
+        return 'getNoteByID error:' + err;
     }
 };
 

@@ -1,14 +1,13 @@
 import cache from "../../cache.js";
 import { cacheHydrate } from "../../utils/cacheHydrate.js";
 
-const getNotes = async () => {
+const getNotes = async (parent, knex) => {
     try{
         let notes;
-
         // checks to see if cache has data before calling DB
         /// if cache has no data, fetch data from database
         if (cache.keys().length === 0){
-            notes = await cacheHydrate('notes.notes', '*')
+            notes = await cacheHydrate('notes.notes', '*', knex)
         }
         /// if cache has data, fetch data from cache instead of db
         else {
@@ -23,7 +22,7 @@ const getNotes = async () => {
         return notes.reverse();
     }
     catch(err){
-        return err;
+        return 'getNotes error:' + err;
     }
 };
 
