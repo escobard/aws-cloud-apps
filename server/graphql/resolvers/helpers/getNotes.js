@@ -21,7 +21,7 @@ const getNotes = async (parent, knex) => {
         return notes.reverse();
     }
     catch(err){
-        return err;
+        return 'getNotes error:' + err;
     }
 };
 
