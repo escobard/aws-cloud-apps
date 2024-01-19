@@ -1,6 +1,7 @@
 import mockKnex from 'mock-knex';
 import getNotes from './getNotes';
 import knex from "knex";
+import cache from "../../cache.js";
 
 const mockConfig = {
   client: 'pg',
@@ -31,7 +32,8 @@ describe('> getNotes', () => {
         "date": "2020-01-01T00:00:00.000Z",
         "note": "This is a note",
         "subject": "This is a subject",
-      }];
+      }
+    ];
 
     // Create a tracker to track queries and provide responses
     const tracker = mockKnex.getTracker();
@@ -42,6 +44,7 @@ describe('> getNotes', () => {
 
     const result = await getNotes({}, knexInstance);
     expect(result).toEqual(mockResponse.reverse());
+    expect(cache.keys().length).toEqual(mockResponse.length);
 
     tracker.uninstall();
     mockKnex.unmock(knexInstance);

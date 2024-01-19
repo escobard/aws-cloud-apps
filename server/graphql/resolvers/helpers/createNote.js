@@ -1,14 +1,12 @@
 import cache from "../../cache.js"
 
-import { knexConnector } from "../../utils/knexConnector.js";
 import { dataFormatter } from "../../utils/index.js";
 import { cacheHydrate } from "../../utils/cacheHydrate.js";
 
-const createNote = async (parent, newNote) => {
+const createNote = async (parent, newNote, knex) => {
     try{
 
         const note = { subject: newNote.subject, note: newNote.note }
-        const knex = knexConnector();
         // ask knex to return all column results from insert, so data can be used to create a note in cache
         let createdNote = await knex('notes.notes').insert(note).returning('*');
 

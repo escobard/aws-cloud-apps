@@ -16,7 +16,7 @@ const resolver = {
     },
     Mutation: {
         createNote(parent, { note }){
-            return createNote(parent, note)
+            return createNote(parent, note, knex)
         }
     }
 };
