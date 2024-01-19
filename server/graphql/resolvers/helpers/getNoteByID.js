@@ -19,7 +19,7 @@ const getNoteByID = async (parent, noteId) => {
             // populate cache with new note
             /// if cache does not have keys, assume cache is empty and add all existing notes + new notes
             if (cache.keys().length === 0){
-                await cacheHydrate('notes.notes', '*')
+                await cacheHydrate('notes.notes', '*', knex)
                 cache.set(databaseNote[0].id, databaseNote[0])
             }
             /// if cache has keys, assume cache is already us to date and only add new note to cache

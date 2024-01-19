@@ -1,14 +1,15 @@
 import cache from "../../cache.js";
 import { cacheHydrate } from "../../utils/cacheHydrate.js";
+import {knexConnector} from "../../utils/index.js";
 
 const getNotes = async () => {
     try{
         let notes;
-
+        let knex = knexConnector();
         // checks to see if cache has data before calling DB
         /// if cache has no data, fetch data from database
         if (cache.keys().length === 0){
-            notes = await cacheHydrate('notes.notes', '*')
+            notes = await cacheHydrate('notes.notes', '*', knex)
         }
         /// if cache has data, fetch data from cache instead of db
         else {

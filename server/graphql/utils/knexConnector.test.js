@@ -1,6 +1,6 @@
 import knex from 'knex';
-import mockKnex from 'mock-knex';
 import { knexConnector } from './knexConnector';
+import mockKnex from "mock-knex";
 
 describe('knexConnector', () => {
   it('should create a knex instance with correct configuration', () => {
@@ -27,7 +27,6 @@ describe('knexConnector', () => {
 
     const knexInstance = knex(mockConfig);
     mockKnex.mock(knexInstance);
-
     const result = knexConnector();
     expect(result.client.config).toEqual(mockConfig);
     mockKnex.unmock(knexInstance);

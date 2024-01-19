@@ -16,7 +16,7 @@ const createNote = async (parent, newNote) => {
         createdNote[0] = dataFormatter(createdNote[0])
 
         if (cache.keys().length === 0){
-            await cacheHydrate('notes.notes', '*')
+            await cacheHydrate('notes.notes', '*', knex)
         }
         /// fix after creating formatData util
         // creates a note in cache after inserting data to db
