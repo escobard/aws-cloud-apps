@@ -1,5 +1,6 @@
 import knex from 'knex';
 import mockKnex from 'mock-knex';
+import request from 'supertest';
 import cache from "./cache.js";
 
 const mockConfig = {
@@ -20,6 +21,7 @@ beforeAll(() => {
   global.knexInstance = knexInstance;
   global.cache = cache;
   global.knex = knex;
+  global.request = request;
 })
 
 // ensures each test case is run in isolation with a clean cache and database

@@ -39,8 +39,6 @@ describe('> getNoteByID', () => {
 
   // TODO - write test to hydrate the cache if it is empty
 
-
-
   // TODO - write test to throw error if note is not found in cache or database
 });
 

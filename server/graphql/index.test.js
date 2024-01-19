@@ -1,4 +1,3 @@
-import request from 'supertest';
 import { expressServer } from './index.js';
 
 describe('GraphQL Server', () => {
@@ -23,6 +22,7 @@ describe('GraphQL Server', () => {
     expect(response.statusCode).toBe(400);
     expect(response.body).toHaveProperty('errors');
   });
+
   afterAll(async () => {
     await expressServer.close();
   });
