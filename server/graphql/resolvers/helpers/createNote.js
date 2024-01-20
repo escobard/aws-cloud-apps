@@ -9,10 +9,10 @@ const createNote = async (parent, newNote, knex) => {
         const note = { subject: newNote.subject, note: newNote.note }
         // ask knex to return all column results from insert, so data can be used to create a note in cache
         let createdNote = await knex('notes.notes').insert(note).returning('*');
-
-        // TODO - big gotcha - if code preceding transaction to insert fails, a note is created in the database anyway even if server crashes!
         createdNote[0] = dataFormatter(createdNote[0])
 
+
+        // TODO - move the checking of cache keys to higher level file, avoid duplicating the same code in each resolver
         if (cache.keys().length === 0){
             await cacheHydrate('notes.notes', '*', knex)
         }
