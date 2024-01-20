@@ -1,7 +1,7 @@
 
 // Warning - deep assertions on this test will fail unless addNotes.test.js is run first
 export default describe("> getNotes query", () => {
-  it(">> fetches notes from api and confirms expected types & values", async () => {
+  it(">> Fetches notes and confirms expected types & values", async () => {
 
     let query = {
       query: "query GetNotes {getNotes {note subject createdAt id removedAt updatedAt }}",
