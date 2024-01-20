@@ -3,10 +3,39 @@
   "version": "0.0.1",
   "description": "Integration tests for the aws-cloud-apps system.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
-  "keywords": ["GraphQL", "Jest", "Supertest", "Integration Tests"],
+  "keywords": [
+    "GraphQL",
+    "Jest",
+    "Supertest",
+    "Integration Tests"
+  ],
   "author": "Daniel Escobar",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ],
+    "testMatch": [
+      "<rootDir>/**/*.test.{js,jsx,ts,tsx}"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "coverageReporters": [
+      "text"
+    ],
+    "transform": {}
+  }
 }
