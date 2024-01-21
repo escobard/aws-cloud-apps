@@ -1,5 +1,5 @@
-FROM node:14.19.0-alpine
-WORKDIR /usr/cloud-apps/integration
+FROM node:20.9.0-alpine
+WORKDIR /usr/cloud-apps/integration-tests
 
 COPY ./package.json ./
 

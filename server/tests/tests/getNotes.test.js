@@ -1,12 +1,30 @@
-export default describe("getNotes", () => {
-  it(">> smoke test, contains note created by addNote test", async () => {
-    const {
-        addNote: { request: addNoteRequest }
-      } = sampleData,
-      { body, status } = await request(server).get("/"),
-      noteResult = body.filter(note => note.note === addNoteRequest.note);
+// example of a non-data driven integration test
+export default describe("> getNotes query", () => {
+  it(">> Fetches notes and confirms expected types & values", async () => {
 
-    expect(status).toEqual(200);
-    expect(noteResult.length).toBeGreaterThanOrEqual(0);
+    let query = `
+      query GetNotes {
+        getNotes {
+          note
+          subject
+          createdAt
+          id
+          removedAt
+          updatedAt
+        }
+      }
+    `
+
+    let {status, body} = await request(server).post('/graphql').send({query});
+    expect(status).toEqual(200)
+
+    // validate that the response data has the expected properties & types
+    expect(body.data.getNotes).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        note: expect.any(String),
+        subject: expect.any(String),
+      })
+    ]))
+
   });
 });

@@ -1,7 +1,7 @@
-export default describe("health route", () => {
-  it(">> smoke test, has DB, is running in test environment", async () => {
-    let {status, body} = await request(server).get(health);
+export default describe("> health route", () => {
+  it(">> smoke test, api is alive and healthy", async () => {
+    let {status, text} = await request(server).get('/');
     expect(status).toEqual(200)
-    return expect(body).toEqual(sampleData.health.response);
+    return expect(text).toEqual('Healthy!');
   });
 });

@@ -1,41 +1,29 @@
 {
-  "name": "integration",
-  "version": "0.0.2",
-  "description": "integration",
-  "author": "escobard",
-  "license": "ISC",
+  "name": "integration-tests",
+  "version": "0.0.1",
+  "description": "Integration tests for the aws-cloud-apps system.",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "npm run test-in-order",
-    "port": "set port=5000",
-    "test": "npm run port && jest",
-    "test-watch": "npm run port && jest --watch",
-    "test-in-order": "npm run port && jest --bail --runInBand test-in-order",
-    "docker": "docker-compose -f docker/api-test-integration.yaml up --exit-code-from integration"
+    "start": "npm run test:order",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch -o",
+    "test:order": "node --experimental-vm-modules node_modules/jest/bin/jest.js --bail --runInBand testInOrder"
   },
-  "engines": {
-    "node": "10.x",
-    "npm": "6.x"
-  },
+  "keywords": [
+    "GraphQL",
+    "Jest",
+    "Supertest",
+    "Integration Tests"
+  ],
+  "author": "Daniel Escobar",
+  "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/node": "^7.8.7",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/register": "^7.9.0",
-    "jest": "^24.9.0",
-    "jest-extended": "^0.11.5",
-    "jest-resolve": "24.7.1",
-    "jest-watch-typeahead": "^0.4.2",
-    "supertest": "^3.4.2"
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
   },
   "jest": {
-    "collectCoverageFrom": [
-      "./**/*.{js,jsx,ts,tsx}",
-      "!<rootDir>/node_modules/"
-    ],
     "setupFilesAfterEnv": [
-      "jest-extended",
       "<rootDir>/setupTests.js"
     ],
     "testMatch": [
@@ -48,17 +36,9 @@
       "js",
       "ts"
     ],
-    "watchPlugins": [
-      "jest-watch-typeahead/filename",
-      "jest-watch-typeahead/testname"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
+    "coverageReporters": [
+      "text"
     ],
-    "plugins": [
-      "@babel/plugin-transform-runtime"
-    ]
+    "transform": {}
   }
 }
