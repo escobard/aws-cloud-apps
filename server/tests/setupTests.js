@@ -6,7 +6,7 @@ beforeAll(async () => {
 });
 
 beforeEach(() => {
-  global.server = `http://localhost:4000`;
+  global.server = process.env.API || 'http://localhost:4000';
 });
 
 afterEach(() => {
