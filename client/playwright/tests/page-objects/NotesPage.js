@@ -4,21 +4,24 @@ class NotesPage {
   /**
    * @param {import('@playwright/test').Page} page
    */
-  async constructor(page) {
+  constructor(page) {
     this.page = page;
-    await this.goto();
   }
 
   async goto() {
-    await this.page.goto('http://localhost:3000');
+    return await this.page.goto('http://localhost:3000');
   }
 
   async hasTitle( title= /Notes/ ){
-    await expect(page).toHaveTitle(title);
+    await this.goto()
+    await expect(this.page).toHaveTitle(title);
+  }
+
+  async hasNewNoteButton(role='button', buttonName='New note'){
+    await this.goto()
+    await expect(this.page.getByRole(role, { name: buttonName })).toBeVisible();
   }
 
 }
 
-exports = {
-  NotesPage
-}
+exports.NotesPage = NotesPage;
