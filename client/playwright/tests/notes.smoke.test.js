@@ -1,19 +1,19 @@
 // @ts-check
 const { describe, test, expect } = require('@playwright/test');
 
+const { NotesPage } = require('./page-objects/NotesPage');
+
+test.beforeEach(async ({ page }) => {
+  global.notesPage = new NotesPage(page);
+});
+
 describe('Notes landing page smoke tests', () => {
   test('user is able to see title - basic HTMl has loaded', async ({ page }) => {
-    await page.goto('http://localhost:3000');
-
-    // Expect a title "to contain" a substring.
-    await expect(page).toHaveTitle(/Notes/);
+    await notesPage.hasTitle()
   });
 
   test('user is able to see new notes button - API & Database are available', async ({ page }) => {
-    await page.goto('http://localhost:3000');
-
-    // Expect a title "to contain" a substring.
-    await expect(page.getByRole('button', { name: 'New note' })).toBeVisible();
+    await notesPage.hasNewNoteButton()
   });
 
 });

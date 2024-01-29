@@ -6,6 +6,10 @@
 
 `npx playwright test`
 
+### Run matching files
+
+`npx playwright test nameOfYourTestFile`
+
 ### Show test reports
 
 `npx playwright show-report`
