@@ -16,5 +16,4 @@ describe('Notes landing page smoke tests', () => {
     await expect(page.getByRole('button', { name: 'Add note' })).toBeVisible();
   });
 
-
 });
