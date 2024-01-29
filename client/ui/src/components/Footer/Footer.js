@@ -28,7 +28,7 @@ const Footer = () => {
       )}
       {notes && Array.isArray(notes) && (
         <i
-          aria-label="Add note"
+          aria-label="New note"
           role="button"
           className="plus big icon"
           onClick={openModal}
