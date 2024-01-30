@@ -49,6 +49,7 @@ services:
     container_name: e2e_dev
     working_dir: /usr/cloud-apps/e2e
     environment:
+      - UI=http://ui:3000
       - WAIT_HOSTS=ui:3000
     build:
       context: client/playwright

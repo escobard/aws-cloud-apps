@@ -7,11 +7,12 @@ class NotesPage {
    */
   constructor(page) {
     this.page = page;
+    this.url = process.env.UI || 'http://localhost:3000';
   }
 
   // navigates to notes page
   async goto() {
-    return await this.page.goto('http://ui:3000');
+    return await this.page.goto(this.url);
   }
 
   // validates that the notes page has the expected title
