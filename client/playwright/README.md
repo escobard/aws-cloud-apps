@@ -2,6 +2,8 @@
 
 ## Quickstart
 
+[Node.js v20.9.0 or higher](https://nodejs.org/en/) is required. [Playwright](https://playwright.dev/) must be installed as a global dependency. To install playwright globally, run `npx -y playwright@1.41.1 install --with-deps`.
+
 ### Run tests
 
 `npx playwright test`
@@ -22,10 +24,6 @@ Recommended for real time and step by step test debugging.
 
 ### Run tests with Docker
 
-Build the docker image with the following command:
+Build the docker image: `docker build -t yourusername/e2e:latest -f docker/Dockerfile .`
 
-`docker build -t yourusername/e2e:latest -f docker/Dockerfile .`
-
-Run the docker image with the following command:
-
-`docker run --ipc=host --name e2e -t yourusername/e2e:latest`
+Run the docker image: `docker run --name e2e -t yourusername/e2e:latest`
