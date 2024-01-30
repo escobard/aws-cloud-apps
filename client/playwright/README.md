@@ -19,3 +19,13 @@
 Recommended for real time and step by step test debugging. 
 
 `npx playwright test --ui`
+
+### Run tests with Docker
+
+Build the docker image with the following command:
+
+`docker build -t yourusername/e2e:latest -f docker/Dockerfile .`
+
+Run the docker image with the following command:
+
+`docker run --name e2e -t yourusername/e2e:latest`
