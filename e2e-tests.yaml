@@ -1,55 +1,65 @@
 version: '3'
 services:
-  hub:
-    image: selenium/hub:3.0.1
-    networks:
-      - nightwatch-docker-grid-network
-    environment:
-      GRID_BROWSER_TIMEOUT: 120000
-      GRID_NEW_SESSION_WAIT_TIMEOUT: 8000
-      GRID_NODE_POLLING: 300
-      GRID_TIMEOUT: 120000
+  postgres:
+    container_name: postgres_e2e_tests
+    build:
+      context: ./server/postgres
+      dockerfile: docker/Dockerfile
     ports:
-      - '4444:4444'
-  node-chrome:
-    image: selenium/node-chrome:3.0.1
-    networks:
-      - nightwatch-docker-grid-network
-    environment: &SELENIUM_NODE_ENV
-      HUB_PORT_4444_TCP_ADDR: hub
-      HUB_PORT_4444_TCP_PORT: 4444
-    logging:
-      driver: none
+      - "5432:5432"
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+  api:
+    container_name: api_e2e_tests
+    working_dir: /usr/cloud-apps/graphql
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - WAIT_HOSTS=postgres:5432
+    ports:
+      - "4000:4000"
+    build:
+      context: ./server/graphql
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - ./server/graphql:/usr/cloud-apps/graphql
+      - /usr/cloud-apps/graphql/node_modules
+    command: |
+      sh -c "/wait && npm run dev"
   ui:
-    container_name: ui_outdated
-    working_dir: /usr/cloud-apps/ui_outdated
-    networks:
-      - nightwatch-docker-grid-network
+    container_name: ui_e2e_tests
+    working_dir: /usr/cloud-apps/ui
+    environment:
+      - NEXT_PUBLIC_GRAPHQL_API=http://api:4000/graphql
+      - WAIT_HOSTS=api:4000
     ports:
       - "3000:3000"
     build:
-      context: client/ui_outdated
-      dockerfile: docker/Dockerfile.test
+      context: client/ui
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - ./client/ui:/usr/cloud-apps/ui
+      - /usr/cloud-apps/ui/node_modules
     command: |
-      sh -c "npm run start"
+      sh -c "/wait && npm run dev"
   e2e:
-    container_name: e2e
+    container_name: e2e_tests
     working_dir: /usr/cloud-apps/e2e
-    networks:
-      - nightwatch-docker-grid-network
     environment:
-      - UI_HOST=ui_outdated
-      - UI_PORT=3000
-      - SELENIUM_PORT=4444
-      - SELENIUM_HOST=chromedriver
-      - SELENIUM_HUB=hub
-      - DOCKER=true
-      - WAIT_HOSTS= ui_outdated:3000
+      - UI=http://ui:3000
+      - WAIT_HOSTS=ui:3000
     build:
-      context: ./client/tests
-      dockerfile: docker/Dockerfile
+      context: client/playwright
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - ./client/playwright/test-results:/usr/cloud-apps/e2e/test-results
+      - ./client/playwright:/usr/cloud-apps/e2e
+      - /usr/cloud-apps/e2e/node_modules
     command: |
-      sh -c "/wait && sleep 10 && npm start smoke sad"
+      sh -c "/wait && npx playwright test smoke"
 networks:
   nightwatch-docker-grid-network:
     driver: bridge
