@@ -8,7 +8,6 @@ import { expressMiddleware } from "@apollo/server/express4";
 import typeDefs from "./typeDefs.js";
 import resolvers from "./resolvers.js";
 
-
 const app = express();
 
 const schema = makeExecutableSchema({

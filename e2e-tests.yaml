@@ -33,8 +33,7 @@ services:
     container_name: ui_dev
     working_dir: /usr/cloud-apps/ui
     environment:
-      # TODO - using localhost instead of api as a host name because of a bug in docker-compose
-      - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
+      - NEXT_PUBLIC_GRAPHQL_API=http://api:4000/graphql
       - WAIT_HOSTS=api:4000
     ports:
       - "3000:3000"
@@ -56,6 +55,7 @@ services:
       dockerfile: docker/Dockerfile.dev
     volumes:
       - ./client/playwright/test-results:/usr/cloud-apps/e2e/test-results
+      - ./client/playwright:/usr/cloud-apps/e2e
       - /usr/cloud-apps/e2e/node_modules
     command: |
       sh -c "/wait && npx playwright test smoke"

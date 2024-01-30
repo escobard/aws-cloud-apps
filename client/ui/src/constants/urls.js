@@ -1,9 +1,7 @@
 /* istanbul ignore file */
 
-const apiRoot =
-  process.env.REACT_APP_DOCKER_VARIANT === "nginx_routing"
-    ? "/api"
-    : "http://localhost:4000";
+export const apiRoot =
+  process.env.NEXT_PUBLIC_GRAPHQL_API || "http://localhost:4000/graphql";
 
 export const apiRoutes = {
   addNote: `${`${apiRoot}`}`,
