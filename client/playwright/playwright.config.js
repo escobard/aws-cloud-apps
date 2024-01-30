@@ -24,7 +24,8 @@ module.exports = defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   screenshot: 'on',
-  video: 'on',
+  // video: 'on',
+  // enabling to make docker tests faster
   headless: true,
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
