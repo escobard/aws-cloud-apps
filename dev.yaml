@@ -46,3 +46,18 @@ services:
       - /usr/cloud-apps/ui/node_modules
     command: |
       sh -c "/wait && npm run dev"
+  e2e:
+    container_name: e2e_dev
+    working_dir: /usr/cloud-apps/e2e
+    environment:
+      - WAIT_HOSTS=ui:3000
+    build:
+      context: client/playwright
+      dockerfile: docker/Dockerfile.dev
+    ports:
+      - "3001:9323"
+    volumes:
+      - ./client/playwright/test-results:/usr/cloud-apps/e2e/test-results
+      - /usr/cloud-apps/e2e/node_modules
+    command: |
+      sh -c "/wait && npx playwright test smoke"
