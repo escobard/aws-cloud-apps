@@ -54,8 +54,6 @@ services:
     build:
       context: client/playwright
       dockerfile: docker/Dockerfile.dev
-    ports:
-      - "3001:9323"
     volumes:
       - ./client/playwright/test-results:/usr/cloud-apps/e2e/test-results
       - /usr/cloud-apps/e2e/node_modules

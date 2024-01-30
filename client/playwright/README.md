@@ -28,4 +28,4 @@ Build the docker image with the following command:
 
 Run the docker image with the following command:
 
-`docker run --name e2e -t yourusername/e2e:latest`
+`docker run --ipc=host --name e2e -t yourusername/e2e:latest`
