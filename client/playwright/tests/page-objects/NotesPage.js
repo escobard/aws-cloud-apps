@@ -11,7 +11,7 @@ class NotesPage {
 
   // navigates to notes page
   async goto() {
-    return await this.page.goto('http://host.docker.internal:3000');
+    return await this.page.goto('http://ui:3000');
   }
 
   // validates that the notes page has the expected title
