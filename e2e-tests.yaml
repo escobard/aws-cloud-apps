@@ -1,7 +1,7 @@
 version: '3'
 services:
   postgres:
-    container_name: postgres_dev
+    container_name: postgres_e2e_tests
     build:
       context: ./server/postgres
       dockerfile: docker/Dockerfile
@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_HOST_AUTH_METHOD: trust
   api:
-    container_name: api_dev
+    container_name: api_e2e_tests
     working_dir: /usr/cloud-apps/graphql
     environment:
       - DB_HOST=postgres
@@ -30,7 +30,7 @@ services:
     command: |
       sh -c "/wait && npm run dev"
   ui:
-    container_name: ui_dev
+    container_name: ui_e2e_tests
     working_dir: /usr/cloud-apps/ui
     environment:
       - NEXT_PUBLIC_GRAPHQL_API=http://api:4000/graphql
@@ -46,7 +46,7 @@ services:
     command: |
       sh -c "/wait && npm run dev"
   e2e:
-    container_name: e2e_dev
+    container_name: e2e_tests
     working_dir: /usr/cloud-apps/e2e
     environment:
       - UI=http://ui:3000
