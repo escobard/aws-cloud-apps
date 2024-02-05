@@ -37,10 +37,11 @@ exports[`Form >> snapshot is up to date 1`] = `
       class="field"
     >
       <button
-        aria-label="Submit"
+        aria-label="Add note"
         class="ui button"
+        role="button"
       >
-        Add Note
+        Add note
       </button>
     </div>
   </form>
