@@ -37,7 +37,7 @@ jobs:
   ui-unit-tests:
     working_directory: ~/client/ui
     docker:
-      - image: circleci/node:20.9.0 # lock in version of node to prevent dependency issues
+      - image: cimg/node:20.9.0 # lock in version of node to prevent dependency issues
     steps:
       - checkout
       - restore_cache:
