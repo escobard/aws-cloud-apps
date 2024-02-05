@@ -22,6 +22,7 @@ workflows:
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
       - ui-unit-tests
+      - api-unit-tests
   build-and-deploy-cloud-apps:
     when:
       or:
@@ -52,6 +53,25 @@ jobs:
       - run:
           name: "Run unit tests"
           command: "cd client/ui && npm run test:coverage"
+  ## TODO - use parameters and have a single job script for ui/api unit tests
+  api-unit-tests:
+    working_directory: ~/server/graphql
+    docker:
+      - image: cimg/node:20.9.0 # lock in version of node to prevent dependency issues
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "server/graphql/package.json" }}
+      - run:
+          name: "Install API dev-only dependencies"
+          command: "cd server/graphql && npm i -D"
+      - save_cache:
+          key: dependency-cache-{{ checksum "server/graphql/package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: "Run unit tests"
+          command: "cd server/graphql && npm run test:coverage"
   build-and-push-ui-image:
     <<: *docker_cimg
     resource_class: small

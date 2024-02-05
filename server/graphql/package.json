@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "test:watch": "jest --watch -o",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch -o",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "docker:build": "docker build --build-arg DB_HOST --build-arg DB_PORT --build-arg DB_NAME --build-arg DB_USER --build-arg DB_PASSWORD -t escobard/graphql:latest -f docker/Dockerfile .",
     "docker:start": "docker run --name graphql -p 4000:4000 -t escobard/graphql:latest",
     "docker-rm": "docker stop graphql && docker rm graphql",
