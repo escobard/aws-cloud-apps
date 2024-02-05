@@ -79,8 +79,7 @@ jobs:
       - image: docker:stable-git
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 24.0.0
+      - setup_remote_docker
       - run:
           name: "Install Docker dependencies"
           command: |
