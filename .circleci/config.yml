@@ -23,6 +23,7 @@ workflows:
     jobs:
       - ui-unit-tests
       - api-unit-tests
+      - integration-tests
   build-and-deploy-cloud-apps:
     when:
       or:
@@ -80,14 +81,14 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Install dependencies
+          name: "Install Docker dependencies"
           command: |
             apk add --no-cache \
               py-pip=9.0.0-r1
             pip install \
               docker-compose==1.12.0 \
       - run:
-          name: api-integration-tests
+          name: "Run integration tests"
           command: |
             docker-compose -f integration-tests.yaml up --exit-code-from integration_tests
   build-and-push-ui-image:
