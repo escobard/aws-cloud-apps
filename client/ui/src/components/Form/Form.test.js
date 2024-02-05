@@ -22,12 +22,12 @@ describe("Form", () => {
     const { getByLabelText } = render(<Form {...props} />);
     expect(getByLabelText("Subject"));
     expect(getByLabelText("Note *"));
-    expect(getByLabelText("Submit"));
+    expect(getByLabelText("Add note"));
   });
 
   it(">> validates form fields and displays errors", () => {
     const { findByText, getByLabelText } = render(<Form {...props} />);
-    fireEvent.click(getByLabelText("Submit"));
+    fireEvent.click(getByLabelText("Add note"));
     expect(findByText("Form error:"));
   });
 
@@ -39,7 +39,7 @@ describe("Form", () => {
     fireEvent.change(getByLabelText("Note *"), {
       target: { value: "random test sentence to pass validation" }
     });
-    fireEvent.click(getByLabelText("Submit"));
+    fireEvent.click(getByLabelText("Add note"));
     expect(findByText("Note added!"));
   });
 });

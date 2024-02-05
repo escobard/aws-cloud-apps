@@ -109,7 +109,7 @@ const Form = ({ fields, submit }) => {
 
       {renderFields(fields)}
       <SemanticForm.Field role="button" control={Button} aria-label="Add note">
-        Add Note
+        Add note
       </SemanticForm.Field>
     </SemanticForm>
   );

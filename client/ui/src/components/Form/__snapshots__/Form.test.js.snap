@@ -41,7 +41,7 @@ exports[`Form >> snapshot is up to date 1`] = `
         class="ui button"
         role="button"
       >
-        Add Note
+        Add note
       </button>
     </div>
   </form>
