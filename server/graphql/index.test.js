@@ -1,6 +1,7 @@
 import { expressServer } from './index.js';
 
 describe('GraphQL Server', () => {
+  // this test will fail if something is already running on port 4000!
   it('should return Healthy! on GET /', async () => {
     const response = await request(expressServer).get('/');
     expect(response.statusCode).toBe(200);
