@@ -76,7 +76,7 @@ jobs:
   integration-tests:
     working_directory: ~/server/tests
     docker:
-      - image: docker:stable-git
+      - image: docker:17.05.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
