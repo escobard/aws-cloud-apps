@@ -15,11 +15,12 @@ parameters:
     type: string
     default: ""
 workflows:
+  automated-tests:
+    jobs:
+      - ui-unit-tests
   build-and-deploy-cloud-apps:
     when:
       or:
-        - equal: [ circleci-update-ecs, << pipeline.git.branch >> ]
-        - equal: [ circleci-build-and-push-docker-images, << pipeline.git.branch >> ]
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
       - build-and-push-ui-image:
@@ -29,6 +30,24 @@ workflows:
           context: cloud-apps-2023
           name: 'build-and-push-api-image'
 jobs:
+  ui-unit-tests:
+    working_directory: ~/client/ui
+    docker:
+      - image: circleci/node:20.9.0 # lock in version of node to prevent dependency issues
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "client/ui/package.json" }}
+      - run:
+          name: "Install UI dev-only dependencies"
+          command: "cd client/ui && npm i -D"
+      - save_cache:
+          key: dependency-cache-{{ checksum "client/ui/package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: "Run unit tests"
+          command: "cd client/ui && npm test:coverage"
   build-and-push-ui-image:
     <<: *docker_cimg
     resource_class: small
