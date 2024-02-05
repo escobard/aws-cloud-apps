@@ -51,7 +51,7 @@ jobs:
             - ./node_modules
       - run:
           name: "Run unit tests"
-          command: "cd client/ui && npm test:coverage"
+          command: "cd client/ui && npm run test:coverage"
   build-and-push-ui-image:
     <<: *docker_cimg
     resource_class: small
