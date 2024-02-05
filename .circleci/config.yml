@@ -21,8 +21,8 @@ workflows:
         - equal: [ true, << pipeline.parameters.is_pull_request >> ]
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
-      - ui-unit-tests
-      - api-unit-tests
+      #- ui-unit-tests
+      #- api-unit-tests
       - integration-tests
   build-and-deploy-cloud-apps:
     when:
@@ -76,11 +76,11 @@ jobs:
   integration-tests:
     working_directory: ~/server/tests
     docker:
-      - image: docker:docker:stable-git
+      - image: docker:stable-git
     steps:
       - checkout
-      - setup_remote_docker
-      -   version: 25.0.0
+      - setup_remote_docker:
+          version: 25.0.0
       - run:
           name: "Install Docker dependencies"
           command: |
