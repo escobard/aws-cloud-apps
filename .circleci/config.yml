@@ -21,9 +21,12 @@ workflows:
         - equal: [ true, << pipeline.parameters.is_pull_request >> ]
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
-      #- ui-unit-tests
-      #- api-unit-tests
-      - integration-tests
+      - ui-unit-tests
+      - api-unit-tests
+      - integration-tests:
+          requires:
+            - ui-unit-tests
+            - api-unit-tests
   build-and-deploy-cloud-apps:
     when:
       or:
