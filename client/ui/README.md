@@ -19,6 +19,6 @@ set -a && source .env && set +a
 `npm start`
 
 ### Scripts
-To run the API with hot reload and real-time compilation on code updates, start the API by running:
+To run the UI with hot reload and real-time compilation on code updates, start the UI by running:
 
 `npm run dev`
