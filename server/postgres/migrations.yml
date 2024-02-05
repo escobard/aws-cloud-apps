@@ -24,7 +24,7 @@ services:
     container_name: migrations
     build:
       context: ./
-      dockerfile: docker/Dockerfile.migrations
+      dockerfile: Dockerfile.migrations
     environment:
       # could abbreviate with env variables
       DATABASE_URL: postgres://root:root@pg_container_migrations:5432/notes

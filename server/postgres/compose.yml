@@ -4,7 +4,7 @@ services:
     container_name: pg_container
     build:
       context: ./
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
     restart: always
     environment:
       POSTGRES_USER: root
