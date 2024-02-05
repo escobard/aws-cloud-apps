@@ -16,6 +16,10 @@ parameters:
     default: ""
 workflows:
   automated-tests:
+    unless:
+      or:
+        - equal: [ true, << pipeline.parameters.is_pull_request >> ]
+        - equal: [ main, << pipeline.git.branch >> ]
     jobs:
       - ui-unit-tests
   build-and-deploy-cloud-apps:
