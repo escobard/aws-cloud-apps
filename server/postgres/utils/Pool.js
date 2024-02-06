@@ -27,4 +27,5 @@ class Pool {
 
 }
 
+// exported as class object to allow direct object calls and avoid class invocation
 module.exports = new Pool();
