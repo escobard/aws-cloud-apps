@@ -7,6 +7,8 @@ const user = process.env.DB_USER;
 const password = process.env.DB_PASSWORD;
 
 beforeAll(async () => {
+  global.pool = pool
+
   return pool.connect({
     host,
     port,
