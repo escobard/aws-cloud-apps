@@ -18,5 +18,14 @@
   "license": "ISC",
   "dependencies": {
     "node-pg-migrate": "^6.2.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "pg": "^8.11.3"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ]
   }
 }
