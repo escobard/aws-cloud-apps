@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "docker-compose -f compose.yml up",
+    "test": "jest",
+    "test:watch": "jest --watch -o",
     "docker-build": "docker build -t escobard/postgres:latest -f Dockerfile .",
     "docker-start": "docker run --name postgres -e POSTGRES_PASSWORD=postgres_password -p 5432:5432 -t escobard/postgres:latest",
     "docker-rm": "docker stop postgres && docker rm postgres",
