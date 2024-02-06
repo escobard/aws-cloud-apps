@@ -1,16 +1,50 @@
 # Database
 
-## Quickstart 
+TODO - re-write document and split quickstart into 3 - build / run database, run database migrations, run database tests
 
-[Docker](https://www.docker.com/) is required. [Node.js v14+](https://nodejs.org/en/) is optional.
+## Quickstart
 
-Run the following commands to build & run a PostgreSQL database on a Docker container, available on `localhost:5432`:
+[Node.js v20.9.0 and above](https://nodejs.org/en/) and [Docker](https://www.docker.com/) are required.
 
-`docker build -t yourname/yourappname:latest -f docker/Dockerfile .`
+A valid `.env` file is required. Refer to `.env.example` for the required environment variables.
 
-`docker run --name docker_postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -t yourname/yourappname:latest`
+With the following commands, you can quickly populate environment variables from `.env` within a bash terminal:
 
-## Scripts
+```
+set -a && source .env && set +a
+```
+
+### Build and run PostgreSQL database 
+
+### Run database migrations
+
+### Run Data unit tests
+
+Runs unit tests leveraging [Jest]() and [pg]() npm libraries. Tests validate that data migrations and common SQL queries work as expected.
+
+#### Run all tests
+
+`npm run test`
+
+#### Run tests in watch mode (development)
+
+`npm run test:watch`
+
+## Core concepts
+
+### Data migrations
+
+Create a migration file by running:
+
+`npm run migrate create my first migration`
+
+Navigate to `/miration/my-first-migration.js`.
+
+Add SQL query to execute under `exports.up` and the SQL query to execute in case of a rollback under `exports.down`. Refer to other migrations files within the `/migrations` directory for examples.
+
+Run `npm run migrate-up` to execute the migration.
+
+For more detailed instructions, feel free to read through the [official node-pg-migrate docs](https://salsita.github.io/node-pg-migrate/#/).
 
 ### Recommended - Start PostgreSQL & pgAdmin with Docker Compose
 
@@ -28,8 +62,6 @@ For more detailed instructions, feel free to read through [Running PostgreSQL wi
 
 ### Run Docker commands with NPM scripts
 
-[Node.js v14+](https://nodejs.org/en/) is required.
-
 #### PostgreSQL with Docker
 
 `npm run docker`
@@ -38,27 +70,6 @@ For more detailed instructions, feel free to read through [Running PostgreSQL wi
 
 `npm run start`
 
-## Data migrations
-
-[Node.js v14+](https://nodejs.org/en/) is required. A valid `.env` is required. Refer to `.env.example` for the required environment variables. 
-
-With the following commands, you can quickly populate environment variables from `.env` within a bash terminal:
-
-```
-set -a && source .env && set +a
-```
-
-Create a migration file by running:
-
-`npm run migrate create my first migration`
-
-Navigate to `/miration/my-first-migration.js`.
-
-Add SQL query to execute under `exports.up` and the SQL query to execute in case of a rollback under `exports.down`. Refer to other migrations files within the `/migrations` directory for examples.
-
-Run `npm run migrate-up` to execute the migration.
-
-For more detailed instructions, feel free to read through the [official node-pg-migrate docs](https://salsita.github.io/node-pg-migrate/#/).
 
 ## Libraries, Frameworks & Tools
 
