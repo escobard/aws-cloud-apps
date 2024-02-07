@@ -1,9 +1,5 @@
-node_modules
-
-npm-debug.log*
-package-lock.json*
-chromedriver.log*
-tests_output*
-
-.env
-/debug.log
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

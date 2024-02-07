@@ -1,12 +1,14 @@
-FROM node:14.19.0-alpine
+FROM node:20.9.0
+
 WORKDIR /usr/cloud-apps/e2e
 
 COPY ./package.json ./
 
+# https://playwright.dev/docs/docker
+RUN npx -y playwright@1.41.1 install --with-deps
+
 RUN npm install
 
-COPY ./ ./
+COPY . ./
 
-## WAIT mod
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-RUN chmod +x /wait
+CMD ["npx", "playwright", "test"]

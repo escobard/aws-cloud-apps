@@ -1,58 +1,14 @@
 {
-  "name": "e2e",
-  "version": "0.0.2",
-  "description": "end to end test application to run tests against the create-app UI",
-  "main": "nightwatch.js",
-  "scripts": {
-    "start": "npm run test",
-    "test": "jest",
-    "test-watch": "jest --watch",
-    "docker": "docker-compose -f docker/ui-tests.yaml up --no-attach node-chrome --exit-code-from e2e"
-  },
-  "engines": {
-    "node": "10.x",
-    "npm": "6.x"
-  },
-  "author": "escobard",
+  "name": "playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "devDependencies": {
-    "chromedriver": "latest"
-  },
-  "dependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/node": "^7.8.7",
-    "@babel/plugin-transform-arrow-functions": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@testing-library/nightwatch": "^2.0.0",
-    "babel-plugin-add-module-exports": "^1.0.2",
-    "dotenv": "^8.2.0",
-    "dotenv-expand": "^5.1.0",
-    "env-cmd": "^10.1.0",
-    "jest": "^24.9.0",
-    "jest-extended": "^0.11.5",
-    "jest-resolve": "24.7.1",
-    "jest-watch-typeahead": "^0.4.2",
-    "nightwatch": "1.5.1",
-    "nightwatch-api": "^3.0.1",
-    "selenium-server": "^3.141.59"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": "commonjs",
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "add-module-exports",
-      "@babel/plugin-transform-arrow-functions"
-    ]
+    "@playwright/test": "^1.41.1",
+    "@types/node": "^20.11.10"
   }
 }

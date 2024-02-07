@@ -1,40 +1,29 @@
-# End to End Tests
+# Playwright end-to-end tests
 
 ## Quickstart
 
-This application expects the ui to be running on `localhost:3000` and the api to be running on `localhost:4000`, connected to postgres on `localhost:5432`.
+[Node.js v20.9.0 or higher](https://nodejs.org/en/) is required. [Playwright](https://playwright.dev/) must be installed as a global dependency. To install playwright globally, run `npx -y playwright@1.41.1 install --with-deps`.
 
-1. `npm install`
-2. `npm start`
+### Run tests
 
-## Usage
+`npx playwright test`
 
-#### Run tests
+### Run matching files
 
-`npm run test`
+`npx playwright test nameOfYourTestFile`
 
-### Watch tests
+### Show test reports
 
-`npm run test-watch`
+`npx playwright show-report`
 
-#### Tests in headless mode
+### Run tests in UI mode
 
-`npm run test -- --headless`
+Recommended for real time and step by step test debugging. 
 
-### With Docker
+`npx playwright test --ui`
 
-`npm run docker`
+### Run tests with Docker
 
-## Libraries, Frameworks & Tools
+Build the docker image: `docker build -t yourusername/e2e:latest -f docker/Dockerfile .`
 
-[Jest](https://jestjs.io/)
-
-[Nightwatch](https://nightwatchjs.org/)
-
-[Nightwatch testing library](https://testing-library.com/docs/nightwatch-testing-library/intro)
-
-[Babel](https://babeljs.io/docs/en/babel-preset-env)
-
-[Docker](https://www.docker.com/)
-
-[Docker Compose](https://docs.docker.com/compose/)
+Run the docker image: `docker run --name e2e -t yourusername/e2e:latest`

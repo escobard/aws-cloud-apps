@@ -29,6 +29,9 @@ workflows:
             - ui-unit-tests
             - api-unit-tests
             - database-unit-tests
+      - e2e-tests:
+          requires:
+            - integration-tests
   build-and-deploy-cloud-apps:
     when:
       or:
@@ -114,6 +117,24 @@ jobs:
           name: "Run integration tests"
           command: |
             docker-compose -f integration-tests.yaml up --exit-code-from integration
+  e2e-tests:
+    working_directory: ~/client/tests
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: "Install Docker dependencies"
+          command: |
+            apk add --no-cache \
+              py-pip=9.0.0-r1
+            pip install \
+              docker-compose==1.12.0 \
+      - run:
+          name: "Run end-to-end tests"
+          command: |
+            docker-compose -f e2e-tests.yaml up --exit-code-from e2e
   build-and-push-ui-image:
     <<: *docker_cimg
     resource_class: small
