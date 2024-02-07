@@ -26,9 +26,6 @@ services:
     build:
       context: ./server/graphql
       dockerfile: docker/Dockerfile.dev
-    volumes:
-      - ./server/graphql:/usr/cloud-apps/graphql
-      - /usr/cloud-apps/graphql/node_modules
     command: |
       sh -c "/wait && npm run dev"
   ui:
@@ -56,10 +53,6 @@ services:
     build:
       context: client/tests
       dockerfile: docker/Dockerfile.dev
-    volumes:
-      - ./client/tests/test-results:/usr/cloud-apps/e2e/test-results
-      - ./client/tests:/usr/cloud-apps/e2e
-      - /usr/cloud-apps/e2e/node_modules
     command: |
       sh -c "/wait && npx playwright test"
 networks:
