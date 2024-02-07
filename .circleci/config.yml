@@ -132,7 +132,7 @@ jobs:
             pip install \
               docker-compose==1.12.0 \
       - run:
-          name: "Run integration tests"
+          name: "Run end-to-end tests"
           command: |
             docker-compose -f e2e-tests.yaml up --exit-code-from e2e
   build-and-push-ui-image:
