@@ -117,8 +117,7 @@ As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps),
 ## Tools and frameworks
 
 [Node.js](https://nodejs.org/en)  
-[Docker](https://www.docker.com/)     
-[Docker Compose](https://docs.docker.com/compose/)  
+[Docker](https://www.docker.com/)
 [CircleCI](https://circleci.com)  
 [React](https://react.dev/)  
 [Next.js](https://nextjs.org/)
