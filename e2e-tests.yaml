@@ -54,7 +54,7 @@ services:
       - UI=http://ui:3000
       - WAIT_HOSTS=ui:3000
     build:
-      context: client/playwright
+      context: client/tests
       dockerfile: docker/Dockerfile.dev
     volumes:
       - ./client/playwright/test-results:/usr/cloud-apps/e2e/test-results
