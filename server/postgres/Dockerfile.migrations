@@ -5,7 +5,8 @@ ARG DATABASE_URL
 ENV DATABASE_URL=${DATABASE_URL}
 
 WORKDIR /usr/postgres/migrations
-COPY docker ./
+
+COPY ./ ./
 
 RUN npm install
 

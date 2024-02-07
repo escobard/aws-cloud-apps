@@ -10,18 +10,23 @@ services:
       POSTGRES_DB: notes
     ports:
       - "5432:5432"
-  migrations:
-    container_name: migrations
+  migration_tests:
+    container_name: migration_tests
     build:
       context: ./server/postgres
       dockerfile: Dockerfile.migrations
     environment:
-      # could abreviate with env variables
+      DB_HOST: pg_container_migrations
+      DB_PORT: 5432
+      DB_NAME: notes
+      DB_USER: root
+      DB_PASSWORD: root
       DATABASE_URL: postgres://root:root@pg_container_migrations:5432/notes
       WAIT_HOSTS: pg_container_migrations:5432
+    # for regression, health tests are run against the database first (validate db is alive), then full test suite
     command: |
-      sh -c "/wait && npm run migrate up"
-#   enable PG admin to troubleshoot migrations, disabling to reduce ci/cd build time
+      sh -c "/wait && npm run migrate up && npm run test health && npm run test"
+  # enable PG admin to troubleshoot migrations, disabling to reduce ci/cd build time
 #  pgadmin:
 #    container_name: pgadmin4_container
 #    image: dpage/pgadmin4

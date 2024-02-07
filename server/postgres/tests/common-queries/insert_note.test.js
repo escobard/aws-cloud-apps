@@ -15,6 +15,6 @@ it("Validates that a new notes records can be inserted", async () => {
   // skipping deep validation, which are covered in migration tests
   expect(query.rows.length).toEqual(1)
 
-  // deleting test-created records to avoid cluttering database with test data
+  // deletes test-created records to avoid cluttering database with test data
   await pool.query(`DELETE FROM notes.notes WHERE subject=$1`, [subject]);
 })

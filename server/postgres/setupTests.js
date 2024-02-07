@@ -1,4 +1,5 @@
-const pool = require("./utils/pool");
+// reminder that imports are CASE SENSITIVE for mac / linux
+const pool = require("./utils/Pool");
 
 const host = process.env.DB_HOST;
 const port = process.env.DB_PORT;

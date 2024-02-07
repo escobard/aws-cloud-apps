@@ -1,5 +1,7 @@
 version: '3'
 services:
+  # uses init.sql to populate schema instead of migrations to improve integration test build time
+  ## in production versions, init.sql usage should be avoided and instead populate schema with migrations to be consistent with rest of ci/cd
   postgres:
     container_name: postgres_tests
     build:

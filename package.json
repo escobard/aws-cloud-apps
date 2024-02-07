@@ -8,7 +8,8 @@
     "prod": "docker-compose -f prod.yaml up",
     "integration-tests": "docker-compose -f integration-tests.yaml up --exit-code-from integration",
     "e2e-tests": "docker-compose -f e2e-tests.yaml up --no-attach node-chrome --exit-code-from e2e",
-    "migrations": "docker-compose -f migrations.yaml up"
+    "migrations": "docker-compose -f migrations.yaml up",
+    "migration-tests": "docker-compose -f migration-tests.yml up --exit-code-from migration_tests"
   },
   "repository": {
     "type": "git",
