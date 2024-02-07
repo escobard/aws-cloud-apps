@@ -1,13 +1,12 @@
 # API
 
-A simple GraphQL API with CRUD operations for notes.
+A simple GraphQL API with CRUD operations for Notes. This application expects the PostgreSQL database available on `localhost:5000`.
 
-## Requirements
+## Quickstart
+
 [Node.js v20+](https://nodejs.org/en/) is required. 
 
 A valid `.env` is required. Refer to `.env.example` for the environment variables that the application expects.
-
-## Quickstart
 
 With the following commands, you can quickly populate environment variables from `.env` within a bash terminal:
 
@@ -29,16 +28,19 @@ To run the API with hot reload and real-time compilation on code updates, start 
 
 ### Docker
 
-To run the API with docker, you can build and run the API by running:
+[Docker](https://www.docker.com/) is required.
 
-`docker build --build-arg DB_HOST --build-arg DB_PORT --build-arg DB_NAME --build-arg DB_USER --build-arg DB_PASSWORD -t escobard/graphql:latest -f docker/Dockerfile .`
+You can build and run the API with the following command:
 
-`docker run --name graphql -p 4000:4000 -t escobard/graphql:latest`
+`docker build --build-arg DB_HOST --build-arg DB_PORT --build-arg DB_NAME --build-arg DB_USER --build-arg DB_PASSWORD -t your-docker-account/graphql:latest -f docker/Dockerfile .`
+
+`docker run --name graphql -p 4000:4000 -t your-docker-account/graphql:latest`
 
 ## Libraries Frameworks 
 
-[GraphQL](https://graphql.org/)
-
-[Apollo Server](https://www.apollographql.com/docs/apollo-server/)
-
-[Knex](https://knexjs.org/)
+[GraphQL](https://graphql.org/)    
+[Apollo Server](https://www.apollographql.com/docs/apollo-server/)    
+[Knex](https://knexjs.org/)    
+[Jest](https://jestjs.io/)    
+[Supertest](https://github.com/visionmedia/supertest)     
+[Docker](https://www.docker.com/)

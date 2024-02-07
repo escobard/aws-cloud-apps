@@ -36,7 +36,7 @@ The diagram below outlines the network created by Docker Compose for development
 
 ### Recommended - Run environments with Docker Compose
 
-[Docker](https://www.docker.com/) must be installed.
+[Docker](https://www.docker.com/) is required.
 
 #### Development
 `docker-compose -f dev.yaml up`

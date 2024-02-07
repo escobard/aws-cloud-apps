@@ -1,13 +1,12 @@
 # UI
 
-A simple React User Interface (UI) to interact with Notes CRUD operations.
+A simple React User Interface (UI) to interact with Notes CRUD operations. This application expects the GraphQL API to be available on `localhost:4000` and the PostgreSQL database available on `localhost:5000`.
 
 ## Quickstart
 
 [Node.js v20+](https://nodejs.org/en/) is required.
 
 A valid `.env` is required. Refer to `.env.example` for the environment variables that the application expects.
-
 
 With the following commands, you can quickly populate environment variables from `.env` within a bash terminal:
 
@@ -36,16 +35,19 @@ set -a && source .env && set +a
 
 `npm run lint`
 
-#### Lint fix
-
-`npm run lint-fix`
-
 ### Production
 
-`npm run build`
+`npm run build && npm start`
 
 ### With Docker
-`npm run docker`
+
+[Docker](https://www.docker.com/) is required.
+
+You can build and run the UI with the following command:
+
+`docker build --build-arg NEXT_PUBLIC_GRAPHQL_API -t your-docker-account/ui:latest -f docker/Dockerfile .`
+
+`docker run --name ui -p 3000:3000 -t your-docker-account/ui:latest`
 
 ## Libraries, Frameworks & Tools
 
