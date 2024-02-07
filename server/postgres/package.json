@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "docker-compose -f compose.yml up",
+    "test": "jest",
+    "test:watch": "jest --watch -o",
     "docker-build": "docker build -t escobard/postgres:latest -f Dockerfile .",
     "docker-start": "docker run --name postgres -e POSTGRES_PASSWORD=postgres_password -p 5432:5432 -t escobard/postgres:latest",
     "docker-rm": "docker stop postgres && docker rm postgres",
@@ -18,5 +20,14 @@
   "license": "ISC",
   "dependencies": {
     "node-pg-migrate": "^6.2.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "pg": "^8.11.3"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ]
   }
 }

@@ -21,6 +21,14 @@ A simple cloud-native product, designed to scale.
 
 `npm run e2e-tests`
 
+#### Data migrations
+
+`npm run migrations`
+
+#### Data tests
+
+`npm run data-tests`
+
 ## Commits
 
 Our commits follow the [Angular commit styleguide](https://gist.github.com/brianclements/841ea7bffdb01346392c). Each commit should be carefully thought out and only contain files affected within the scope of the commit message.
