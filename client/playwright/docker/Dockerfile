@@ -11,4 +11,4 @@ RUN npm install
 
 COPY . ./
 
-CMD ["npx", "playwright", "test", "smoke"]
+CMD ["npx", "playwright", "test"]

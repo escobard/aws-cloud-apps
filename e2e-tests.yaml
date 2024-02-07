@@ -1,5 +1,7 @@
 version: '3'
 services:
+  # uses init.sql to populate schema instead of migrations to improve e2e test build time
+  ## in production versions, init.sql usage should be avoided and instead populate schema with migrations to be consistent with rest of ci/cd
   postgres:
     container_name: postgres_e2e_tests
     build:
@@ -59,7 +61,7 @@ services:
       - ./client/playwright:/usr/cloud-apps/e2e
       - /usr/cloud-apps/e2e/node_modules
     command: |
-      sh -c "/wait && npx playwright test smoke"
+      sh -c "/wait && npx playwright test"
 networks:
   nightwatch-docker-grid-network:
     driver: bridge
