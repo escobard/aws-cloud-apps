@@ -80,13 +80,13 @@ The diagram below outlines the network created by Docker Compose for development
 
 Find detailed instructions on how to run each application within the [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs).
 
-## Core concepts
+## Core concepts - update links
 
 1. [Modernized version of cloud-apps](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-2. Automated database migrations
-3. Automated database unit tests
-4. End to end tests with Playwright
-5. GraphQL to simplify RESTful endpoints
+2. [Automated database migrations](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+3. [Automated database unit tests](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+4. [End to end tests with Playwright](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+5. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 
 ### Modernized version of cloud-apps
 
@@ -98,6 +98,13 @@ As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps),
 4. [Full stack system built with JavaScript](https://github.com/escobard/cloud-apps?tab=readme-ov-file#full-stack-system-built-with-javascript)
 5. [Starting point for more complicated use cases](https://github.com/escobard/cloud-apps?tab=readme-ov-file#starting-point-for-more-complicated-use-cases)
 
+### Automated database migrations
+
+### Automated database unit tests
+
+### End to end tests with Playwright
+
+### GraphQL to simplify RESTful endpoints
 
 ## Application docs
 
