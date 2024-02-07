@@ -58,7 +58,7 @@ jobs:
             - ./node_modules
       - run:
           name: "Run unit tests"
-          command: "cd client/ui && npm run test:coverage"
+          command: "cd client/ui && npm run test:coverage -- -u"
   ## TODO - use parameters and have a single job script for ui/api unit tests
   api-unit-tests:
     working_directory: ~/server/graphql
