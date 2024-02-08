@@ -6,6 +6,11 @@ An end to end test boilerplate, designed as a starting point for your end to end
 
 [Node.js v20.9.0 or higher](https://nodejs.org/en/) is required. [Playwright](https://playwright.dev/) must be installed as a global dependency. To install playwright globally, run `npx -y playwright@1.41.1 install --with-deps`.
 
+Install and run the application with the following commands:
+
+`npm install`
+`npm start`
+
 ### Run tests
 
 `npx playwright test`

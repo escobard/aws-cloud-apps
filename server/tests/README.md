@@ -28,6 +28,8 @@ Jest will run tests in the order outlined within [/tests/testInOrder.test.js](/t
 
 Run unit tests with hot reload and real-time compilation on code updates:
 
+`npm run test:watch`
+
 ### Run tests in a Docker container
 
 [Docker](https://www.docker.com/) is required. 
@@ -43,25 +45,3 @@ Run the docker image: `docker run --name integration-tests -t your-user-name/int
 [Jest](https://jestjs.io/)  
 [Supertest](https://www.npmjs.com/package/supertest)    
 [Docker](https://www.docker.com/)
-
-## How to contribute
-
-### Commits
-
-Our commits follow the [Angular commit styleguide](https://gist.github.com/brianclements/841ea7bffdb01346392c). Each commit should be carefully thought out and only contain files affected within the scope of the commit message.
-
-### Branching
-
-A branch's name should reference a story and the type of work being committed.
-
-### Pull Requests
-
-Each pull request must pass a review from another contributor and all automated tests.
-
-### Issues
-
-Feel free to open an issue ticket, please leave a screenshot and a detailed instructions on how to replicate the issue.
-
-## License
-
-This repository is protected under the [MIT License](https://choosealicense.com/licenses/mit/).
