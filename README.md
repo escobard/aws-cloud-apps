@@ -26,7 +26,7 @@ The diagram below outlines the network created by Docker Compose for development
 # Table of contents
 
 * [Quickstart](https://github.com/escobard/cloud-apps?tab=readme-ov-file#quickstart)
-* [Technical Highlights](https://github.com/escobard/cloud-apps?tab=readme-ov-file#technical-highlights)
+* [Core Concepts](https://github.com/escobard/cloud-apps?tab=readme-ov-file#core-concepts)
 * [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs)
 * [How to contribute](https://github.com/escobard/cloud-apps?tab=readme-ov-file#how-to-contribute)
 * [Tools and frameworks](https://github.com/escobard/cloud-apps?tab=readme-ov-file#tools-and-frameworks)
@@ -38,59 +38,68 @@ The diagram below outlines the network created by Docker Compose for development
 
 [Docker](https://www.docker.com/) is required.
 
-#### Development
+#### Run Development environment
 `docker-compose -f dev.yaml up`
 
-#### Release
+#### Run Release environment
 `docker-compose -f release.yaml up`
 
-#### Integration tests
+#### Run Integration tests environment
 `docker-compose -f integration-tests.yaml up --exit-code-from integration`
 
-#### End to end tests
+#### Run End to end tests environment
 `docker-compose -f e2e-tests.yaml up --no-attach node-chrome --exit-code-from e2e`
+
+#### Run Data migrations environment
+
+`docker-compose -f migrations.yaml up`
+
+#### Run Data tests environment
+
+`docker-compose -f data-tests.yaml up --exit-code-from data_tests`
 
 ### Run environments with NPM and Docker Compose
 
 [Node.js v20.9.0 or higher](https://nodejs.org/en/) and [Docker](https://www.docker.com/) are required.
         
-#### Development        
+#### Run Development environment        
  `npm run dev`            
   
-#### Production        
+#### Run Release environment        
  `npm run start`   
  
-#### Integration tests
+#### Run Integration tests environment
 
 `npm run integration-tests`
 
-#### End to End tests
+#### Run End to end tests environment
 
 `npm run e2e-tests`
 
-#### Data migrations
+#### Run Data migrations environment
 
 `npm run migrations`
 
-#### Data tests
+#### Run Data tests environment
 
 `npm run data-tests`
 
-### Run applications with NPM or Docker
+### Run applications individually with NPM or Docker
 
 Find detailed instructions on how to run each application within the [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs).
 
-## Core concepts - update links
+## Core concepts
 
 1. [Modernized version of cloud-apps](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-2. [Automated database migrations](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-3. [Automated database unit tests](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-4. [End to end tests with Playwright](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-5. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+2. [Hosted on AWS](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+3. [Enterprise grade CI/CD with CircleCI](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+4. [Automated database migrations & tests](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+5. [End to end tests with Playwright](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+6. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 
 ### Modernized version of cloud-apps
 
-As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), this project shares the same core concepts, including"
+As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), this project shares the same core concepts, including:
 
 1. [Container orchestration for scale](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 2. [Automated test pyramid](https://github.com/escobard/cloud-apps?tab=readme-ov-file#automated-test-pyramid)
@@ -98,9 +107,21 @@ As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps),
 4. [Full stack system built with JavaScript](https://github.com/escobard/cloud-apps?tab=readme-ov-file#full-stack-system-built-with-javascript)
 5. [Starting point for more complicated use cases](https://github.com/escobard/cloud-apps?tab=readme-ov-file#starting-point-for-more-complicated-use-cases)
 
-### Automated database migrations
+### Hosted on AWS
 
-### Automated database unit tests
+The project's UI, API and Database are hosted on AWS. Leveraging [CircleCI](https://circleci.com/), The UI and API Docker images are built & deployed to AWS' [Elastic Container Registry(ECR)](https://aws.amazon.com/ecr/), then hosted with [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) and [Fargate](https://aws.amazon.com/fargate/). The database is hosted on [AWS' Relational Database Service(RDS)](https://aws.amazon.com/rds/).
+
+The diagram below outlines how network connections are routed within the AWS cloud:
+
+(insert diagram for AWS network)
+
+Locally, a cloud-like environment can be simulated with Docker Compose. The diagram below outlines Docker Compose network connections:
+
+(insert diagram for Docker Compose network)
+
+### Enterprise grade CI/CD with CircleCI
+
+### Automated database migrations & unit tests
 
 ### End to end tests with Playwright
 

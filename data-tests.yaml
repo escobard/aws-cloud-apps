@@ -10,8 +10,8 @@ services:
       POSTGRES_DB: notes
     ports:
       - "5432:5432"
-  migration_tests:
-    container_name: migration_tests
+  data_tests:
+    container_name: data_tests
     build:
       context: ./server/postgres
       dockerfile: Dockerfile.migrations

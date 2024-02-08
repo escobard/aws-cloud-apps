@@ -9,7 +9,7 @@
     "integration-tests": "docker-compose -f integration-tests.yaml up --exit-code-from integration",
     "e2e-tests": "docker-compose -f e2e-tests.yaml up --no-attach node-chrome --exit-code-from e2e",
     "migrations": "docker-compose -f migrations.yaml up",
-    "data-tests": "docker-compose -f migration-tests.yaml up --exit-code-from migration_tests"
+    "data-tests": "docker-compose -f data-tests.yaml up --exit-code-from data_tests"
   },
   "repository": {
     "type": "git",

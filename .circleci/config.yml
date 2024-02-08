@@ -98,7 +98,7 @@ jobs:
       - run:
           name: "Run migrations and unit tests"
           command: |
-            docker-compose -f migration-tests.yaml up --exit-code-from migration_tests
+            docker-compose -f data-tests.yaml up --exit-code-from data_tests
   integration-tests:
     working_directory: ~/server/tests
     docker:
