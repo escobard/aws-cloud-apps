@@ -93,9 +93,10 @@ Find detailed instructions on how to run each application within the [Applicatio
 1. [Modernized version of cloud-apps](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 2. [Hosted on AWS](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 3. [Enterprise grade CI/CD with CircleCI](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-4. [Automated database migrations & tests](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-5. [End to end tests with Playwright](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-6. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+4. [End to end tests with Playwright](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+5. [Automated database migrations & tests](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+6. [Lightweight dependencies leading to blazing fast build and test times]()
+7. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 
 ### Modernized version of cloud-apps
 
@@ -109,7 +110,7 @@ As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps),
 
 ### Hosted on AWS
 
-The project's UI, API and Database are hosted on AWS. Leveraging [CircleCI](https://circleci.com/), The UI and API Docker images are built & deployed to AWS' [Elastic Container Registry(ECR)](https://aws.amazon.com/ecr/), then hosted with [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) and [Fargate](https://aws.amazon.com/fargate/). The database is hosted on [AWS' Relational Database Service(RDS)](https://aws.amazon.com/rds/).
+The project's UI, API and Database are hosted on AWS. Leveraging [CircleCI](https://circleci.com/), the UI and API Docker images are built & deployed to AWS' [Elastic Container Registry(ECR)](https://aws.amazon.com/ecr/), then hosted with [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) and [Fargate](https://aws.amazon.com/fargate/). The database is hosted on [AWS' Relational Database Service(RDS)](https://aws.amazon.com/rds/).
 
 The diagram below outlines how network connections are routed within the AWS cloud:
 
@@ -119,11 +120,23 @@ Locally, a cloud-like environment can be simulated with Docker Compose. The diag
 
 (insert diagram for Docker Compose network)
 
-### Enterprise grade CI/CD with CircleCI
+### Enterprise-grade blueprint for CI/CD with CircleCI
+
+Using CircleCI, unit tests for the UI, API and Database are run on every pull request to Github. Once the unit tests have passed, integration tests are run, validating API and Database changes. After integration tests pass, e2e tests are run, validating that the UI, API and Database work as expected with the new changes. Once all tests have passed, the pull request can be merged to the `main` branch, which kicks off deployments.
+
+Deployments begin by simultaneously running the jobs to build & deploy application Docker images and Database migrations. Once Docker images have been deployed to ECR, CircleCI updates ECS with the new Docker images, performing [rolling deployments](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/rolling-deployments.html) for the new application versions.
+
+Following the [fail-fast automated testing approach](https://testsigma.com/blog/test-automation-achieve-fail-fast-fail-often/), the system provides a starting point (or blueprint / boilerplate) as-is for more complex automated testing requirements. The diagram below outlines how the fail fast approach dependencies between unit, integration and e2e tests are managed within CircleCI:
+
+(insert diagram for CircleCI job workflow)
+
+### End to end tests with Playwright
 
 ### Automated database migrations & unit tests
 
-### End to end tests with Playwright
+[Automated database migrations](https://www.prisma.io/dataguide/types/relational/what-are-database-migrations) are available to facilitate database integrity and updates through the power of automation. To accompany programmatic database schema and structure updates, database updates are validated with unit tests using the [Jest](https://jestjs.io/) and [pg](https://www.npmjs.com/package/pg) npm libraries.
+
+### Lightweight dependencies leading to blazing fast build and test times
 
 ### GraphQL to simplify RESTful endpoints
 
