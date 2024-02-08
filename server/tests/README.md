@@ -30,10 +30,12 @@ Run unit tests with hot reload and real-time compilation on code updates:
 
 ### Run tests in a Docker container
 
-[Docker](https://www.docker.com/) must be installed. Use this approach if you want to run the tests in a container, without installing Node.js. It is common to use this approach in a CI/CD pipeline.
+[Docker](https://www.docker.com/) is required. 
 
-`docker build -t your-user-name/integration-tests:latest -f docker/Dockerfile.ci .`
-`docker run --name integration-tests -t your-user-name/integration-tests:latest`
+Use this approach if you want to run the tests in a container, without installing Node.js. It is common to use this approach in a CI/CD pipeline.
+
+Build the docker image: `docker build -t your-user-name/integration-tests:latest -f docker/Dockerfile.ci .`
+Run the docker image: `docker run --name integration-tests -t your-user-name/integration-tests:latest`
 
 ## Tools and frameworks
 
