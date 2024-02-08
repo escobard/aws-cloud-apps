@@ -1,6 +1,6 @@
 # UI
 
-A simple React User Interface (UI) to interact with Notes CRUD operations. This application expects the GraphQL API to be available on `localhost:4000` and the PostgreSQL database available on `localhost:5000`.
+A simple React User Interface (UI) to interact with Notes CRUD operations. This application expects the project's GraphQL API to be available on `localhost:4000` and the PostgreSQL database available on `localhost:5000`.
 
 ## Quickstart
 
@@ -21,15 +21,25 @@ set -a && source .env && set +a
 
 ### Development
 
+Run the application in development mode with hot reload:
+
 `npm start`
-
-### Develop unit tests
-
-`npm run test-watch`
 
 ### Unit tests
 
+Run all available unit tests:
+
 `npm test`
+
+### Unit tests with coverage
+
+`npm run test:coverage`
+
+### Unit test watch mode (development)
+
+Run unit tests with hot reload for development:
+
+`npm run test:watch`
 
 ### Lint
 
@@ -43,7 +53,7 @@ set -a && source .env && set +a
 
 [Docker](https://www.docker.com/) is required.
 
-You can build and run the UI with the following command:
+Build and run the UI with the following command:
 
 `docker build --build-arg NEXT_PUBLIC_GRAPHQL_API -t your-docker-account/ui:latest -f docker/Dockerfile .`
 

@@ -1,6 +1,6 @@
 # API
 
-A simple GraphQL API with CRUD operations for Notes. This application expects the PostgreSQL database available on `localhost:5000`.
+A simple GraphQL API with CRUD operations for Notes. This application expects the project's  PostgreSQL database available on `localhost:5000`.
 
 ## Quickstart
 
@@ -22,15 +22,29 @@ With the environment variables present in your terminal, start the API by runnin
 
 ### Development mode
 
-To run the API with hot reload and real-time compilation on code updates, start the API by running:
+Run the API with hot reload and real-time compilation on code updates:
 
 `npm run dev`
+
+### Run all available unit tests
+
+`npm run test`
+
+### Run unit tests with coverage
+
+`npm run test:coverage`
+
+### Watch unit tests (development)
+
+Run unit tests with hot reload and real-time compilation on code updates:
+
+`npm run test:watch`
 
 ### Docker
 
 [Docker](https://www.docker.com/) is required.
 
-You can build and run the API with the following command:
+Build and run the API with the following command:
 
 `docker build --build-arg DB_HOST --build-arg DB_PORT --build-arg DB_NAME --build-arg DB_USER --build-arg DB_PASSWORD -t your-docker-account/graphql:latest -f docker/Dockerfile .`
 

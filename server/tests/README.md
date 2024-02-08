@@ -1,14 +1,14 @@
 # integration-tests &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps#pull-requests)
 
-An integration test boilerplate, designed as a starting point for your API tests, built with JavaScript ES6+, Jest and Supertest. Forked from  [escobard/integration-tests](https://github.com/escobard/integration-tests).
+An integration test boilerplate, designed as a starting point for your API tests, built with JavaScript, Jest and Supertest. Forked from  [escobard/integration-tests](https://github.com/escobard/integration-tests). This application expects the project's API to be available on `localhost:4000` and PostgreSQL to be available on `localhost:5432`.
 
 ## Quickstart
-
-### Run test application with NPM
-
 [Node.js v20.9.0+](https://nodejs.org/en/) must be installed.
 
-The following npm scripts are available:
+`npm install`
+`npm start`
+
+## Scripts
 
 ### Run a single test
 
@@ -26,7 +26,7 @@ Jest will run tests in the order outlined within [/tests/testInOrder.test.js](/t
 
 ### Run tests in watch mode
 
-Re-reruns tests when a test file is updated. It is recommended to use watch mode when developing tests. Find out more by reading through [Jest's watch mode documentation](https://jestjs.io/docs/en/cli#--watch).
+Run unit tests with hot reload and real-time compilation on code updates:
 
 ### Run tests in a Docker container
 
