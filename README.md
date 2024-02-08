@@ -90,18 +90,16 @@ Find detailed instructions on how to run each application within the [Applicatio
 
 ## Core concepts
 
-1. [Modernized version of cloud-apps](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-2. [Hosted on AWS](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-3. [Enterprise grade CI/CD with CircleCI](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-4. [End to end tests with Playwright](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-5. [Automated database migrations & tests](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-6. [Lightweight dependencies leading to blazing fast build and test times]()
-7. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), this project introduces new concepts that should facilitate development for complex use cases, including:
 
-### Modernized version of cloud-apps
+1. [Hosted on AWS](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+2. [Enterprise grade CI/CD with CircleCI](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+3. [End to end tests with Playwright](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+4. [Automated database migrations & tests](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+5. [Lightweight dependencies for fast build and test times]()
+6. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 
-As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), this project shares the same core concepts, including:
-
+In addition to the core concepts, this project shares the same core concepts as [cloud-apps](https://github.com/escobard/cloud-apps), including:
 1. [Container orchestration for scale](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 2. [Automated test pyramid](https://github.com/escobard/cloud-apps?tab=readme-ov-file#automated-test-pyramid)
 3. [Blueprint for automated tests with CircleCI](https://github.com/escobard/cloud-apps?tab=readme-ov-file#blueprint-for-automated-tests-with-circleci)
@@ -126,19 +124,43 @@ Using CircleCI, unit tests for the UI, API and Database are run on every pull re
 
 Deployments begin by simultaneously running the jobs to build & deploy application Docker images and Database migrations. Once Docker images have been deployed to ECR, CircleCI updates ECS with the new Docker images, performing [rolling deployments](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/rolling-deployments.html) for the new application versions.
 
+The diagram below outlines the software development lifecycle:
+
+(insert diagram for sdlc)
+
 Following the [fail-fast automated testing approach](https://testsigma.com/blog/test-automation-achieve-fail-fast-fail-often/), the system provides a starting point (or blueprint / boilerplate) as-is for more complex automated testing requirements. The diagram below outlines how the fail fast approach dependencies between unit, integration and e2e tests are managed within CircleCI:
 
 (insert diagram for CircleCI job workflow)
 
 ### End to end tests with Playwright
 
+[Playwright](https://playwright.dev/) is a popular end to end testing framework, allowing developers to write tests in JavaScript, Python, Java, or .NET. Helpful tools like the [UI mode](https://playwright.dev/docs/test-ui-mode) make it easy to debug web applications in real time. 
+
+(insert screenshot of Playwright's UI mode)
+
+This project provides a starting point for Playwright end to end tests with JavaScript, leveraging [page object models](https://playwright.dev/docs/pom). Basic smoke and health tests are provided. To learn more, feel free to read the [end to end tests docs](https://github.com/escobard/cloud-apps/tree/master/client/tests).
+
+(insert screenshot of Playwright tests console output)
+
 ### Automated database migrations & unit tests
 
-[Automated database migrations](https://www.prisma.io/dataguide/types/relational/what-are-database-migrations) are available to facilitate database integrity and updates through the power of automation. To accompany programmatic database schema and structure updates, database updates are validated with unit tests using the [Jest](https://jestjs.io/) and [pg](https://www.npmjs.com/package/pg) npm libraries.
+[Automated database migrations](https://www.prisma.io/dataguide/types/relational/what-are-database-migrations) are available to facilitate database integrity and updates through the power of automation. 
 
-### Lightweight dependencies leading to blazing fast build and test times
+(insert screenshot of database migration console output)
+
+To accompany programmatic database schema and structure updates, database updates are validated with unit tests using the [Jest](https://jestjs.io/) and [pg](https://www.npmjs.com/package/pg) npm libraries. Tests are provided for health checks, migrations and common queries.
+
+(insert screenshot of database migration console output)
+
+### Lightweight dependencies for fast build and test times
+
+Build times are improved through NPM's [development only installations](https://www.warp.dev/terminus/npm-install-dev-dependencies#:~:text=To%20update%20or%20re%2Dinstall,json%20file.) , [production only installations](https://stackoverflow.com/questions/9268259/how-do-you-prevent-install-of-devdependencies-npm-modules-for-node-js-package), [CircleCI caching](https://circleci.com/docs/caching/) and Docker. Build & run times for tests and deployments are less than a minute, with the exception of end to end tests, which install and run the entire system. 
+
+(insert screenshot outlining timing of entire automation process)
 
 ### GraphQL to simplify RESTful endpoints
+
+
 
 ## Application docs
 
@@ -155,8 +177,8 @@ Following the [fail-fast automated testing approach](https://testsigma.com/blog/
 [CircleCI](https://circleci.com)  
 [React](https://react.dev/)  
 [Next.js](https://nextjs.org/)
-[Express.js](https://expressjs.com/)  
-[Swagger](https://swagger.io/)  
+[GraphQL]()
+[Apollo Server]()
 [PostgreSQL](https://www.postgresql.org/)  
 [Jest](https://jestjs.io/)  
 [Supertest](https://www.npmjs.com/package/supertest)    
