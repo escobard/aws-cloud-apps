@@ -1,5 +1,7 @@
 # Playwright end-to-end tests
 
+An end to end test boilerplate, designed as a starting point for your end to end tests, built with JavaScript and Playwright. This application expects the project's UI to be available on `localhost:3000`, API to be available on `localhost:4000` and PostgreSQL to be available on `localhost:5432`.
+
 ## Quickstart
 
 [Node.js v20.9.0 or higher](https://nodejs.org/en/) is required. [Playwright](https://playwright.dev/) must be installed as a global dependency. To install playwright globally, run `npx -y playwright@1.41.1 install --with-deps`.
@@ -8,7 +10,7 @@
 
 `npx playwright test`
 
-### Run matching files
+### Run matching test files
 
 `npx playwright test nameOfYourTestFile`
 
@@ -18,11 +20,13 @@
 
 ### Run tests in UI mode
 
-Recommended for real time and step by step test debugging. 
+Recommended for development and debugging. 
 
 `npx playwright test --ui`
 
-### Run tests with Docker
+### Run tests in a Docker container
+
+Use this approach if you want to run the tests in a container, without installing Node.js. It is common to use this approach in a CI/CD pipeline.
 
 Build the docker image: `docker build -t yourusername/e2e:latest -f docker/Dockerfile .`
 
