@@ -35,14 +35,18 @@ workflows:
   build-and-deploy-cloud-apps:
     when:
       or:
+        - equal: [ cicd-automated-data-migrations, << pipeline.git.branch >> ]
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
+      - data-migrations:
+          context: cloud-apps-2023
+          name: 'Run Database migrations'
       - build-and-push-ui-image:
           context: cloud-apps-2023
-          name: 'build-and-push-ui-image'
+          name: 'Build and push UI Docker image'
       - build-and-push-api-image:
           context: cloud-apps-2023
-          name: 'build-and-push-api-image'
+          name: 'Build and push API Docker image'
 jobs:
   ui-unit-tests:
     working_directory: ~/client/ui
@@ -135,6 +139,24 @@ jobs:
           name: "Run end-to-end tests"
           command: |
             docker-compose -f e2e-tests.yaml up --exit-code-from e2e
+  data-migrations:
+    working_directory: ~/server/postgres
+    docker:
+      - image: cimg/node:20.9.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "server/postgres/package.json" }}
+      - run:
+          name: "Install API dev-only dependencies"
+          command: "cd server/postgres && npm install --only=prod"
+      - save_cache:
+          key: dependency-cache-{{ checksum "server/postgres/package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: "Run data migrations"
+          command: "cd server/postgres && npm run migrate-up"
   build-and-push-ui-image:
     <<: *docker_cimg
     resource_class: small
