@@ -35,7 +35,6 @@ workflows:
   build-and-deploy-cloud-apps:
     when:
       or:
-        - equal: [ cicd-automated-data-migrations, << pipeline.git.branch >> ]
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
       - data-migrations:
