@@ -3,7 +3,7 @@
 
 A simple, responsive web application to take notes, built with JavaScript, designed as starting point to build complex web applications. Each application in the system can be run independently with Docker or npm. Unit, integration and end-to-end (e2e) tests are available. Development, release, integration and e2e test environments can be simulated with Docker Compose. 
 
-This project is a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), deployed to AWS.
+This project is a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), deployed to [AWS](https://aws.amazon.com/).
 
 A new note can be created in a few simple steps:
 
@@ -19,9 +19,9 @@ A new note can be created in a few simple steps:
 
 ![Note created](docs/images/note_created.png)
 
-The diagram below outlines the network created by Docker Compose for development and release environments, including application connections, ports, routes and tools:
+The diagram below outlines how network connections are managed between resources in AWS:
 
-![System overview](docs/diagrams/system_overview.png)
+![Note created](docs/diagrams/aws_network.png)
 
 # Table of contents
 
@@ -110,7 +110,7 @@ In addition to the core concepts, this project shares the same core concepts as 
 
 The project's UI, API and Database are hosted on AWS. Leveraging [CircleCI](https://circleci.com/), the UI and API Docker images are built & deployed to AWS' [Elastic Container Registry(ECR)](https://aws.amazon.com/ecr/), then hosted with [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) and [Fargate](https://aws.amazon.com/fargate/). The database is hosted on [AWS' Relational Database Service(RDS)](https://aws.amazon.com/rds/).
 
-The diagram below outlines how network connections are routed within the AWS cloud:
+The diagram below outlines how network connections are managed between resources in AWS:
 
 (insert diagram for AWS network)
 
@@ -123,10 +123,6 @@ Locally, a cloud-like environment can be simulated with Docker Compose. The diag
 Using CircleCI, unit tests for the UI, API and Database are run on every pull request to Github. Once the unit tests have passed, integration tests are run, validating API and Database changes. After integration tests pass, e2e tests are run, validating that the UI, API and Database work as expected with the new changes. Once all tests have passed, the pull request can be merged to the `main` branch, which kicks off deployments.
 
 Deployments begin by simultaneously running the jobs to build & deploy application Docker images and Database migrations. Once Docker images have been deployed to ECR, CircleCI updates ECS with the new Docker images, performing [rolling deployments](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/rolling-deployments.html) for the new application versions.
-
-The diagram below outlines the software development lifecycle:
-
-(insert diagram for sdlc)
 
 Following the [fail-fast automated testing approach](https://testsigma.com/blog/test-automation-achieve-fail-fast-fail-often/), the system provides a starting point (or blueprint / boilerplate) as-is for more complex automated testing requirements. The diagram below outlines how the fail fast approach dependencies between unit, integration and e2e tests are managed within CircleCI:
 
@@ -141,6 +137,12 @@ Following the [fail-fast automated testing approach](https://testsigma.com/blog/
 This project provides a starting point for Playwright end to end tests with JavaScript, leveraging [page object models](https://playwright.dev/docs/pom). Basic smoke and health tests are provided. To learn more, feel free to read the [end to end tests docs](https://github.com/escobard/cloud-apps/tree/master/client/tests).
 
 (insert screenshot of Playwright tests console output)
+
+Playwright simplifies the required infrastructure to run e2e tests, since the library provides [out-of-the-box browsers ](https://playwright.dev/docs/browsers)and connects to browsers internally [without the need of a seperate hub](https://www.selenium.dev/documentation/grid/).
+
+The diagram below outlines the simplified network created by Docker Compose, for e2e tests, including application connections, ports, routes and tools:
+
+(insert diagram for playwright e2e tests)
 
 ### Automated database migrations & unit tests
 
@@ -160,7 +162,9 @@ Build times are improved through NPM's [development only installations](https://
 
 ### GraphQL to simplify RESTful endpoints
 
+[GraphQL](https://www.apollographql.com/docs/apollo-server/) is leveraged primarily to simplify the code required to programmatically manage RESTful API endpoints and responses. [Apollo Server](https://www.apollographql.com/docs/apollo-server/) provides some helpful tools to debug, and simplify maintenance of GraphQL APIs. 
 
+(insert screenshot of Apollo Server app)
 
 ## Application docs
 
@@ -172,13 +176,14 @@ Build times are improved through NPM's [development only installations](https://
 
 ## Tools and frameworks
 
-[Node.js](https://nodejs.org/en)  
-[Docker](https://www.docker.com/)
-[CircleCI](https://circleci.com)  
-[React](https://react.dev/)  
-[Next.js](https://nextjs.org/)
-[GraphQL]()
-[Apollo Server]()
+[Node.js](https://nodejs.org/en)    
+[Docker](https://www.docker.com/)   
+[CircleCI](https://circleci.com)      
+[AWS](https://aws.amazon.com/)   
+[React](https://react.dev/)      
+[Next.js](https://nextjs.org/)    
+[GraphQL](https://graphql.org/)     
+[Apollo Server](https://www.apollographql.com/docs/apollo-server/)   
 [PostgreSQL](https://www.postgresql.org/)  
 [Jest](https://jestjs.io/)  
 [Supertest](https://www.npmjs.com/package/supertest)    
