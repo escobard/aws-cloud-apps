@@ -1,31 +1,13 @@
-# cloud-apps-2023 &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![CircleCI Status](https://circleci.com/gh/escobard/cloud-apps-2023.svg?style=shield&circle-token=44b8bfb398b6a0882a7ba006c3643dc12c38e81d)](https://app.circleci.com/pipelines/github/escobard/cloud-apps-2023) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps-2023#pull-requests) 
-
+# cloud-apps-2023 &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![CircleCI Status](https://circleci.com/gh/escobard/cloud-apps-2023.svg?style=shield&circle-token=44b8bfb398b6a0882a7ba006c3643dc12c38e81d)](https://app.circleci.com/pipelines/github/escobard/cloud-apps-2023) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps-2023#pull-requests)
 
 A simple, responsive web application to take notes, built with JavaScript, designed as starting point to build complex web applications. Each application in the system can be run independently with Docker or npm. Unit, integration and end-to-end (e2e) tests are available. Development, release, integration and e2e test environments can be simulated with Docker Compose. 
 
 This project is a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), deployed to [AWS](https://aws.amazon.com/).
 
-A new note can be created in a few simple steps:
-
-#### 1. Add note
-
-![Add note](docs/images/add_note.png)
-
-#### 2. Create and save note
-
-![Create note](docs/images/create_note.png)
-
-#### 3. New note created
-
-![Note created](docs/images/note_created.png)
-
-The diagram below outlines how network connections are managed between resources in AWS:
-
-![Note created](docs/diagrams/aws_network.png)
-
-# Table of contents
+## Table of contents
 
 * [Quickstart](https://github.com/escobard/cloud-apps?tab=readme-ov-file#quickstart)
+* [Usage instructions](https://github.com/escobard/cloud-apps?tab=readme-ov-file#quickstart)
 * [Core Concepts](https://github.com/escobard/cloud-apps?tab=readme-ov-file#core-concepts)
 * [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs)
 * [How to contribute](https://github.com/escobard/cloud-apps?tab=readme-ov-file#how-to-contribute)
@@ -88,6 +70,22 @@ The diagram below outlines how network connections are managed between resources
 
 Find detailed instructions on how to run each application within the [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs).
 
+## Usage
+
+A new note can be created in a few simple steps:
+
+#### 1. Add note
+
+![Add note](docs/images/add_note.png)
+
+#### 2. Create and save note
+
+![Create note](docs/images/create_note.png)
+
+#### 3. New note created
+
+![Note created](docs/images/note_created.png)
+
 ## Core concepts
 
 As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), this project introduces new concepts that should facilitate development for complex use cases, including:
@@ -99,7 +97,7 @@ As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps),
 5. [Lightweight dependencies for fast build and test times]()
 6. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 
-In addition to the core concepts, this project shares the same core concepts as [cloud-apps](https://github.com/escobard/cloud-apps), including:
+In addition to the new core concepts, this project shares the same core concepts as [cloud-apps](https://github.com/escobard/cloud-apps), including:
 1. [Container orchestration for scale](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
 2. [Automated test pyramid](https://github.com/escobard/cloud-apps?tab=readme-ov-file#automated-test-pyramid)
 3. [Blueprint for automated tests with CircleCI](https://github.com/escobard/cloud-apps?tab=readme-ov-file#blueprint-for-automated-tests-with-circleci)
@@ -108,37 +106,37 @@ In addition to the core concepts, this project shares the same core concepts as 
 
 ### Hosted on AWS
 
-The project's UI, API and Database are hosted on AWS. Leveraging [CircleCI](https://circleci.com/), the UI and API Docker images are built & deployed to AWS' [Elastic Container Registry(ECR)](https://aws.amazon.com/ecr/), then hosted with [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) and [Fargate](https://aws.amazon.com/fargate/). The database is hosted on [AWS' Relational Database Service(RDS)](https://aws.amazon.com/rds/).
+The project's UI, API and Database are hosted on AWS. Leveraging [CircleCI](https://circleci.com/), the UI and API Docker images are built & deployed to AWS' [Elastic Container Registry(ECR)](https://aws.amazon.com/ecr/), then hosted with [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) and [Fargate](https://aws.amazon.com/fargate/). The database is hosted on AWS' [ Relational Database Service(RDS)](https://aws.amazon.com/rds/).
 
 The diagram below outlines how network connections are managed between resources in AWS:
 
-(insert diagram for AWS network)
+![AWS network](docs/diagrams/aws_network.png)
 
 Locally, a cloud-like environment can be simulated with Docker Compose. The diagram below outlines Docker Compose network connections:
 
-(insert diagram for Docker Compose network)
+![System overview](docs/diagrams/system_overview.png)
 
 ### Enterprise-grade blueprint for CI/CD with CircleCI
 
-Using CircleCI, unit tests for the UI, API and Database are run on every pull request to Github. Once the unit tests have passed, integration tests are run, validating API and Database changes. After integration tests pass, e2e tests are run, validating that the UI, API and Database work as expected with the new changes. Once all tests have passed, the pull request can be merged to the `main` branch, which kicks off deployments.
+Unit tests for the UI, API and Database are run on every pull request to Github, using CircleCI. Once the unit tests have passed, integration tests are run, validating API and Database updates. After integration tests pass, e2e tests are run, validating that the UI, API and Database work as expected with the new updates. Once all tests have passed, the pull request can be merged to the `main` branch, which kicks off deployments.
 
 Deployments begin by simultaneously running the jobs to build & deploy application Docker images and Database migrations. Once Docker images have been deployed to ECR, CircleCI updates ECS with the new Docker images, performing [rolling deployments](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/rolling-deployments.html) for the new application versions.
 
-Following the [fail-fast automated testing approach](https://testsigma.com/blog/test-automation-achieve-fail-fast-fail-often/), the system provides a starting point (or blueprint / boilerplate) as-is for more complex automated testing requirements. The diagram below outlines how the fail fast approach dependencies between unit, integration and e2e tests are managed within CircleCI:
+Following the [fail-fast automated testing approach](https://testsigma.com/blog/test-automation-achieve-fail-fast-fail-often/), the system provides a starting point (or blueprint / boilerplate) as-is for more complex automated testing requirements. The diagram below outlines how code updates are validated then deployed with Github and CircleCI:
 
-(insert diagram for CircleCI job workflow)
+![CI/CD with Github and CircleCI](docs/diagrams/ci_cd.png)
 
 ### End to end tests with Playwright
 
 [Playwright](https://playwright.dev/) is a popular end to end testing framework, allowing developers to write tests in JavaScript, Python, Java, or .NET. Helpful tools like the [UI mode](https://playwright.dev/docs/test-ui-mode) make it easy to debug web applications in real time. 
 
-(insert screenshot of Playwright's UI mode)
+![Playwright UI mode](docs/images/playwright_ui_tests.png)
 
 This project provides a starting point for Playwright end to end tests with JavaScript, leveraging [page object models](https://playwright.dev/docs/pom). Basic smoke and health tests are provided. To learn more, feel free to read the [end to end tests docs](https://github.com/escobard/cloud-apps/tree/master/client/tests).
 
-(insert screenshot of Playwright tests console output)
+![Playwright UI mode](docs/images/playwright_console_output.png)
 
-Playwright simplifies the required infrastructure to run e2e tests, since the library provides [out-of-the-box browsers ](https://playwright.dev/docs/browsers)and connects to browsers internally [without the need of a seperate hub](https://www.selenium.dev/documentation/grid/).
+Playwright simplifies the required infrastructure to run e2e tests, since the library provides [out-of-the-box browsers ](https://playwright.dev/docs/browsers) and connects to browsers internally [without the need of a seperate hub](https://www.selenium.dev/documentation/grid/).
 
 The diagram below outlines the simplified network created by Docker Compose, for e2e tests, including application connections, ports, routes and tools:
 
@@ -146,25 +144,25 @@ The diagram below outlines the simplified network created by Docker Compose, for
 
 ### Automated database migrations & unit tests
 
-[Automated database migrations](https://www.prisma.io/dataguide/types/relational/what-are-database-migrations) are available to facilitate database integrity and updates through the power of automation. 
+[Automated database migrations](https://www.prisma.io/dataguide/types/relational/what-are-database-migrations) are available to facilitate database integrity and updates with automation. 
 
-(insert screenshot of database migration console output)
+![Database migrations](docs/images/data_migrations.png)
 
 To accompany programmatic database schema and structure updates, database updates are validated with unit tests using the [Jest](https://jestjs.io/) and [pg](https://www.npmjs.com/package/pg) npm libraries. Tests are provided for health checks, migrations and common queries.
 
-(insert screenshot of database migration console output)
+![Database tests](docs/images/data_tests.png)
 
 ### Lightweight dependencies for fast build and test times
 
-Build times are improved through NPM's [development only installations](https://www.warp.dev/terminus/npm-install-dev-dependencies#:~:text=To%20update%20or%20re%2Dinstall,json%20file.) , [production only installations](https://stackoverflow.com/questions/9268259/how-do-you-prevent-install-of-devdependencies-npm-modules-for-node-js-package), [CircleCI caching](https://circleci.com/docs/caching/) and Docker. Build & run times for tests and deployments are less than a minute, with the exception of end to end tests, which install and run the entire system. 
+Build times are improved through NPM's [development only installations](https://www.warp.dev/terminus/npm-install-dev-dependencies#:~:text=To%20update%20or%20re%2Dinstall,json%20file.) , [production only installations](https://stackoverflow.com/questions/9268259/how-do-you-prevent-install-of-devdependencies-npm-modules-for-node-js-package), [CircleCI caching](https://circleci.com/docs/caching/) and Docker. Build & run times for each test application is less than a minute, with the exception of end to end tests, which install and run the entire system. 
 
-(insert screenshot outlining timing of entire automation process)
+![Lightweight dependencies](docs/images/lightweight_dependencies.png)
 
 ### GraphQL to simplify RESTful endpoints
 
-[GraphQL](https://www.apollographql.com/docs/apollo-server/) is leveraged primarily to simplify the code required to programmatically manage RESTful API endpoints and responses. [Apollo Server](https://www.apollographql.com/docs/apollo-server/) provides some helpful tools to debug, and simplify maintenance of GraphQL APIs. 
+[GraphQL](https://www.apollographql.com/docs/apollo-server/) is used primarily to simplify the code required to programmatically manage RESTful API endpoints and responses. [Apollo Server](https://www.apollographql.com/docs/apollo-server/) provides helpful tools to debug, and simplify maintenance of GraphQL APIs. 
 
-(insert screenshot of Apollo Server app)
+![Apollo server sandbox](docs/images/apollo_server_sandbox.png)
 
 ## Application docs
 
