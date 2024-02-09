@@ -90,12 +90,12 @@ A new note can be created in a few simple steps:
 
 As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), this project introduces new concepts that should facilitate development for complex use cases, including:
 
-1. [Hosted on AWS](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-2. [Enterprise grade CI/CD with CircleCI](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-3. [End to end tests with Playwright](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-4. [Automated database migrations & tests](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-5. [Lightweight dependencies for fast build and test times]()
-6. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+1. [Hosted on AWS](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#hosted-on-aws)
+2. [Enterprise-grade blueprint for CI/CD with CircleCI](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#enterprise-grade-blueprint-for-cicd-with-circleci)
+3. [End to end tests with Playwright](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#end-to-end-tests-with-playwright)
+4. [Automated database migrations & tests](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#automated-database-migrations--unit-tests)
+5. [Lightweight dependencies for fast build and test times](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#lightweight-dependencies-for-fast-build-and-test-times)
+6. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#graphql-to-simplify-restful-endpoints)
 
 In addition to the new core concepts, this project shares the same core concepts as [cloud-apps](https://github.com/escobard/cloud-apps), including:
 1. [Container orchestration for scale](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
