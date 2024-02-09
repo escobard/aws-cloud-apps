@@ -1,5 +1,5 @@
 {
-  "name": "cloud-apps",
+  "name": "aws-cloud-apps",
   "version": "1.0.0",
   "description": "A simple cloud-native product, designed to scale.",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/escobard/cloud-apps.git"
+    "url": "git+https://github.com/escobard/aws-cloud-apps.git"
   },
   "keywords": [
     "react",

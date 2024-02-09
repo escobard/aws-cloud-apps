@@ -1,4 +1,4 @@
-# integration-tests &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps#pull-requests)
+# integration-tests &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/aws-cloud-apps#pull-requests)
 
 An integration test boilerplate, designed as a starting point for your API tests, built with JavaScript, Jest and Supertest. Forked from  [escobard/integration-tests](https://github.com/escobard/integration-tests). This application expects the project's API to be available on `localhost:4000` and PostgreSQL to be available on `localhost:5432`.
 

@@ -1,6 +1,6 @@
 FROM node:20.9.0
 
-WORKDIR /usr/cloud-apps/e2e
+WORKDIR /usr/aws-cloud-apps/e2e
 
 COPY ./package.json ./
 

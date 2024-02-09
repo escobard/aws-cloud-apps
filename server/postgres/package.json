@@ -1,7 +1,7 @@
 {
   "name": "postgres",
   "version": "1.0.0",
-  "description": "PostgreSQL database for cloud-apps",
+  "description": "PostgreSQL database for aws-cloud-apps",
   "main": "index.js",
   "scripts": {
     "start": "docker-compose -f compose.yml up",
