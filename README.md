@@ -2,7 +2,7 @@
 
 A simple, responsive web application to take notes, built with JavaScript, designed as starting point to build complex web applications. Each application in the system can be run independently with Docker or npm. Unit, integration and end-to-end (e2e) tests are available. Development, release, integration and e2e test environments can be simulated with Docker Compose. 
 
-This project is a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), deployed to [AWS](https://aws.amazon.com/).
+This project is a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), hosted on [AWS](https://aws.amazon.com/).
 
 ## Table of contents
 
@@ -70,7 +70,7 @@ This project is a modernized version of [cloud-apps](https://github.com/escobard
 
 Find detailed instructions on how to run each application within the [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs).
 
-## Usage
+## Usage instructions
 
 A new note can be created in a few simple steps:
 
@@ -112,7 +112,7 @@ The diagram below outlines how network connections are managed between resources
 
 ![AWS network](docs/diagrams/aws_network.png)
 
-Locally, a cloud-like environment can be simulated with Docker Compose. The diagram below outlines Docker Compose network connections:
+A cloud-like network can be simulated with Docker Compose. The diagram below outlines Docker Compose network connections:
 
 ![System overview](docs/diagrams/system_overview.png)
 
@@ -140,7 +140,7 @@ Playwright simplifies the required infrastructure to run e2e tests, since the li
 
 The diagram below outlines the simplified network created by Docker Compose, for e2e tests, including application connections, ports, routes and tools:
 
-(insert diagram for playwright e2e tests)
+![e2e system](docs/diagrams/e2e_system.png)
 
 ### Automated database migrations & unit tests
 
