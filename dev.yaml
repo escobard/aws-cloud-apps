@@ -11,7 +11,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
   api:
     container_name: api_dev
-    working_dir: /usr/cloud-apps/graphql
+    working_dir: /usr/aws-cloud-apps/graphql
     environment:
       - DB_HOST=postgres
       - DB_PORT=5432
@@ -25,13 +25,13 @@ services:
       context: ./server/graphql
       dockerfile: docker/Dockerfile.dev
     volumes:
-      - ./server/graphql:/usr/cloud-apps/graphql
-      - /usr/cloud-apps/graphql/node_modules
+      - ./server/graphql:/usr/aws-cloud-apps/graphql
+      - /usr/aws-cloud-apps/graphql/node_modules
     command: |
       sh -c "/wait && npm run dev"
   ui:
     container_name: ui_dev
-    working_dir: /usr/cloud-apps/ui
+    working_dir: /usr/aws-cloud-apps/ui
     environment:
       # TODO - using localhost instead of api as a host name because of a bug in docker-compose
       - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
@@ -42,7 +42,7 @@ services:
       context: client/ui
       dockerfile: docker/Dockerfile.dev
     volumes:
-      - ./client/ui:/usr/cloud-apps/ui
-      - /usr/cloud-apps/ui/node_modules
+      - ./client/ui:/usr/aws-cloud-apps/ui
+      - /usr/aws-cloud-apps/ui/node_modules
     command: |
       sh -c "/wait && npm run dev"

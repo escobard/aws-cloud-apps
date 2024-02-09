@@ -1,5 +1,5 @@
 FROM node:20.9.0-alpine
-WORKDIR /usr/cloud-apps/graphql
+WORKDIR /usr/aws-cloud-apps/graphql
 
 ARG DB_HOST
 ARG DB_PORT
