@@ -22,7 +22,7 @@ services:
     - "4000:4000"
     build:
       context: ./server/graphql
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
   ## there seems to be a bug with next.js and docker-compose here npm build & npm start is not defining environment variables
   ui:
     container_name: ui_prod
@@ -33,6 +33,6 @@ services:
       - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
     build:
       context: client/ui
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"

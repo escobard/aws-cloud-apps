@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "docker:build": "docker build --build-arg NEXT_PUBLIC_GRAPHQL_API -t escobard/ui:latest -f docker/Dockerfile .",
+    "docker:build": "docker build --build-arg NEXT_PUBLIC_GRAPHQL_API -t escobard/ui:latest -f Dockerfile .",
     "docker:start": "docker run --name ui -p 3000:3000 -t escobard/ui:latest",
     "docker": "npm run docker:build && npm run docker:start"
   },
