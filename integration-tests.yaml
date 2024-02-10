@@ -25,7 +25,7 @@ services:
       - "4000:4000"
     build:
       context: ./server/graphql
-      dockerfile: docker/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     command: |
       sh -c "/wait && npm run dev"
   integration:
@@ -36,6 +36,6 @@ services:
       - WAIT_HOSTS=api:4000
     build:
       context: ./server/tests
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
     command: |
       sh -c "/wait && npm start"

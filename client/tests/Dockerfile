@@ -9,6 +9,6 @@ RUN npx -y playwright@1.41.1 install --with-deps
 
 RUN npm install
 
-COPY . ./
+COPY ./ ./
 
 CMD ["npx", "playwright", "test"]

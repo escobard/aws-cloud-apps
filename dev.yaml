@@ -23,7 +23,7 @@ services:
       - "4000:4000"
     build:
       context: ./server/graphql
-      dockerfile: docker/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     volumes:
       - ./server/graphql:/usr/aws-cloud-apps/graphql
       - /usr/aws-cloud-apps/graphql/node_modules
@@ -40,7 +40,7 @@ services:
       - "3000:3000"
     build:
       context: client/ui
-      dockerfile: docker/Dockerfile.dev
+      dockerfile: Dockerfile.dev
     volumes:
       - ./client/ui:/usr/aws-cloud-apps/ui
       - /usr/aws-cloud-apps/ui/node_modules
