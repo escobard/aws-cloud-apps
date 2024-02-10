@@ -1,4 +1,4 @@
-# cloud-apps-2023 &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![CircleCI Status](https://circleci.com/gh/escobard/cloud-apps-2023.svg?style=shield&circle-token=44b8bfb398b6a0882a7ba006c3643dc12c38e81d)](https://app.circleci.com/pipelines/github/escobard/cloud-apps-2023) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/cloud-apps-2023#pull-requests)
+# aws-cloud-apps &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![CircleCI Status](https://circleci.com/gh/escobard/aws-cloud-apps.svg?style=shield&circle-token=44b8bfb398b6a0882a7ba006c3643dc12c38e81d)](https://app.circleci.com/pipelines/github/escobard/aws-cloud-apps) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/aws-cloud-apps#pull-requests)
 
 A simple, responsive web application to take notes, built with JavaScript, designed as starting point to build complex web applications. Each application in the system can be run independently with Docker or npm. Unit, integration and end-to-end (e2e) tests are available. Development, release, integration and e2e test environments can be simulated with Docker Compose. 
 
@@ -6,13 +6,13 @@ This project is a modernized version of [cloud-apps](https://github.com/escobard
 
 ## Table of contents
 
-* [Quickstart](https://github.com/escobard/cloud-apps?tab=readme-ov-file#quickstart)
-* [Usage instructions](https://github.com/escobard/cloud-apps?tab=readme-ov-file#quickstart)
-* [Core Concepts](https://github.com/escobard/cloud-apps?tab=readme-ov-file#core-concepts)
-* [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs)
-* [How to contribute](https://github.com/escobard/cloud-apps?tab=readme-ov-file#how-to-contribute)
-* [Tools and frameworks](https://github.com/escobard/cloud-apps?tab=readme-ov-file#tools-and-frameworks)
-* [License](https://github.com/escobard/cloud-apps?tab=readme-ov-file#license)
+* [Quickstart](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#quickstart)
+* [Usage instructions](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#quickstart)
+* [Core Concepts](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#core-concepts)
+* [Application docs](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#application-docs)
+* [How to contribute](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#how-to-contribute)
+* [Tools and frameworks](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#tools-and-frameworks)
+* [License](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#license)
 
 ## Quickstart
 
@@ -68,7 +68,7 @@ This project is a modernized version of [cloud-apps](https://github.com/escobard
 
 ### Run applications individually with NPM or Docker
 
-Find detailed instructions on how to run each application within the [Application docs](https://github.com/escobard/cloud-apps?tab=readme-ov-file#application-docs).
+Find detailed instructions on how to run each application within the [Application docs](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#application-docs).
 
 ## Usage instructions
 
@@ -90,12 +90,12 @@ A new note can be created in a few simple steps:
 
 As a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), this project introduces new concepts that should facilitate development for complex use cases, including:
 
-1. [Hosted on AWS](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-2. [Enterprise grade CI/CD with CircleCI](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-3. [End to end tests with Playwright](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-4. [Automated database migrations & tests](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
-5. [Lightweight dependencies for fast build and test times]()
-6. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
+1. [Hosted on AWS](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#hosted-on-aws)
+2. [Enterprise-grade blueprint for CI/CD with CircleCI](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#enterprise-grade-blueprint-for-cicd-with-circleci)
+3. [End to end tests with Playwright](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#end-to-end-tests-with-playwright)
+4. [Automated database migrations & tests](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#automated-database-migrations--unit-tests)
+5. [Lightweight dependencies for fast build and test times](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#lightweight-dependencies-for-fast-build-and-test-times)
+6. [GraphQL to simplify RESTful endpoints](https://github.com/escobard/aws-cloud-apps?tab=readme-ov-file#graphql-to-simplify-restful-endpoints)
 
 In addition to the new core concepts, this project shares the same core concepts as [cloud-apps](https://github.com/escobard/cloud-apps), including:
 1. [Container orchestration for scale](https://github.com/escobard/cloud-apps?tab=readme-ov-file#container-orchestration-for-scale)
@@ -132,7 +132,7 @@ Following the [fail-fast automated testing approach](https://testsigma.com/blog/
 
 ![Playwright UI mode](docs/images/playwright_ui_tests.png)
 
-This project provides a starting point for Playwright end to end tests with JavaScript, leveraging [page object models](https://playwright.dev/docs/pom). Basic smoke and health tests are provided. To learn more, feel free to read the [end to end tests docs](https://github.com/escobard/cloud-apps/tree/master/client/tests).
+This project provides a starting point for Playwright end to end tests with JavaScript, leveraging [page object models](https://playwright.dev/docs/pom). Basic smoke and health tests are provided. To learn more, feel free to read the [end to end tests docs](https://github.com/escobard/aws-cloud-apps/tree/master/client/tests).
 
 ![Playwright UI mode](docs/images/playwright_console_output.png)
 
@@ -166,11 +166,11 @@ Build times are improved through NPM's [development only installations](https://
 
 ## Application docs
 
-[UI](https://github.com/escobard/cloud-apps/blob/master/client/ui)  
-[API](https://github.com/escobard/cloud-apps/blob/master/server/api)  
-[Database](https://github.com/escobard/cloud-apps/tree/master/server/postgres)  
-[Integration tests](https://github.com/escobard/cloud-apps/tree/master/server/tests)  
-[End to end tests](https://github.com/escobard/cloud-apps/tree/master/client/tests)
+[UI](https://github.com/escobard/aws-cloud-apps/blob/master/client/ui)  
+[API](https://github.com/escobard/aws-cloud-apps/blob/master/server/api)  
+[Database](https://github.com/escobard/aws-cloud-apps/tree/master/server/postgres)  
+[Integration tests](https://github.com/escobard/aws-cloud-apps/tree/master/server/tests)  
+[End to end tests](https://github.com/escobard/aws-cloud-apps/tree/master/client/tests)
 
 ## Tools and frameworks
 

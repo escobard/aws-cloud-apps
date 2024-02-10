@@ -13,7 +13,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
   api:
     container_name: api_e2e_tests
-    working_dir: /usr/cloud-apps/graphql
+    working_dir: /usr/aws-cloud-apps/graphql
     environment:
       - DB_USER=postgres
       - DB_HOST=postgres
@@ -30,7 +30,7 @@ services:
       sh -c "/wait && npm run dev"
   ui:
     container_name: ui_e2e_tests
-    working_dir: /usr/cloud-apps/ui
+    working_dir: /usr/aws-cloud-apps/ui
     environment:
       - NEXT_PUBLIC_GRAPHQL_API=http://api:4000/graphql
       - WAIT_HOSTS=api:4000
@@ -43,7 +43,7 @@ services:
       sh -c "/wait && npm run dev"
   e2e:
     container_name: e2e_tests
-    working_dir: /usr/cloud-apps/e2e
+    working_dir: /usr/aws-cloud-apps/e2e
     environment:
       - UI=http://ui:3000
       - WAIT_HOSTS=ui:3000
