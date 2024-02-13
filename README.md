@@ -30,7 +30,7 @@ This project is a modernized version of [cloud-apps](https://github.com/escobard
 `docker-compose -f integration-tests.yaml up --exit-code-from integration`
 
 #### Run End to end tests environment
-`docker-compose -f e2e-tests.yaml up --no-attach node-chrome --exit-code-from e2e`
+`docker-compose -f e2e-tests.yaml up --exit-code-from e2e`
 
 #### Run Data migrations environment
 

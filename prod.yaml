@@ -24,15 +24,15 @@ services:
       context: ./api
       dockerfile: Dockerfile
   ## there seems to be a bug with next.js and docker-compose here npm build & npm start is not defining environment variables
-  ui:
-    container_name: ui_prod
-    working_dir: /usr/aws-cloud-apps/ui
+  client:
+    container_name: client_prod
+    working_dir: /usr/aws-cloud-apps/client
     env_file:
       - client/ui/.env
     environment:
       - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
     build:
-      context: ./ui
+      context: ./client
       dockerfile: Dockerfile
     ports:
       - "3000:3000"

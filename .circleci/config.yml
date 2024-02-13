@@ -21,7 +21,7 @@ workflows:
         - equal: [ true, << pipeline.parameters.is_pull_request >> ]
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
-      - ui-unit-tests
+      - client-unit-tests
       - api-unit-tests
       - database-unit-tests
       - integration-tests:
@@ -47,7 +47,7 @@ workflows:
           context: cloud-apps-2023
           name: 'Build and push API Docker image'
 jobs:
-  ui-unit-tests:
+  client-unit-tests:
     working_directory: ~/client
     docker:
       - image: cimg/node:20.9.0 # lock in version of node to prevent dependency issues
@@ -56,7 +56,7 @@ jobs:
       - restore_cache:
           key: dependency-cache-{{ checksum "client/package.json" }}
       - run:
-          name: "Install UI dev-only dependencies"
+          name: "Install client dev-only dependencies"
           command: "cd client && npm i -D"
       - save_cache:
           key: dependency-cache-{{ checksum "client/package.json" }}

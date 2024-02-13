@@ -28,16 +28,16 @@ services:
       dockerfile: Dockerfile.dev
     command: |
       sh -c "/wait && npm run dev"
-  ui:
-    container_name: ui_e2e_tests
-    working_dir: /usr/aws-cloud-apps/ui
+  client:
+    container_name: client_e2e_tests
+    working_dir: /usr/aws-cloud-apps/client
     environment:
       - NEXT_PUBLIC_GRAPHQL_API=http://api:4000/graphql
       - WAIT_HOSTS=api:4000
     ports:
       - "3000:3000"
     build:
-      context: ui
+      context: ./client
       dockerfile: Dockerfile.dev
     command: |
       sh -c "/wait && npm run dev"
@@ -45,10 +45,10 @@ services:
     container_name: e2e_tests
     working_dir: /usr/aws-cloud-apps/e2e
     environment:
-      - UI=http://ui:3000
-      - WAIT_HOSTS=ui:3000
+      - UI=http://client:3000
+      - WAIT_HOSTS=client:3000
     build:
-      context: e2e_tests
+      context: ./e2e_tests
       dockerfile: Dockerfile.dev
     command: |
       sh -c "/wait && npx playwright test"
