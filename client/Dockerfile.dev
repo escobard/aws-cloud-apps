@@ -3,7 +3,7 @@ FROM node:20.9.0
 ARG NEXT_PUBLIC_GRAPHQL_API
 ENV NEXT_PUBLIC_GRAPHQL_API=${NEXT_PUBLIC_GRAPHQL_API}
 
-WORKDIR /usr/aws-cloud-apps/ui
+WORKDIR /usr/aws-cloud-apps/client
 
 COPY ./package.json ./
 

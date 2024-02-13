@@ -3,7 +3,7 @@ services:
   postgres:
     container_name: postgres_dev
     build:
-      context: ./server/postgres
+      context: ./database
       dockerfile: Dockerfile
     ports:
       - "5432:5432"
@@ -22,16 +22,16 @@ services:
     ports:
       - "4000:4000"
     build:
-      context: ./server/graphql
+      context: ./api
       dockerfile: Dockerfile.dev
     volumes:
-      - ./server/graphql:/usr/aws-cloud-apps/graphql
+      - ./api:/usr/aws-cloud-apps/graphql
       - /usr/aws-cloud-apps/graphql/node_modules
     command: |
       sh -c "/wait && npm run dev"
-  ui:
-    container_name: ui_dev
-    working_dir: /usr/aws-cloud-apps/ui
+  client:
+    container_name: client_dev
+    working_dir: /usr/aws-cloud-apps/client
     environment:
       # TODO - using localhost instead of api as a host name because of a bug in docker-compose
       - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
@@ -39,10 +39,10 @@ services:
     ports:
       - "3000:3000"
     build:
-      context: client/ui
+      context: ./client
       dockerfile: Dockerfile.dev
     volumes:
-      - ./client/ui:/usr/aws-cloud-apps/ui
-      - /usr/aws-cloud-apps/ui/node_modules
+      - ./client:/usr/aws-cloud-apps/client
+      - /usr/aws-cloud-apps/client/node_modules
     command: |
       sh -c "/wait && npm run dev"

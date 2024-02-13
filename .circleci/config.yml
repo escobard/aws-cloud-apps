@@ -21,12 +21,12 @@ workflows:
         - equal: [ true, << pipeline.parameters.is_pull_request >> ]
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
-      - ui-unit-tests
+      - client-unit-tests
       - api-unit-tests
       - database-unit-tests
       - integration-tests:
           requires:
-            - ui-unit-tests
+            - client-unit-tests
             - api-unit-tests
             - database-unit-tests
       - e2e-tests:
@@ -47,45 +47,45 @@ workflows:
           context: cloud-apps-2023
           name: 'Build and push API Docker image'
 jobs:
-  ui-unit-tests:
-    working_directory: ~/client/ui
+  client-unit-tests:
+    working_directory: ~/client
     docker:
       - image: cimg/node:20.9.0 # lock in version of node to prevent dependency issues
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "client/ui/package.json" }}
+          key: dependency-cache-{{ checksum "client/package.json" }}
       - run:
-          name: "Install UI dev-only dependencies"
-          command: "cd client/ui && npm i -D"
+          name: "Install client dev-only dependencies"
+          command: "cd client && npm i -D"
       - save_cache:
-          key: dependency-cache-{{ checksum "client/ui/package.json" }}
+          key: dependency-cache-{{ checksum "client/package.json" }}
           paths:
             - ./node_modules
       - run:
           name: "Run unit tests"
-          command: "cd client/ui && npm run test:coverage -- -u"
+          command: "cd client && npm run test:coverage -- -u"
   ## TODO - use parameters and have a single job script for ui/api unit tests
   api-unit-tests:
-    working_directory: ~/server/graphql
+    working_directory: ~/api
     docker:
       - image: cimg/node:20.9.0 # lock in version of node to prevent dependency issues
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "server/graphql/package.json" }}
+          key: dependency-cache-{{ checksum "api/package.json" }}
       - run:
           name: "Install API dev-only dependencies"
-          command: "cd server/graphql && npm i -D"
+          command: "cd api && npm i -D"
       - save_cache:
-          key: dependency-cache-{{ checksum "server/graphql/package.json" }}
+          key: dependency-cache-{{ checksum "api/package.json" }}
           paths:
             - ./node_modules
       - run:
           name: "Run unit tests"
-          command: "cd server/graphql && npm run test:coverage"
+          command: "cd api && npm run test:coverage"
   database-unit-tests:
-    working_directory: ~/server/postgres
+    working_directory: ~/database
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -103,7 +103,7 @@ jobs:
           command: |
             docker-compose -f data-tests.yaml up --exit-code-from data_tests
   integration-tests:
-    working_directory: ~/server/tests
+    working_directory: ~/integration_tests
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -121,7 +121,7 @@ jobs:
           command: |
             docker-compose -f integration-tests.yaml up --exit-code-from integration
   e2e-tests:
-    working_directory: ~/client/tests
+    working_directory: ~/e2e_tests
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -139,23 +139,23 @@ jobs:
           command: |
             docker-compose -f e2e-tests.yaml up --exit-code-from e2e
   data-migrations:
-    working_directory: ~/server/postgres
+    working_directory: ~/database
     docker:
       - image: cimg/node:20.9.0
     steps:
       - checkout
       - restore_cache:
-          key: dependency-cache-{{ checksum "server/postgres/package.json" }}
+          key: dependency-cache-{{ checksum "database/package.json" }}
       - run:
           name: "Install API dev-only dependencies"
-          command: "cd server/postgres && npm install --only=prod"
+          command: "cd database && npm install --only=prod"
       - save_cache:
-          key: dependency-cache-{{ checksum "server/postgres/package.json" }}
+          key: dependency-cache-{{ checksum "database/package.json" }}
           paths:
             - ./node_modules
       - run:
           name: "Run data migrations"
-          command: "cd server/postgres && npm run migrate-up"
+          command: "cd database && npm run migrate-up"
   build-and-push-ui-image:
     <<: *docker_cimg
     resource_class: small
@@ -167,7 +167,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           repo: 'cloud-apps-ui'
-          path: './client/ui'
+          path: './client'
           dockerfile: 'Dockerfile'
           tag: 'latest,v<< pipeline.number >>'
           extra-build-args: '--build-arg NEXT_PUBLIC_GRAPHQL_API'
@@ -187,7 +187,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           repo: 'cloud-apps-api'
-          path: './server/graphql'
+          path: './api'
           dockerfile: 'Dockerfile'
           tag: 'latest,v<< pipeline.number >>'
           extra-build-args: '--build-arg DB_HOST --build-arg DB_PORT --build-arg DB_NAME --build-arg DB_USER --build-arg DB_PASSWORD'
