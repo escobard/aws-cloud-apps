@@ -3,7 +3,7 @@ services:
   postgres:
     container_name: postgres_prod
     build:
-      context: ./server/postgres
+      context: ./database
       dockerfile: Dockerfile
     ports:
       - "5432:5432"
@@ -21,7 +21,7 @@ services:
     ports:
     - "4000:4000"
     build:
-      context: ./server/graphql
+      context: ./api
       dockerfile: Dockerfile
   ## there seems to be a bug with next.js and docker-compose here npm build & npm start is not defining environment variables
   ui:
@@ -32,7 +32,7 @@ services:
     environment:
       - NEXT_PUBLIC_GRAPHQL_API=http://localhost:4000/graphql
     build:
-      context: client/ui
+      context: ./ui
       dockerfile: Dockerfile
     ports:
       - "3000:3000"

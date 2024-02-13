@@ -13,7 +13,7 @@ services:
   migrations:
     container_name: migrations
     build:
-      context: ./server/postgres
+      context: ./database
       dockerfile: Dockerfile.migrations
     environment:
       # could abreviate with env variables

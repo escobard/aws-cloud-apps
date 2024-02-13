@@ -5,7 +5,7 @@ services:
   postgres:
     container_name: postgres_tests
     build:
-      context: ./server/postgres
+      context: ./database
       dockerfile: Dockerfile
     ports:
       - "5432:5432"
@@ -24,7 +24,7 @@ services:
     ports:
       - "4000:4000"
     build:
-      context: ./server/graphql
+      context: ./api
       dockerfile: Dockerfile.dev
     command: |
       sh -c "/wait && npm run dev"
@@ -35,7 +35,7 @@ services:
       - API=http://api:4000
       - WAIT_HOSTS=api:4000
     build:
-      context: ./server/tests
+      context: ./integration_tests
       dockerfile: Dockerfile
     command: |
       sh -c "/wait && npm start"

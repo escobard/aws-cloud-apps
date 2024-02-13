@@ -3,7 +3,7 @@ services:
   postgres:
     container_name: postgres_dev
     build:
-      context: ./server/postgres
+      context: ./database
       dockerfile: Dockerfile
     ports:
       - "5432:5432"
@@ -22,10 +22,10 @@ services:
     ports:
       - "4000:4000"
     build:
-      context: ./server/graphql
+      context: ./api
       dockerfile: Dockerfile.dev
     volumes:
-      - ./server/graphql:/usr/aws-cloud-apps/graphql
+      - ./api:/usr/aws-cloud-apps/graphql
       - /usr/aws-cloud-apps/graphql/node_modules
     command: |
       sh -c "/wait && npm run dev"
@@ -39,10 +39,10 @@ services:
     ports:
       - "3000:3000"
     build:
-      context: client/ui
+      context: ./client
       dockerfile: Dockerfile.dev
     volumes:
-      - ./client/ui:/usr/aws-cloud-apps/ui
+      - ./client:/usr/aws-cloud-apps/ui
       - /usr/aws-cloud-apps/ui/node_modules
     command: |
       sh -c "/wait && npm run dev"
