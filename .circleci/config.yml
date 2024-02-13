@@ -26,7 +26,7 @@ workflows:
       - database-unit-tests
       - integration-tests:
           requires:
-            - ui-unit-tests
+            - client-unit-tests
             - api-unit-tests
             - database-unit-tests
       - e2e-tests:
