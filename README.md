@@ -154,7 +154,7 @@ To accompany programmatic database schema and structure updates, database update
 
 ### Lightweight dependencies for fast build and test times
 
-Build times are improved through NPM's [development only installations](https://www.warp.dev/terminus/npm-install-dev-dependencies#:~:text=To%20update%20or%20re%2Dinstall,json%20file.) , [production only installations](https://stackoverflow.com/questions/9268259/how-do-you-prevent-install-of-devdependencies-npm-modules-for-node-js-package), [CircleCI caching](https://circleci.com/docs/caching/) and Docker. Build & run times for each test application is less than a minute, except end to end tests, which install and run the entire system. 
+Build times are improved through NPM's [development only installations](https://www.warp.dev/terminus/npm-install-dev-dependencies#:~:text=To%20update%20or%20re%2Dinstall,json%20file.) , [production only installations](https://stackoverflow.com/questions/9268259/how-do-you-prevent-install-of-devdependencies-npm-modules-for-node-js-package), [CircleCI caching](https://circleci.com/docs/caching/) and Docker. Build & run times for each test application is less than a minute, with the exception of end to end tests, which install and run the entire system.
 
 ![Lightweight dependencies](docs/images/lightweight_dependencies.png)
 
