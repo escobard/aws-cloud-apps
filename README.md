@@ -1,8 +1,8 @@
 # aws-cloud-apps &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/master/LICENSE) [![CircleCI Status](https://circleci.com/gh/escobard/aws-cloud-apps.svg?style=shield&circle-token=44b8bfb398b6a0882a7ba006c3643dc12c38e81d)](https://app.circleci.com/pipelines/github/escobard/aws-cloud-apps) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/escobard/aws-cloud-apps#pull-requests)
 
-A simple, responsive web application to take notes, built with JavaScript, designed as starting point to build complex web applications. Each application in the system can be run independently with Docker or npm. Unit, integration and end-to-end (e2e) tests are available. Development, release, integration and e2e test environments can be simulated with Docker Compose. 
+A simple, responsive web application to take notes, built with JavaScript, designed as starting point to build complex web applications. Each application in the system can be run independently with Docker or npm. Unit, integration and end-to-end (e2e) tests are available. Development, release, integration and e2e test environments can be simulated with Docker Compose.
 
-This project is a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), hosted on [AWS](https://aws.amazon.com/).
+This project is a modernized version of [cloud-apps](https://github.com/escobard/cloud-apps), hosted on [AWS](https://aws.amazon.com/). The upgrade introduced new technology to the stack, including React + Next, GraphQL, Automated database tests & migrations, and Playwright end to end tests.
 
 ## Table of contents
 
@@ -106,7 +106,7 @@ In addition to the new core concepts, this project shares the same core concepts
 
 ### Hosted on AWS
 
-The project's UI, API and Database are hosted on AWS. Leveraging [CircleCI](https://circleci.com/), the UI and API Docker images are built & deployed to AWS' [Elastic Container Registry(ECR)](https://aws.amazon.com/ecr/), then hosted with [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) and [Fargate](https://aws.amazon.com/fargate/). The database is hosted on AWS' [ Relational Database Service(RDS)](https://aws.amazon.com/rds/).
+The project's Client, API and Database are hosted on AWS. Leveraging [CircleCI](https://circleci.com/), the Client and API Docker images are built & deployed to AWS' [Elastic Container Registry(ECR)](https://aws.amazon.com/ecr/), then hosted with [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/) and [Fargate](https://aws.amazon.com/fargate/). The database is hosted on AWS' [ Relational Database Service(RDS)](https://aws.amazon.com/rds/).
 
 The diagram below outlines how network connections are managed between resources in AWS:
 
@@ -118,7 +118,7 @@ A cloud-like network can be simulated with Docker Compose. The diagram below out
 
 ### Enterprise-grade blueprint for CI/CD with CircleCI
 
-Unit tests for the UI, API and Database are run on every pull request to Github, using CircleCI. Once the unit tests have passed, integration tests are run, validating API and Database updates. After integration tests pass, e2e tests are run, validating that the UI, API and Database work as expected with the new updates. Once all tests have passed, the pull request can be merged to the `main` branch, which kicks off deployments.
+Unit tests for the Client, API and Database are run on every pull request to Github, using CircleCI. Once the unit tests have passed, integration tests are run, validating API and Database updates. After integration tests pass, e2e tests are run, validating that the Client, API and Database work as expected with the new updates. Once all tests have passed, the pull request can be merged to the `main` branch, which kicks off deployments.
 
 Deployments begin by simultaneously running the jobs to build & deploy application Docker images and Database migrations. Once Docker images have been deployed to ECR, CircleCI updates ECS with the new Docker images, performing [rolling deployments](https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/rolling-deployments.html) for the new application versions.
 
@@ -166,11 +166,11 @@ Build times are improved through NPM's [development only installations](https://
 
 ## Application docs
 
-[UI](https://github.com/escobard/aws-cloud-apps/blob/master/client/ui)  
-[API](https://github.com/escobard/aws-cloud-apps/blob/master/server/api)  
-[Database](https://github.com/escobard/aws-cloud-apps/tree/master/server/postgres)  
-[Integration tests](https://github.com/escobard/aws-cloud-apps/tree/master/server/tests)  
-[End to end tests](https://github.com/escobard/aws-cloud-apps/tree/master/client/tests)
+[Client](https://github.com/escobard/aws-cloud-apps/blob/master/client)  
+[API](https://github.com/escobard/aws-cloud-apps/blob/master/api)  
+[Database](https://github.com/escobard/aws-cloud-apps/tree/master/database)  
+[Integration tests](https://github.com/escobard/aws-cloud-apps/tree/master/integration_tests)  
+[End to end tests](https://github.com/escobard/aws-cloud-apps/tree/master/e2e_tests)
 
 ## Tools and frameworks
 

@@ -37,9 +37,10 @@ workflows:
       or:
         - equal: [ main, << pipeline.git.branch >> ]
     jobs:
-      - data-migrations:
-          context: cloud-apps-2023
-          name: 'Run Database migrations'
+# disable until the database is re-created on AWS - disabled to save costs
+#      - data-migrations:
+#          context: cloud-apps-2023
+#          name: 'Run Database migrations'
       - build-and-push-ui-image:
           context: cloud-apps-2023
           name: 'Build and push UI Docker image'
